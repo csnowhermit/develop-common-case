@@ -10,6 +10,7 @@
   <modules>
     <module>myTomcat</module>
     <module>mySpring</module>
+    <module>commonUtils</module>
   </modules>
   <packaging>pom</packaging>
 
