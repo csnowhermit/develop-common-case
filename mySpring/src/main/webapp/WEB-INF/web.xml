@@ -1,0 +1,28 @@
+<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app>
+  <display-name>Gupao Web Application</display-name>
+
+  <!-- mvcframework config start -->
+  <servlet>
+    <servlet-name>dispatcher</servlet-name>
+    <servlet-class>com.rxt.common.mySpring.framework.servlet.MyDispatcherServlet</servlet-class>
+    <init-param>
+      <param-name>scanPackage</param-name>
+      <param-value>com.rxt.common.mySpring.demo</param-value>
+    </init-param>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>dispatcher</servlet-name>
+    <url-pattern>*.json</url-pattern>
+  </servlet-mapping>
+  <!-- mvcframework config end -->
+
+  <!-- welcome page -->
+  <welcome-file-list>
+    <welcome-file>/index.html</welcome-file>
+  </welcome-file-list>
+</web-app>
