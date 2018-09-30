@@ -11,6 +11,8 @@
     <module>myTomcat</module>
     <module>mySpring</module>
     <module>commonUtils</module>
+      <module>rpc</module>
+    <module>rmi</module>
   </modules>
   <packaging>pom</packaging>
 
