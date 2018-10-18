@@ -138,16 +138,25 @@ public class JedisDLock {
 
         CountDownLatch countDownLatch = new CountDownLatch(10);
         for (int i = 0; i < 10; i++) {
-            JedisDLock jedisDLock = new JedisDLock();
-            String identifier = jedisDLock.acquireLock("DLock", System.currentTimeMillis(), 50000);
-            System.out.println(i + "获得锁：" + identifier);
+            new Thread(() -> {
+                JedisDLock jedisDLock = new JedisDLock();
+                String identifier = jedisDLock.acquireLock("DLock", System.currentTimeMillis(), 50000);
+//                System.out.println(i + "获得锁：" + identifier);
+                System.out.println("获得锁：" + identifier);
 
-            Thread.sleep(5000);
+                try {
+                    Thread.sleep(5000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
 
-            countDownLatch.countDown();
+                countDownLatch.countDown();
 
-            jedisDLock.releaseLock("DLock", identifier);
-            System.out.println(i + "释放锁：" + identifier);
+                jedisDLock.releaseLock("DLock", identifier);
+//                System.out.println(i + "释放锁：" + identifier);
+                System.out.println("释放锁：" + identifier);
+                System.out.println("=======================");
+            }).start();
         }
 
         countDownLatch.await();
