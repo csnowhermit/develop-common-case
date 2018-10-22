@@ -13,6 +13,7 @@
     <module>commonUtils</module>
       <module>rpc</module>
     <module>rmi</module>
+      <module>mq</module>
   </modules>
   <packaging>pom</packaging>
 
