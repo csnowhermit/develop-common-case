@@ -44,6 +44,7 @@ public class ServerHandler implements Runnable {
             System.out.println("服务端收到信息：" + expression);
 
             result = Calcutor.cal(expression);
+            printWriter.println(result);
 
         } catch (IOException e) {
             e.printStackTrace();
