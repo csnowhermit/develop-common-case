@@ -59,7 +59,5 @@ public class TestCountDownLatch {
         countDownLatch.await();
 
         System.exit(0);
-
-
     }
 }

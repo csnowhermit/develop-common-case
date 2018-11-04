@@ -9,6 +9,8 @@ package com.rxt.common.utils.DistributedLock.redis;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.Transaction;
 
+import java.io.IOException;
+import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.CountDownLatch;
 
@@ -23,8 +25,8 @@ public class JedisDLock {
      * 获取锁
      *
      * @param lockName       锁名称
-     * @param acquireTimeout 获取时间
-     * @param lockTimeout    超时时间
+     * @param acquireTimeout 获取锁的超时时间
+     * @param lockTimeout    锁本身的过期时间
      * @return 返回获取锁的ID
      */
     public String acquireLock(String lockName, long acquireTimeout, long lockTimeout) {
@@ -38,8 +40,14 @@ public class JedisDLock {
             jedis.auth(password);
             long end = System.currentTimeMillis() + acquireTimeout;
 
-            while (System.currentTimeMillis() < end) {    //获取锁的限定时间
+            while (System.currentTimeMillis() < end) {    //在这段时间内不断循环获得锁
                 if (jedis.setnx(lockKey, identifier) == 1) {    //设置值成功
+//                    try {
+//                        throw new IOException("此处模拟设置值成功之后，设置超时时间之前程序挂掉");
+//                    } catch (IOException e) {
+//                        e.printStackTrace();
+//                    }
+//                    return null;
                     jedis.expire(lockKey, lockExpire);    //设置超时时间
                     return identifier;    //获得锁成功
                 }
@@ -48,7 +56,7 @@ public class JedisDLock {
                     jedis.expire(lockKey, lockExpire);
                 }
                 try {
-                    Thread.sleep(100);    //如果获取失败，稍等片刻后进行获取锁的重试
+                    Thread.sleep(100);    //如果获取失败，稍等片刻后进行获取锁的重试，（立马重试没有任何意义）
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -82,7 +90,6 @@ public class JedisDLock {
             return true;
         }
         return false;
-
     }
 
     /**
@@ -103,7 +110,9 @@ public class JedisDLock {
             jedis.auth(password);
             while (true) {    //循环，确保锁一定会被释放
                 jedis.watch(lockKey);
-                if (identifier.equals(jedis.get(lockKey))) {    //判断是否为同一把锁
+                String currLock = jedis.get(lockKey);
+                System.out.println(identifier + " 在Redis中的锁为：" + currLock);
+                if (identifier.equals(currLock)) {    //判断是否为同一把锁
                     Transaction transaction = jedis.multi();
                     transaction.del(lockKey);
                     if (transaction.exec().isEmpty()) {
@@ -136,30 +145,16 @@ public class JedisDLock {
 //        Thread.sleep(20000);
 //        System.out.println(jedisDLock.releaseLock("DLock", identifier));
 
-        CountDownLatch countDownLatch = new CountDownLatch(10);
+//        CountDownLatch countDownLatch = new CountDownLatch(10);
+//        for (int i = 0; i < 10; i++) {
+//            new Thread(new DLockTest()).start();
+//            countDownLatch.countDown();
+//        }
+//
+//        countDownLatch.await();
         for (int i = 0; i < 10; i++) {
-            new Thread(() -> {
-                JedisDLock jedisDLock = new JedisDLock();
-                String identifier = jedisDLock.acquireLock("DLock", System.currentTimeMillis(), 50000);
-//                System.out.println(i + "获得锁：" + identifier);
-                System.out.println("获得锁：" + identifier);
-
-                try {
-                    Thread.sleep(5000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-
-                countDownLatch.countDown();
-
-                jedisDLock.releaseLock("DLock", identifier);
-//                System.out.println(i + "释放锁：" + identifier);
-                System.out.println("释放锁：" + identifier);
-                System.out.println("=======================");
-            }).start();
+            new Thread(new DLockTest()).start();
         }
-
-        countDownLatch.await();
 
     }
 }
