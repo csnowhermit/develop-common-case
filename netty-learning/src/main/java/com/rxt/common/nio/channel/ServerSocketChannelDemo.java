@@ -56,7 +56,7 @@ public class ServerSocketChannelDemo {
             try {
                 while (!Thread.currentThread().isInterrupted()) {
                     int n = selector.select();    //从选择器中取，如果没有这步，则没有结果
-                    if (n == 0) {
+                    if (n == 0) {    //0代表没有任何事件进来
                         continue;
                     }
 
