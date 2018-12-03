@@ -11,10 +11,11 @@
     <module>myTomcat</module>
     <module>mySpring</module>
     <module>commonUtils</module>
-      <module>rpc</module>
     <module>rmi</module>
       <module>mq</module>
       <module>netty-learning</module>
+    <module>bigdata-scala</module>
+      <module>elasticsearch</module>
   </modules>
   <packaging>pom</packaging>
 
