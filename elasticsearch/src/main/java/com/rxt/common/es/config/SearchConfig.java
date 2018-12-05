@@ -1,6 +1,5 @@
 /**
  * FileName: SearchConfig
- * Author:   Ren Xiaotian
  * Date:     2018/12/3 21:05
  */
 
@@ -20,7 +19,6 @@ import java.net.UnknownHostException;
 @Configuration
 public class SearchConfig {
 
-    //    @Autowired EsConfig esConfig;
     @Autowired
     ESConfig esConfig;
 

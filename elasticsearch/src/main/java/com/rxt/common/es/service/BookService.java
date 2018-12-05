@@ -1,6 +1,5 @@
 /**
  * FileName: BookService
- * Author:   Ren Xiaotian
  * Date:     2018/12/3 21:20
  */
 

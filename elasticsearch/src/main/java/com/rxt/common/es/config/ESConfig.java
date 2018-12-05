@@ -1,6 +1,5 @@
 /**
  * FileName: ESConfig
- * Author:   Ren Xiaotian
  * Date:     2018/12/3 20:41
  */
 
