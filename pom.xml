@@ -15,6 +15,7 @@
         <module>mq</module>
         <module>netty-learning</module>
         <module>elasticsearch</module>
+        <module>bd-Demo</module>
     </modules>
     <packaging>pom</packaging>
 
