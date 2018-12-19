@@ -9,27 +9,29 @@ import org.apache.spark.sql.{SQLContext, SaveMode}
 import org.apache.spark.{SparkConf, SparkContext}
 
 /**
-  * 计算网站PV：页面访问量，页面打开一次或刷新一次，PV+1
+  * 计算网站UV：独立访客数，每增加一个独立访客，UV+1
   */
-object ComputePV {
+object ComputeUV {
 
   /**
-    * 计算PV
+    * 计算UV
     *
-    * @param file
+    * @param textRDD
     * @return
     */
-  def computePV(textRDD: RDD[String]): RDD[(String, Long)] = {
+  def computeUV(textRDD: RDD[String]): RDD[(String, Long)] = {
     val splitTextFileRDD = textRDD.map(_.split("\t"))
     val result = splitTextFileRDD.filter(log => log(1).startsWith("http") && log(1).endsWith(".html"))
-      .map(log => ((new URL(log(1))).getPath, 1L))
+      .map(log => ((new URL(log(1))).getPath, log(2)))
+      .distinct()
+      .map(urlWithCookies => (urlWithCookies._1, 1L))
       .reduceByKey(_ + _)
 
     result
   }
 
   /**
-    * 将计算结果保存至HDFS
+    * 保存结果至HDFS
     *
     * @param result
     * @param hdfsPath
@@ -38,12 +40,7 @@ object ComputePV {
     result.saveAsTextFile(hdfsPath)
   }
 
-  /**
-    * 将计算结果保存至MySQL
-    *
-    * @param sc
-    * @param result
-    */
+
   def save2MySQL(sc: SparkContext, result: RDD[(String, Long)]): Unit = {
     val sqlContext = new SQLContext(sc)
 
@@ -55,9 +52,10 @@ object ComputePV {
     import sqlContext.implicits._
 
     result.toDF("url", "count")
-      .write.mode(SaveMode.Append) //以追加方式写
-      .jdbc("jdbc:mysql://localhost:3306/test?useSSL=false", "web_pv", props)
+      .write.mode(SaveMode.Append)
+      .jdbc("jdbc:mysql://localhost:3306/test?useSSL=false", "web_uv", props)
   }
+
 
   def main(args: Array[String]): Unit = {
     //    val opts = new Options
@@ -75,7 +73,6 @@ object ComputePV {
     //      throw new IllegalArgumentException("Missing --save_mode")
     //    }
     //
-    //    //如果指定了存储模式为HDFS，但未指定存储目录，则抛异常
     //    if (parser.getOptionValue("save_mode") == "HDFS") {
     //      if (parser.hasOption("output_path") == false) {
     //        throw new IllegalArgumentException("Missing --output_path")
@@ -94,15 +91,7 @@ object ComputePV {
 
     val file = sc.textFile(inputPath)
 
-    //    file.map(_.split("\t"))
-    //      .filter(log => log(1).startsWith("http") && log(1).endsWith(".html"))
-    //      .map(log => (new URL(log(1)).getPath, 1L))
-    //      .reduceByKey(_ + _)
-    //      .collect()
-    //      .foreach(println)
-
-
-    val result = computePV(file) //计算PV
+    val result = computeUV(file)
     result.foreach(println)
     save2MySQL(sc, result)
 
@@ -113,5 +102,6 @@ object ComputePV {
     //    }
 
     sc.stop()
+
   }
 }

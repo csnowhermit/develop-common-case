@@ -10,11 +10,19 @@ import java.security.NoSuchAlgorithmException;
 public class App {
     public static void main(String[] args) throws NoSuchAlgorithmException, UnsupportedEncodingException {
         String srcStr = "中华人民共和国";
-        MessageDigest md = MessageDigest.getInstance("md5");
-        md.update(srcStr.getBytes("UTF-8"));
-        byte[] target = md.digest();
+        MessageDigest md5 = MessageDigest.getInstance("md5");
+        md5.update(srcStr.getBytes("UTF-8"));
+        byte[] target = md5.digest();
         System.out.println(new String(target));
-        System.out.println(org.apache.commons.codec.binary.Hex.encodeHex(md.digest()));
+        System.out.println(org.apache.commons.codec.binary.Hex.encodeHex(md5.digest()));
+
+
+        MessageDigest sha1 = MessageDigest.getInstance("SHA-1");
+        sha1.update(srcStr.getBytes("UTF-8"));
+        byte[] sha1Target = sha1.digest();
+        System.out.println(new String(sha1Target));
+        System.out.println(org.apache.commons.codec.binary.Hex.encodeHex(sha1.digest()));
+
 
     }
 }
