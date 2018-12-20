@@ -40,7 +40,12 @@ object ComputeUV {
     result.saveAsTextFile(hdfsPath)
   }
 
-
+  /**
+    * 保存结果至MySQL
+    *
+    * @param sc
+    * @param result
+    */
   def save2MySQL(sc: SparkContext, result: RDD[(String, Long)]): Unit = {
     val sqlContext = new SQLContext(sc)
 
@@ -88,6 +93,8 @@ object ComputeUV {
 
     val conf = new SparkConf().setMaster(master).setAppName(appName)
     val sc = new SparkContext(conf)
+
+    sc.hadoopConfiguration.set("mapreduce.input.fileinputformat.input.dir.recursive", "true")
 
     val file = sc.textFile(inputPath)
 

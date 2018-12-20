@@ -11,6 +11,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>Demo-spark</module>
+        <module>Demo-mapreduce</module>
     </modules>
 
     <artifactId>bd-Demo</artifactId>

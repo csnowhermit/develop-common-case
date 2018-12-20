@@ -92,6 +92,8 @@ object ComputePV {
     val conf = new SparkConf().setMaster(master).setAppName(appName)
     val sc = new SparkContext(conf)
 
+    sc.hadoopConfiguration.set("mapreduce.input.fileinputformat.input.dir.recursive", "true")
+
     val file = sc.textFile(inputPath)
 
     //    file.map(_.split("\t"))
