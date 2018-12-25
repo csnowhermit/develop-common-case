@@ -56,9 +56,9 @@ object ComputeUV {
 
     import sqlContext.implicits._
 
-    result.toDF("url", "count")
-      .write.mode(SaveMode.Append)
-      .jdbc("jdbc:mysql://localhost:3306/test?useSSL=false", "web_uv", props)
+//    result.toDF("url", "count")
+//      .write.mode(SaveMode.Append)
+//      .jdbc("jdbc:mysql://localhost:3306/test?useSSL=false", "web_uv", props)
   }
 
 

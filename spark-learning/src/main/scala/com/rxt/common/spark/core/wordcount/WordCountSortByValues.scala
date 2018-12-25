@@ -1,9 +1,12 @@
-package com.rxt.common.spark.core
+package com.rxt.common.spark.core.wordcount
 
 import org.apache.log4j.{Level, Logger}
 import org.apache.spark.{SparkConf, SparkContext}
 
-object WordCount {
+/**
+  * wordcount，对value进行排序
+  */
+object WordCountSortByValues {
   def main(args: Array[String]): Unit = {
 
     val master = "local"
@@ -20,7 +23,10 @@ object WordCount {
     val file = sc.textFile(inputPath)
 
     val words = file.flatMap(_.split(",")).map(word => (word, 1)).reduceByKey(_ + _)
-    words.collect().foreach(println)
+
+    val sorted = words.map(x => (x._2, x._1)).sortByKey(false).map(x => (x._2, x._1))    //默认是升序排序，写false是降序排序
+
+    sorted.collect().foreach(println)
 
     sc.stop()
 
