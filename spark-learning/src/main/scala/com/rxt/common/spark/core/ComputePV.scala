@@ -55,7 +55,7 @@ object ComputePV {
     import sqlContext.implicits._
 
 //    result.toDF("url", "count")
-//      .write.mode(SaveMode.Append) //以追加方式写
+//      .write.mode(SaveMode.Append)    //以追加方式写
 //      .jdbc("jdbc:mysql://localhost:3306/test?useSSL=false", "web_pv", props)
   }
 
