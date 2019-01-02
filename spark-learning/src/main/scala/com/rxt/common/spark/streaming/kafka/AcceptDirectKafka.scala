@@ -26,7 +26,9 @@ object AcceptDirectKafka {
 
     ssc.checkpoint(".") //因为使用到了updateStateByKey，所以必须设置checkpoint
     val topic = Set("test") //需要消费的Kafka数据的topic
-    val kafkaParam = Map("metadata.broker.list" -> "192.168.117.101:9092,192.168.117.102:9092,192.168.117.103:9092") //Kafka的broker list的地址
+    val kafkaParam = Map[String, String](
+      "metadata.broker.list" -> "192.168.117.101:2181,192.168.117.102:2181,192.168.117.103:2181",
+      "auto.offset.reset" -> "smallest")
 
     val stream: InputDStream[(String, String)] = createStream(ssc, kafkaParam, topic)
 
@@ -38,7 +40,7 @@ object AcceptDirectKafka {
     //      .updateStateByKey[Int](updateFunc) //用当前batch的数据区更新已有的数据
     //      .print() //默认为打印呢前10个数据
 
-//    stream.map(_._2).print()
+    //    stream.map(_._2).print()
 
 
     //启动streaming
