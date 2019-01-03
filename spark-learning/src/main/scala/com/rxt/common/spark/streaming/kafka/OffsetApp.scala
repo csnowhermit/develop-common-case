@@ -12,6 +12,7 @@ import org.apache.spark.streaming.{Seconds, StreamingContext}
 
 /**
   * spark streaming 整合 kafka offset管理
+  * http://spark.apache.org/docs/latest/streaming-kafka-0-10-integration.html
   */
 object OffsetApp {
   def main(args: Array[String]): Unit = {
@@ -28,8 +29,6 @@ object OffsetApp {
 
     val conf = new SparkConf().setMaster("local[2]").setAppName("OffsetApp")
     val ssc = new StreamingContext(conf, Seconds(10))
-
-    ssc.checkpoint(".")
 
     //TODO... spark streaming 对接 kafka
     val kafkaParams = Map[String, Object](
@@ -57,6 +56,7 @@ object OffsetApp {
         })
 
         // some time later, after outputs have completed
+        // 将偏移量提交到kafka保存
         stream.asInstanceOf[CanCommitOffsets].commitAsync(offsetRanges)
       }
     })
