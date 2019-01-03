@@ -3,16 +3,17 @@ package com.rxt.common.spark.streaming.kafka
 import com.alibaba.dcm.DnsCacheManipulator
 import org.apache.kafka.common.serialization.StringDeserializer
 import org.apache.log4j.{Level, Logger}
-import org.apache.spark.SparkConf
-import org.apache.spark.streaming.kafka010.ConsumerStrategies.Subscribe
-import org.apache.spark.streaming.kafka010.KafkaUtils
+import org.apache.spark.streaming.kafka010.{CanCommitOffsets, HasOffsetRanges, KafkaUtils, OffsetRange}
 import org.apache.spark.streaming.kafka010.LocationStrategies.PreferConsistent
+import org.apache.spark.streaming.kafka010.ConsumerStrategies.Subscribe
+import org.apache.spark.{SparkConf, SparkContext, TaskContext}
 import org.apache.spark.streaming.{Seconds, StreamingContext}
 
+
 /**
-  * 流式数据处理：只消费一次
+  * spark streaming 整合 kafka offset管理
   */
-object ExactlyOnceApp {
+object OffsetApp {
   def main(args: Array[String]): Unit = {
 
     //屏蔽不必要的日志显示在终端上
@@ -25,18 +26,21 @@ object ExactlyOnceApp {
     DnsCacheManipulator.setDnsCache("node1.hadoop", "192.168.117.102")
     DnsCacheManipulator.setDnsCache("node2.hadoop", "192.168.117.103")
 
-    val conf = new SparkConf().setMaster("local[2]").setAppName("ExactlyOnceApp")
-    val ssc = new StreamingContext(conf, Seconds(100))
+    val conf = new SparkConf().setMaster("local[2]").setAppName("OffsetApp")
+    val ssc = new StreamingContext(conf, Seconds(10))
 
-    val topics = Array("test")
+    ssc.checkpoint(".")
+
+    //TODO... spark streaming 对接 kafka
     val kafkaParams = Map[String, Object](
       "bootstrap.servers" -> "192.168.117.101:9092,192.168.117.102:9092,192.168.117.103:9092",
       "key.deserializer" -> classOf[StringDeserializer],
       "value.deserializer" -> classOf[StringDeserializer],
-      "group.id" -> "test.group",
+      "group.id" -> "use_a_separate_group_id_for_each_stream",
       "auto.offset.reset" -> "earliest",
       "enable.auto.commit" -> (false: java.lang.Boolean)
     )
+    val topics = Array("test")
 
     val stream = KafkaUtils.createDirectStream[String, String](
       ssc,
@@ -45,11 +49,19 @@ object ExactlyOnceApp {
     )
 
     stream.foreachRDD(rdd => {
-      println(rdd.count())
+      if (!rdd.isEmpty()) {
+        val offsetRanges = rdd.asInstanceOf[HasOffsetRanges].offsetRanges
+        rdd.foreachPartition(partition => {
+          val o: OffsetRange = offsetRanges(TaskContext.get().partitionId())
+          println(s"${o.topic} ${o.partition} ${o.fromOffset} ${o.untilOffset}")
+        })
+
+        // some time later, after outputs have completed
+        stream.asInstanceOf[CanCommitOffsets].commitAsync(offsetRanges)
+      }
     })
 
     ssc.start()
     ssc.awaitTermination()
   }
-
 }
