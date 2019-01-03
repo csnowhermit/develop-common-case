@@ -1,5 +1,6 @@
 package com.rxt.common;
 
+import com.alibaba.dcm.DnsCacheManipulator;
 import org.apache.kafka.clients.producer.*;
 
 import java.util.Properties;
@@ -65,15 +66,23 @@ public class KafkaProducerDemo extends Thread {
 
             }
             num++;
-           /* try {
-//                Thread.sleep(1000);
+            try {
+                Thread.sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
-            }*/
+            }
         }
     }
 
     public static void main(String[] args) {
+
+        //设置DNS
+        DnsCacheManipulator.setDnsCache("DESKTOP-NVPG7MB", "127.0.0.1");
+        DnsCacheManipulator.setDnsCache("master.hadoop", "192.168.117.101");
+        DnsCacheManipulator.setDnsCache("node1.hadoop", "192.168.117.102");
+        DnsCacheManipulator.setDnsCache("node2.hadoop", "192.168.117.103");
+
+
         new KafkaProducerDemo("test", true).start();
     }
 

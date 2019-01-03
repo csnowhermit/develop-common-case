@@ -1,10 +1,13 @@
 package com.rxt.common;
 
+import com.alibaba.dcm.DnsCacheManipulator;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
+import org.apache.kafka.common.TopicPartition;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Properties;
 
@@ -31,8 +34,8 @@ public class KafkaConsumerDemo extends Thread {
         properties.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
         kafkaConsumer = new KafkaConsumer(properties);
         kafkaConsumer.subscribe(Collections.singletonList(topic));
-       /* TopicPartition topicPartition=new TopicPartition(topic,0);
-        kafkaConsumer.assign(Arrays.asList(topicPartition));*/
+//        TopicPartition topicPartition = new TopicPartition(topic, 0);
+//        kafkaConsumer.assign(Arrays.asList(topicPartition));
     }
 
     @Override
@@ -47,6 +50,13 @@ public class KafkaConsumerDemo extends Thread {
     }
 
     public static void main(String[] args) {
+
+        //设置DNS
+        DnsCacheManipulator.setDnsCache("DESKTOP-NVPG7MB", "127.0.0.1");
+        DnsCacheManipulator.setDnsCache("master.hadoop", "192.168.117.101");
+        DnsCacheManipulator.setDnsCache("node1.hadoop", "192.168.117.102");
+        DnsCacheManipulator.setDnsCache("node2.hadoop", "192.168.117.103");
+
         new KafkaConsumerDemo("test").start();
     }
 

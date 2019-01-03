@@ -53,6 +53,12 @@
             <artifactId>log4j</artifactId>
             <version>1.2.17</version>
         </dependency>
+        <!-- DNS解析 -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>dns-cache-manipulator</artifactId>
+            <version>1.5.1</version>
+        </dependency>
     </dependencies>
 
     <build>
