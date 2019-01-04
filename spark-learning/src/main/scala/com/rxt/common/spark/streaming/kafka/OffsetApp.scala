@@ -36,16 +36,22 @@ object OffsetApp {
       "key.deserializer" -> classOf[StringDeserializer],
       "value.deserializer" -> classOf[StringDeserializer],
       "group.id" -> "use_a_separate_group_id_for_each_stream",
-      "auto.offset.reset" -> "earliest",
+      "auto.offset.reset" -> "earliest", //earliest和latest，对上次的实际读到的offset无影响；只要向kafka保存了偏移量，则默认从上次偏移量开始读
       "enable.auto.commit" -> (false: java.lang.Boolean)
     )
     val topics = Array("test")
 
     val stream = KafkaUtils.createDirectStream[String, String](
       ssc,
-      PreferConsistent,
-      Subscribe[String, String](topics, kafkaParams)
+      PreferConsistent, //在可用程序之间均匀分配分区
+      Subscribe[String, String](topics, kafkaParams) //允许订阅固定的主题集合
     )
+
+    /**
+      * mysql保存偏移量：表设计：topic String，groupId String，partition int，offset long
+      *
+      *
+      */
 
     stream.foreachRDD(rdd => {
       if (!rdd.isEmpty()) {
@@ -60,6 +66,7 @@ object OffsetApp {
         stream.asInstanceOf[CanCommitOffsets].commitAsync(offsetRanges)
       }
     })
+
 
     ssc.start()
     ssc.awaitTermination()

@@ -26,7 +26,7 @@ object ExactlyOnceApp {
     DnsCacheManipulator.setDnsCache("node2.hadoop", "192.168.117.103")
 
     val conf = new SparkConf().setMaster("local[2]").setAppName("ExactlyOnceApp")
-    val ssc = new StreamingContext(conf, Seconds(100))
+    val ssc = new StreamingContext(conf, Seconds(10))
 
     val topics = Array("test")
     val kafkaParams = Map[String, Object](
