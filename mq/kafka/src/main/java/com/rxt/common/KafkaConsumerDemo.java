@@ -1,14 +1,12 @@
 package com.rxt.common;
 
 import com.alibaba.dcm.DnsCacheManipulator;
-import org.apache.kafka.clients.consumer.ConsumerConfig;
-import org.apache.kafka.clients.consumer.ConsumerRecord;
-import org.apache.kafka.clients.consumer.ConsumerRecords;
-import org.apache.kafka.clients.consumer.KafkaConsumer;
+import org.apache.kafka.clients.consumer.*;
 import org.apache.kafka.common.TopicPartition;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Map;
 import java.util.Properties;
 
 
@@ -44,7 +42,13 @@ public class KafkaConsumerDemo extends Thread {
             ConsumerRecords<Integer, String> consumerRecord = kafkaConsumer.poll(1000);
             for (ConsumerRecord record : consumerRecord) {
                 System.out.println(record.partition() + "->" + "message receive:" + record.value());
-                kafkaConsumer.commitAsync();
+
+                kafkaConsumer.commitAsync(new OffsetCommitCallback() {
+                    @Override
+                    public void onComplete(Map<TopicPartition, OffsetAndMetadata> offsets, Exception exception) {
+                        //TODO 异步提交完成，什么都不做
+                    }
+                });
             }
         }
     }
