@@ -1,0 +1,15 @@
+Spark2.4新特性
+怎样查看新特性？
+    https://github.com/apache/spark/releases
+
+1. spark1.x ==> scala 2.10.x
+   spark2.3 ==> scala 2.11.8
+   spark2.4 ==> scala 2.12.x
+2. 读取外部数据：
+   spark.read.format("image")...    //主要用在mllib中
+   avro数据源：
+       spark2.4之前：format("com.databricks.spark.avro")，需导入spark-avro包
+       spark2.4中：内置avro：format("avro")
+3. avro serializer和deserializer
+   内置avro之前：avro ==> Row ==> internalRow
+   内置avro之后：avro ==> internalRow
