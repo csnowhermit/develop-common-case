@@ -27,7 +27,7 @@ public class RandomPartition implements Partitioner {
             partitionNum = Math.abs((key.hashCode()) % partitionInfoList.size());
         }
 
-        System.out.println("key --> " + key + " --> value --> " + value + " --> " + partitionNum);
+//        System.out.println("key --> " + key + " --> value --> " + value + " --> " + partitionNum);
 
         return partitionNum;    //返回指定发送的分区值
     }

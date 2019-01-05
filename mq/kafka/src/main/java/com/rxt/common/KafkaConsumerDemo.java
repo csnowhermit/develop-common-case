@@ -32,7 +32,9 @@ public class KafkaConsumerDemo extends Thread {
         properties.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
         kafkaConsumer = new KafkaConsumer(properties);
         kafkaConsumer.subscribe(Collections.singletonList(topic));
-//        TopicPartition topicPartition = new TopicPartition(topic, 0);
+
+        //指定消息的分发策略
+//        TopicPartition topicPartition = new TopicPartition(topic, 0);    //指定这个消费者只能消费0号分区的消息
 //        kafkaConsumer.assign(Arrays.asList(topicPartition));
     }
 

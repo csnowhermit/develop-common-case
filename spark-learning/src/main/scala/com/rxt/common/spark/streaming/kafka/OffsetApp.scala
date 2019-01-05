@@ -63,6 +63,11 @@ object OffsetApp {
 
         // some time later, after outputs have completed
         // 将偏移量提交到kafka保存
+        // kafka的__consumer_offsets topic，默认50个分区；保存了每个消费组某一时刻提交的offset信息；
+        // 计算方法：("group.id".hashCode())% groupMetadataTopicPartitionCount(默认为50)
+        // 例如：计算结果为35，则说明当前消费组的offset信息保存在__consumer_offsets的第35个分区中，
+        // 找__consumer_offsets-35文件，用以下命令读取即可：
+        // sh  kafka-simple-consumer-shell.sh  --topic __consumer_offsets  --partition  35  --broker-list 192.168.117.101:9092,192.168.117.102:9092,192.168.117.103:9092 --formatter "kafka.coordinator.group.GroupMetadataManager\$OffsetsMessageFormatter
         stream.asInstanceOf[CanCommitOffsets].commitAsync(offsetRanges)
       }
     })
