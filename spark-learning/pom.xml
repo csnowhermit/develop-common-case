@@ -12,6 +12,7 @@
     <inceptionYear>2008</inceptionYear>
     <properties>
         <scala.version>2.11.1</scala.version>
+        <storm.version>1.2.2</storm.version>
     </properties>
 
     <repositories>
@@ -129,7 +130,23 @@
             <version>1.5.1</version>
         </dependency>
 
-
+        <!-- storm依赖 start -->
+        <dependency>
+            <groupId>commons-collections</groupId>
+            <artifactId>commons-collections</artifactId>
+            <version>3.2.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.storm</groupId>
+            <artifactId>storm-core</artifactId>
+            <version>${storm.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.storm</groupId>
+            <artifactId>storm-kafka</artifactId>
+            <version>${storm.version}</version>
+        </dependency>
+        <!-- storm依赖 end -->
 
     </dependencies>
 
