@@ -5,29 +5,19 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.rxt.common</groupId>
-    <artifactId>develop-common-case</artifactId>
+    <artifactId>storm-learning</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <modules>
-        <module>myTomcat</module>
-        <module>mySpring</module>
-        <module>commonUtils</module>
-        <module>rmi</module>
-        <module>mq</module>
-        <module>netty-learning</module>
-        <module>elasticsearch</module>
-        <module>spark-learning</module>
-        <module>storm-learning</module>
-    </modules>
-    <packaging>pom</packaging>
 
-    <name>develop-common-case Maven Webapp</name>
+    <name>storm-learning</name>
     <!-- FIXME change it to the project's website -->
     <url>http://www.example.com</url>
+    <description>storm demo</description>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
+        <storm.version>1.2.2</storm.version>
     </properties>
 
     <dependencies>
@@ -37,32 +27,55 @@
             <version>4.11</version>
             <scope>test</scope>
         </dependency>
+        <!-- storm依赖 start -->
+        <dependency>
+            <groupId>commons-collections</groupId>
+            <artifactId>commons-collections</artifactId>
+            <version>3.2.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.storm</groupId>
+            <artifactId>storm-core</artifactId>
+            <version>${storm.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-log4j12</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.storm</groupId>
+            <artifactId>storm-kafka</artifactId>
+            <version>${storm.version}</version>
+        </dependency>
+        <!-- storm依赖 end -->
     </dependencies>
 
     <build>
-        <finalName>develop-common-case</finalName>
         <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
             <plugins>
+                <!-- clean lifecycle, see https://maven.apache.org/ref/current/maven-core/lifecycles.html#clean_Lifecycle -->
                 <plugin>
                     <artifactId>maven-clean-plugin</artifactId>
-                    <version>3.0.0</version>
+                    <version>3.1.0</version>
                 </plugin>
-                <!-- see http://maven.apache.org/ref/current/maven-core/default-bindings.html#Plugin_bindings_for_war_packaging -->
+                <!-- default lifecycle, jar packaging: see https://maven.apache.org/ref/current/maven-core/default-bindings.html#Plugin_bindings_for_jar_packaging -->
                 <plugin>
                     <artifactId>maven-resources-plugin</artifactId>
                     <version>3.0.2</version>
                 </plugin>
                 <plugin>
                     <artifactId>maven-compiler-plugin</artifactId>
-                    <version>3.7.0</version>
+                    <version>3.8.0</version>
                 </plugin>
                 <plugin>
                     <artifactId>maven-surefire-plugin</artifactId>
-                    <version>2.20.1</version>
+                    <version>2.22.1</version>
                 </plugin>
                 <plugin>
-                    <artifactId>maven-war-plugin</artifactId>
-                    <version>3.2.0</version>
+                    <artifactId>maven-jar-plugin</artifactId>
+                    <version>3.0.2</version>
                 </plugin>
                 <plugin>
                     <artifactId>maven-install-plugin</artifactId>
@@ -71,6 +84,15 @@
                 <plugin>
                     <artifactId>maven-deploy-plugin</artifactId>
                     <version>2.8.2</version>
+                </plugin>
+                <!-- site lifecycle, see https://maven.apache.org/ref/current/maven-core/lifecycles.html#site_Lifecycle -->
+                <plugin>
+                    <artifactId>maven-site-plugin</artifactId>
+                    <version>3.7.1</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-project-info-reports-plugin</artifactId>
+                    <version>3.0.0</version>
                 </plugin>
             </plugins>
         </pluginManagement>
