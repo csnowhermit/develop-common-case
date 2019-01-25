@@ -25,9 +25,15 @@ object RevisePhrase {
       if (line.contains("省")) {
         line
       } else {
-        val province = line.substring(0, 2)
-        val city = line.substring(2)
-        province + "省" + city
+        if (line.contains("黑龙江")) {
+          val province = line.substring(0, 3)
+          val city = line.substring(3)
+          province + "省" + city
+        } else {
+          val province = line.substring(0, 2)
+          val city = line.substring(2)
+          province + "省" + city
+        }
       }
     )
     words.collect().foreach(println)
