@@ -21,13 +21,13 @@ object UnionDemo {
       .master(master)
       .config("spark.some.config.option", "some-value")
       .getOrCreate()
-    import spark.implicits._
-    val df1 = spark.sparkContext.parallelize(1 to 4).map(i => (i,i*10)).toDF("id","x")
-    val df2 = spark.sparkContext.parallelize(1 to 4).map(i => (i,i*100)).toDF("id","y")
-    val df3 = spark.sparkContext.parallelize(1 to 4).map(i => (i,i*1000)).toDF("id","z")
-
-    val dfs = Seq(df1, df2, df3)
-    dfs.reduce(_ union _).show(1000)
+//    import spark.implicits._
+//    val df1 = spark.sparkContext.parallelize(1 to 4).map(i => (i,i*10)).toDF("id","x")
+//    val df2 = spark.sparkContext.parallelize(1 to 4).map(i => (i,i*100)).toDF("id","y")
+//    val df3 = spark.sparkContext.parallelize(1 to 4).map(i => (i,i*1000)).toDF("id","z")
+//
+//    val dfs = Seq(df1, df2, df3)
+//    dfs.reduce(_ union _).show(1000)
 
   }
 }

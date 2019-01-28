@@ -17,6 +17,7 @@
         <module>elasticsearch</module>
         <module>spark-learning</module>
         <module>storm-learning</module>
+        <module>flink-learning</module>
     </modules>
     <packaging>pom</packaging>
 
