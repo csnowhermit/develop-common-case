@@ -8,7 +8,7 @@ import org.apache.flink.streaming.api.watermark.Watermark
 import org.apache.flink.streaming.api.windowing.assigners.EventTimeSessionWindows
 import org.apache.flink.streaming.api.windowing.time.Time
 
-object Watermark {
+object WatermarkDemo {
   def main(args: Array[String]): Unit = {
     val params = ParameterTool.fromArgs(args)
     val env = StreamExecutionEnvironment.getExecutionEnvironment
@@ -27,9 +27,9 @@ object Watermark {
       ("c", 11L, 1)
     )
 
-    //基于source端发送watermark
-    val source = env.addSource(new SourceFunction[String, Long, Int] {
-      override def run(ctx: SourceFunction.SourceContext[String, Long, Int]): Unit = {
+    //基于source端口发送watermark
+    val source = env.addSource(new SourceFunction[(String, Long, Int)] {
+      override def run(ctx: SourceFunction.SourceContext[(String, Long, Int)]): Unit = {
         input.foreach(value => {
           ctx.collectWithTimestamp(value, value._2)
           ctx.emitWatermark(new Watermark(value._2 - 1))
@@ -37,7 +37,9 @@ object Watermark {
         ctx.emitWatermark(new Watermark(Long.MaxValue))
       }
 
-      override def cancel(): Unit = {}
+      override def cancel(): Unit = {
+
+      }
     })
 
     val agg = source
