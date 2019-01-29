@@ -7,7 +7,7 @@ import org.apache.flink.streaming.api.windowing.assigners.ProcessingTimeSessionW
 import org.apache.flink.streaming.api.windowing.time.Time
 
 /**
-  * 会话窗口
+  * 会话窗口：n秒中没来数据的话，把前面的统计出来
   */
 object SessionWindow {
   def main(args: Array[String]): Unit = {
@@ -36,8 +36,8 @@ object SessionWindow {
       .filter(_.length == 3)
       .map(tokens => CarWc(tokens(0).trim.toInt, tokens(1).trim.toLong, tokens(2).trim.toLong))
       .keyBy(0)
-      .window(ProcessingTimeSessionWindows.withGap(Time.seconds(2)))    //每2秒截取一次窗口
-      .max(2)     //打印最大的2个
+      .window(ProcessingTimeSessionWindows.withGap(Time.seconds(2)))    //2秒中没来数据的话，把前面的数据统计出来
+      .max(2)
       .print()
 
     env.execute("word count")
