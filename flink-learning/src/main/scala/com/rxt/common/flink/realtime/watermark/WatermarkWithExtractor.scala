@@ -2,8 +2,8 @@ package com.rxt.common.flink.realtime.watermark
 
 import com.rxt.common.flink.realtime.bean.CarWc
 import org.apache.flink.streaming.api.TimeCharacteristic
-import org.apache.flink.streaming.api.functions.{AssignerWithPeriodicWatermarks, TimestampAssigner}
-import org.apache.flink.streaming.api.scala._
+import org.apache.flink.streaming.api.functions.AssignerWithPeriodicWatermarks
+  import org.apache.flink.streaming.api.scala.{StreamExecutionEnvironment, _}
 import org.apache.flink.streaming.api.scala.function.WindowFunction
 import org.apache.flink.streaming.api.watermark.Watermark
 import org.apache.flink.streaming.api.windowing.assigners.TumblingEventTimeWindows
@@ -18,9 +18,9 @@ import org.apache.flink.util.Collector
   */
 object WatermarkWithExtractor {
   def main(args: Array[String]): Unit = {
-    val maxDelay = 10
+    val maxDelay = 3 //最大延时时间
     val allowedLateness = 40
-    val windowSize = 50
+    val windowSize = 50 //窗口大小
 
     val env = StreamExecutionEnvironment.getExecutionEnvironment
     env.setStreamTimeCharacteristic(TimeCharacteristic.EventTime)
@@ -63,12 +63,12 @@ object WatermarkWithExtractor {
     var maxTs = 0L
 
     override def extractTimestamp(element: String, previousElementTimestamp: Long): Long = {
-      val ts = element.split(",")(0).toLong
+      val ts = element.split(",")(2).toLong
       maxTs = Math.max(ts, maxTs)
       ts
     }
 
-    override def getCurrentWatermark: Watermark = {
+    override def getCurrentWatermark(): Watermark = {
       new Watermark(maxTs - maxDelay)
     }
   }

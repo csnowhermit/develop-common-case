@@ -5,9 +5,9 @@ import org.apache.spark.SparkConf
 import org.apache.spark.streaming.{Seconds, StreamingContext}
 
 /**
-  * 使用spark streaming接收 nc -lk port 命令发来的数据：滚动窗口
+  * spark streaming：滑动窗口，wordcount
   */
-object StreamingWordCount {
+object StreamingWordCountInSlidingWindow {
   def main(args: Array[String]): Unit = {
     //屏蔽不必要的日志显示在终端上
     Logger.getLogger("org.apache.spark").setLevel(Level.WARN)
@@ -21,7 +21,15 @@ object StreamingWordCount {
 
     val line = ssc.socketTextStream(hostName, port)
 
-    val res = line.flatMap(_.split(" ")).map(x => (x, 1)).reduceByKey(_ + _)
+    val pair = line.flatMap(_.split(" ")).map(x => (x, 1))
+
+    pair.reduceByKeyAndWindow(_+_, Seconds(20))
+
+//    val searchWordCountsDStream = searchWordPairDStream.
+      // reduceByKeyAndWindow((v1: Int, v2: Int) => v1 + v2, Seconds(60), Seconds(10))
+
+
+
     res.print()
 
     res.foreachRDD(wd => wd.foreachPartition(
@@ -35,6 +43,6 @@ object StreamingWordCount {
     //启动streaming
     ssc.start() //启动流式计算
     ssc.awaitTermination() //等待直到计算终止
-  }
 
+  }
 }
