@@ -16,8 +16,8 @@ object StreamingWordCount {
     val hostName = "localhost"
     val port = 7777
 
-    val conf = new SparkConf().setMaster("local").setAppName("StreamingWordCount")
-    val ssc = new StreamingContext(conf, Seconds(3))
+    val conf = new SparkConf().setMaster("local[2]").setAppName("StreamingWordCount")
+    val ssc = new StreamingContext(conf, Seconds(10))
 
     val line = ssc.socketTextStream(hostName, port)
 
