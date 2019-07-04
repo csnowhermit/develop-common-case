@@ -3,7 +3,7 @@ package com.rxt.common.flink.realtime.watermark
 import com.rxt.common.flink.realtime.bean.CarWc
 import org.apache.flink.streaming.api.TimeCharacteristic
 import org.apache.flink.streaming.api.functions.AssignerWithPeriodicWatermarks
-  import org.apache.flink.streaming.api.scala.{StreamExecutionEnvironment, _}
+import org.apache.flink.streaming.api.scala.{StreamExecutionEnvironment, _}
 import org.apache.flink.streaming.api.scala.function.WindowFunction
 import org.apache.flink.streaming.api.watermark.Watermark
 import org.apache.flink.streaming.api.windowing.assigners.TumblingEventTimeWindows
@@ -14,7 +14,7 @@ import org.apache.flink.streaming.api.windowing.windows.TimeWindow
 import org.apache.flink.util.Collector
 
 /**
-  * 水位测试
+  * 水位测试：watermark：类似于barries，具体到某窗口，后来的数据中，低于当前水位线的数据不会进入该窗口，确保消息的有序性
   */
 object WatermarkWithExtractor {
   def main(args: Array[String]): Unit = {
