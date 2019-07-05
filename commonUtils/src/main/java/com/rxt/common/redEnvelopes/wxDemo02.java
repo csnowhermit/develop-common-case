@@ -1,5 +1,7 @@
 package com.rxt.common.redEnvelopes;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -57,7 +59,7 @@ public class wxDemo02 {
         Double sendedBonus = 0.0;
         Double sendedNum = 0.0;
         Double rdMin = (double) (totalBonus / totalNum * 0.1);
-        Double rdMax = (double) (totalBonus / totalNum * 0.9);
+        Double rdMax = (double) (totalBonus / totalNum * 1.9);
         List<Double> bonusList = new ArrayList<>();
         while (sendedNum < totalNum) {
             Double bonus = randomBonusWithSpecifyBound(totalBonus, totalNum, sendedBonus, sendedNum, rdMin, rdMax);
@@ -69,17 +71,25 @@ public class wxDemo02 {
     }
 
     public static void main(String[] args) throws Exception {
-        for (int i = 0; i < 100000000; i++) {
-            List<Double> result = createBonusList(new Integer(100), new Integer(12));
+        FileOutputStream fileOutputStream = new FileOutputStream(new File("d:/weight.txt"));
+        for (int i = 0; i < 1000; i++) {
+            List<Double> result = createBonusList(new Integer(20), new Integer(10));
             Double total = 0.0;
+            StringBuffer sb = new StringBuffer("");
             for (Double r : result) {
                 if(r == 0.0){
                     throw new Exception("随机数等于0" + result);
                 }
                 total += r;
+                sb.append(r);
+                sb.append(", ");
             }
-
-            System.out.println(result + " --> " + total);
+            sb.append("\n");
+            System.out.println(result);
+            fileOutputStream.write(sb.toString().getBytes());
+//            System.out.println(result + " --> " + total);
         }
+        fileOutputStream.close();
     }
+
 }

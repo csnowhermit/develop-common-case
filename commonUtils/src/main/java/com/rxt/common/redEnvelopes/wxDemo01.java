@@ -52,8 +52,8 @@ public class wxDemo01 {
 }
 
 class LeftMoneyPackage{
-    public static int remainMoney;
-    public static int remainSize;
+    public static int remainMoney;    // 剩余钱
+    public static int remainSize;     // 剩余红包数量
 }
 
 
