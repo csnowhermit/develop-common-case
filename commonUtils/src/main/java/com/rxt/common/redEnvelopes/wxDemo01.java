@@ -40,10 +40,13 @@ public class wxDemo01 {
         moneyPackage.remainMoney = 40;
         moneyPackage.remainSize = 10;
 
+        double total=0;
         while (moneyPackage.remainSize != 0) {
-            System.out.print(Cal.getRandomMoney(moneyPackage) + 6 + "   ");
-
+            double now = getRandomMoney(moneyPackage);
+            total += now;
+            System.out.print(now + ", ");
         }
+        System.out.println(" ==> " + total);
     }
 
 }
@@ -53,9 +56,4 @@ class LeftMoneyPackage{
     public static int remainSize;
 }
 
-class Cal{
-    public static int getRandomMoney(LeftMoneyPackage moneyPackage){
-        return 1;
-    }
-}
 
