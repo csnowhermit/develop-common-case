@@ -72,10 +72,17 @@ public class wxDemo02 {
 
     public static void main(String[] args) throws Exception {
         FileOutputStream fileOutputStream = new FileOutputStream(new File("d:/weight.txt"));
-        for (int i = 0; i < 1000; i++) {
-            List<Double> result = createBonusList(new Integer(20), new Integer(10));
-            Double total = 0.0;
+        for (int i = 0; i < 10000; i++) {
             StringBuffer sb = new StringBuffer("");
+            int max = 80;
+            int min = 60;
+            Integer pass_weight = new Integer(new Random().nextInt(Math.abs(max - min) + 1) + min);
+            sb.append(pass_weight);    // 先保存
+            sb.append(", ");
+
+            List<Double> result = createBonusList(new Integer(100 - pass_weight), new Integer(10));
+            Double total = 0.0;
+
             for (Double r : result) {
                 if(r == 0.0){
                     throw new Exception("随机数等于0" + result);
@@ -85,7 +92,7 @@ public class wxDemo02 {
                 sb.append(", ");
             }
             sb.append("\n");
-            System.out.println(result);
+            System.out.println(sb.toString());
             fileOutputStream.write(sb.toString().getBytes());
 //            System.out.println(result + " --> " + total);
         }
