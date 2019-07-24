@@ -12,7 +12,5 @@ public class JVMTest01 {
             list.add(new byte[2 * 1024 * 1024]);
         }
 
-
-
     }
 }
