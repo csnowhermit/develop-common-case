@@ -6,7 +6,7 @@ import java.util.UUID;
 /**
  * 模拟默认多个终端
  */
-public class TerminalCase extends Thread{
+public class TerminalCase extends Thread {
 
     private String name;
 
@@ -21,7 +21,7 @@ public class TerminalCase extends Thread{
     @Override
     public void run() {
         Random random = new Random();
-        while (true){
+        while (true) {
             System.out.println(this.name + " ==> Data Package: " + UUID.randomUUID().toString());
             try {
                 Thread.sleep(random.nextInt(1000));
@@ -29,6 +29,6 @@ public class TerminalCase extends Thread{
                 e.printStackTrace();
             }
         }
-
     }
+
 }
