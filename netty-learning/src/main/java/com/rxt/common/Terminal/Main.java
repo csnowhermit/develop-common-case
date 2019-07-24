@@ -13,6 +13,5 @@ public class Main {
             }, "Terminal-" + i).start();
             countDownLatch.countDown();
         }
-
     }
 }
