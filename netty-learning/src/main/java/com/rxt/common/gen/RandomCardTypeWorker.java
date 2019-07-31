@@ -33,20 +33,64 @@ public class RandomCardTypeWorker {
         }
     }
 
+    /**
+     * 随机生成卡类型，返回卡类型的代号
+     * 单程票 1
+     * 学生票 2
+     * 羊城通 3
+     * 二维码 4
+     * 老年卡 5
+     * 优待卡 6
+     * 一日票 7
+     * 三日票 8
+     *
+     * @return
+     */
     public static String genCardType() {
         if (cards.size() < 1) {
             expands();
         }
-        return cards.get(new Random().nextInt(100));
+        String type = cards.get(new Random().nextInt(100));
+        int tag = 0;
+        switch (type) {
+            case "单程票":
+                tag = 1;
+                break;
+            case "学生票":
+                tag = 2;
+                break;
+            case "羊城通":
+                tag = 3;
+                break;
+            case "二维码":
+                tag = 4;
+                break;
+            case "老年卡":
+                tag = 5;
+                break;
+            case "优待卡":
+                tag = 6;
+                break;
+            case "一日票":
+                tag = 7;
+                break;
+            case "三日票":
+                tag = 8;
+                break;
+            default:
+                tag = 1;
+        }
+
+        return Integer.toString(tag);
     }
 
-    public static void controller(){
+    public static void controller() {
         Map<String, Integer> maps = new HashMap<>();
         for (int i = 0; i < 100; i++) {
             String type = genCardType();
-            if (maps.get(type) != null){
+            if (maps.get(type) != null) {
                 maps.put(type, maps.get(type) + 1);
-            }else{
+            } else {
                 maps.put(type, 1);
             }
         }

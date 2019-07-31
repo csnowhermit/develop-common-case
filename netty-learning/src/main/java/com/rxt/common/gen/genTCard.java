@@ -1,7 +1,6 @@
 package com.rxt.common.gen;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
@@ -10,14 +9,18 @@ import java.io.IOException;
  */
 public class genTCard {
     public static void main(String[] args) throws IOException {
-        FileOutputStream fileOutputStream = new FileOutputStream(new File("./cards.txt"));
+        FileOutputStream fileOutputStream = new FileOutputStream(new File("d:/coco/cards.csv"));
 
         SnowFlakeUIDWorker idWorker = new SnowFlakeUIDWorker(0, 0);
 
         for (int i = 0; i < 12000000; i++) {
-            System.out.println(new TicketCard(Long.toHexString(idWorker.nextId()), RandomCardTypeWorker.genCardType()));
+            String line = new TicketCard(Long.toHexString(idWorker.nextId()), RandomCardTypeWorker.genCardType()).toString();
 
-//            fileOutputStream.write(new TicketCard(Long.toHexString(idWorker.nextId()), RandomCardTypeWorker.genCardType()).toString().getBytes());
+            fileOutputStream.write(line.getBytes());
+            if (i % 10000 == 0) {
+                System.out.println("已生成 " + i + " 条");
+                fileOutputStream.flush();
+            }
         }
 
         fileOutputStream.close();
@@ -59,7 +62,7 @@ class TicketCard {
 
     @Override
     public String toString() {
-        return uid + ", " + type;
+        return uid + ", " + type + "\n";
     }
 
     @Override
@@ -73,13 +76,4 @@ class TicketCard {
     }
 }
 
-/**
- * 生成器
- */
-class generator {
-    public String genUID() {
-
-        return null;
-    }
-}
 
