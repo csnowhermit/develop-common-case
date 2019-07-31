@@ -10,14 +10,14 @@ public class RandomCardTypeWorker {
     private static List<String> cards = new ArrayList<>();
 
     public static void init() {
-        typesFreq.put("单程票", 3);
-        typesFreq.put("学生票", 4);
-        typesFreq.put("羊城通", 40);
+        typesFreq.put("单程票", 2);
+        typesFreq.put("学生票", 3);
+        typesFreq.put("羊城通", 47);
         typesFreq.put("二维码", 40);
-        typesFreq.put("老年卡", 4);
-        typesFreq.put("优待卡", 4);
-        typesFreq.put("一日票", 3);
-        typesFreq.put("三日票", 2);
+        typesFreq.put("老年卡", 3);
+        typesFreq.put("优待卡", 2);
+        typesFreq.put("一日票", 2);
+        typesFreq.put("三日票", 1);
     }
 
     public static void expands() {
