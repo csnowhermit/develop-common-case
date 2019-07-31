@@ -62,7 +62,7 @@ class TicketCard {
 
     @Override
     public String toString() {
-        return uid + ", " + type + "\n";
+        return uid + "," + type + "\n";
     }
 
     @Override
