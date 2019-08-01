@@ -26,6 +26,7 @@ public class RandomValue02 {
     private static int getRandomVal(int min, int max) {
         Random random = new Random();
         int res = random.nextInt(max - min + 1) + min;
+//        return new Double(String.format("%.2f", res));
         return res;
     }
 
@@ -81,7 +82,7 @@ public class RandomValue02 {
             sb.append(", ");
 
             List<Integer> result = createBonusList(new Integer(100 - pass_weight), new Integer(10));
-            Double total = 0.0;
+            int total = 0;
 
             for (Integer r : result) {
 //                if(r == 0.0){
