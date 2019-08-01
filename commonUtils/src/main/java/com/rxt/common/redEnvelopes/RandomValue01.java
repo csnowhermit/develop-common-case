@@ -6,7 +6,7 @@ import java.util.Random;
  * 微信红包算法
  * https://blog.csdn.net/paincupid/article/details/82054647
  */
-public class wxDemo01 {
+public class RandomValue01 {
 
     /**
      * 生成随机的钱数

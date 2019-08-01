@@ -18,7 +18,7 @@ import java.util.Random;
  * 希望本次随机后期望值为exp，即exp=expMid*y+(boundMin+boundMax)/2*(1-y)，
  * 得出y=(exp-(boundMin+boundMax)/2)/(expMid-(boundMin+boundMax)/2)。
  */
-public class wxDemo05 {
+public class RandomValue05 {
 
     /**
      * 返回一次抽奖在指定中奖概率下是否中奖

@@ -15,7 +15,7 @@ import java.util.Random;
  * 设生成的第n个随机币值为X，剩余获取总值为Y，则剩余币S1-S2=X+Y，当Y取最大值时X取最小值，当Y取最小值时X取最大值，同时X应处于限定随机上下限(SMIN~SMAX)之间，得出：
  * X的随机范围为：MAX(S1–S2-(P1–P2-1)*SMAX,SMIN)<=X<=MIN(S1–S2–(P1–P2-1)*SMIN,SMAX)
  */
-public class wxDemo02 {
+public class RandomValue02 {
     /**
      * 返回min~max区间内随机数，含min和max
      *
@@ -23,10 +23,10 @@ public class wxDemo02 {
      * @param max
      * @return
      */
-    private static double getRandomVal(double min, double max) {
-        Double res = (new Random().nextDouble()) * (max - min) + min;
-        return new Double(String.format("%.2f", res));
-//        return res;
+    private static int getRandomVal(int min, int max) {
+        Random random = new Random();
+        int res = random.nextInt(max - min + 1) + min;
+        return res;
     }
 
     /**
@@ -40,11 +40,11 @@ public class wxDemo02 {
      * @param rdMax       随机上限
      * @return
      */
-    private static Double randomBonusWithSpecifyBound(Integer totalBonus, Integer totalNum,
-                                                      Double sendedBonus, Double sendedNum,
-                                                      Double rdMin, Double rdMax) {
-        Double boundMin = Math.max((totalBonus - sendedBonus - (totalNum - sendedNum - 1) * rdMax), rdMin);
-        Double boundMax = Math.min((totalBonus - sendedBonus - (totalNum - sendedNum - 1) * rdMin), rdMax);
+    private static int randomBonusWithSpecifyBound(Integer totalBonus, Integer totalNum,
+                                                      Integer sendedBonus, Integer sendedNum,
+                                                      Integer rdMin, Integer rdMax) {
+        int boundMin = Math.max((totalBonus - sendedBonus - (totalNum - sendedNum - 1) * rdMax), rdMin);
+        int boundMax = Math.min((totalBonus - sendedBonus - (totalNum - sendedNum - 1) * rdMin), rdMax);
         return getRandomVal(boundMin, boundMax);
     }
 
@@ -55,14 +55,14 @@ public class wxDemo02 {
      * @param totalNum   总份数
      * @return
      */
-    public static List<Double> createBonusList(Integer totalBonus, Integer totalNum) {
-        Double sendedBonus = 0.0;
-        Double sendedNum = 0.0;
-        Double rdMin = (double) (totalBonus / totalNum * 0.1);
-        Double rdMax = (double) (totalBonus / totalNum * 1.9);
-        List<Double> bonusList = new ArrayList<>();
+    public static List<Integer> createBonusList(Integer totalBonus, Integer totalNum) {
+        Integer sendedBonus = 0;
+        Integer sendedNum = 0;
+        Integer rdMin = (int)(totalBonus / totalNum * 0.1);
+        Integer rdMax = (int)(totalBonus / totalNum * 1.9);
+        List<Integer> bonusList = new ArrayList<>();
         while (sendedNum < totalNum) {
-            Double bonus = randomBonusWithSpecifyBound(totalBonus, totalNum, sendedBonus, sendedNum, rdMin, rdMax);
+            Integer bonus = randomBonusWithSpecifyBound(totalBonus, totalNum, sendedBonus, sendedNum, rdMin, rdMax);
             bonusList.add(bonus);
             sendedNum++;
             sendedBonus += bonus;
@@ -80,13 +80,13 @@ public class wxDemo02 {
             sb.append(pass_weight);    // 先保存
             sb.append(", ");
 
-            List<Double> result = createBonusList(new Integer(100 - pass_weight), new Integer(10));
+            List<Integer> result = createBonusList(new Integer(100 - pass_weight), new Integer(10));
             Double total = 0.0;
 
-            for (Double r : result) {
-                if(r == 0.0){
-                    throw new Exception("随机数等于0" + result);
-                }
+            for (Integer r : result) {
+//                if(r == 0.0){
+//                    throw new Exception("随机数等于0" + result);
+//                }
                 total += r;
                 sb.append(r);
                 sb.append(", ");

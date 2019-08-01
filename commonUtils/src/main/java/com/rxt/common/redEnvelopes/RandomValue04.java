@@ -7,7 +7,7 @@ import java.util.Random;
 /**
  * 微信红包Demo04：升级版非对称红包分配算法
  */
-public class wxDemo04 {
+public class RandomValue04 {
     /**
      * 返回一次抽奖在指定中奖概率下是否中奖
      * @param rate 中奖概率

@@ -12,7 +12,7 @@ import java.util.Random;
  * 需求方希望在稳定的玩法上增加少许刺激，即允许让少数用户拿到较多数量的金币，此时S1/P2<(SMIN+SMAX)/2。
  * 此时使用上述算法仍然可以运行，每一份仍然可以分配到SMIN~SMAX之间的金币数量，并且总金币数能刚好被分完。
  */
-public class wxDemo03 {
+public class RandomValue03 {
     /**
      * 返回min~max区间内随机数，含min和max
      *
