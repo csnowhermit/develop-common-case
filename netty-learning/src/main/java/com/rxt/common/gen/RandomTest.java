@@ -82,31 +82,22 @@ public class RandomTest {
             flow_out_list = RandomValue02.createBonusList(flow_out, 60 - 7);
 
             int minutes = 7;
-            int seconds = 0;
+//            int seconds = 0;
 
-            //按分钟
             for (int i = 0; i < flow_in_list.size(); i++) {
-                int in = flow_in_list.get(i);    //进站量
-                int out = flow_out_list.get(i);    //出站量
+                flow_in_list.get(i);    //进站量
+                flow_out_list.get(i);    //出站量
 
-                //拆成按秒
-                List<Integer> perIn = devidePerSeconds(in);
-                List<Integer> perOut = devidePerSeconds(out);
-                System.out.println(in + ", " + perIn + " ==> " + out + ", " + perOut);
+                String pringline = new PassengerPerSeconds(oper_date, line_name, station_name, time_interval, Integer.toString(minutes), "00", flow_in_list.get(i), flow_out_list.get(i)).toString();
 
-                for (int j = 0; j < perIn.size(); j++) {
-                    String pringline = new PassengerPerSeconds(oper_date, line_name, station_name, time_interval, Integer.toString(minutes), Integer.toString(seconds), perIn.get(j), perOut.get(j)).toString();
+                fileOutoutStream.write(pringline.getBytes());
 
-                    fileOutoutStream.write(pringline.getBytes());
-
-                    seconds++;
-                    if (seconds == 60) {
-                        minutes++;
-                        seconds = 0;
-                    }
-                }
-
-//                minutes++;
+                //                seconds++;
+//                if (seconds == 60){
+//                    minutes ++;
+//                    seconds = 0;
+//                }
+                minutes++;
             }
 
 
@@ -159,10 +150,6 @@ public class RandomTest {
 
     }
 
-
-    private static List<Integer> devidePerSeconds(int in) {
-        return RandomValue02.createBonusList(in, 4);
-    }
 }
 
 class PassengerPerSeconds {
