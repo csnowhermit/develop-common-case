@@ -19,7 +19,7 @@ public class App {
 //        ContextParam.print();
 //        System.out.println(ContextParam.randomPoint(1, "A2"));
         List<String> userList = PassengerDao.getAllUserID();
-        int tag = 0;    //1表示绝对坐标，其他值表示相对坐标
+        int tag = 1;    //1表示绝对坐标，其他值表示相对坐标
         int base = 500;    //每次时间至少增长
         int bound = 300;   //每次时间随机数bound
 
@@ -68,7 +68,7 @@ public class App {
 
                     //3.在这条路上每个区域内随机若干个点
                     for (String route : routes) {
-                        for (int j = 0; j < 5 + new Random().nextInt(10); j++) {
+                        for (int j = 0; j < 10 + new Random().nextInt(10); j++) {
                             mystamp += new Random().nextInt(bound) + base;
                             detailsRecordList.add(new DetailsRecord("进站", route, mystamp, ContextParam.randomPoint(tag, route)));
                         }
@@ -95,7 +95,7 @@ public class App {
 
                     //3.在这条路上每个区域内随机若干个点
                     for (String route : routes) {
-                        for (int j = 0; j < 5 + new Random().nextInt(10); j++) {
+                        for (int j = 0; j < 10 + new Random().nextInt(10); j++) {
                             mystamp += new Random().nextInt(bound) + base;
                             detailsRecordList.add(new DetailsRecord("出站", route, mystamp, ContextParam.randomPoint(tag, route)));
                         }
