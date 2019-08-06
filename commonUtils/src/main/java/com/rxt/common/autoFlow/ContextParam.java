@@ -499,7 +499,7 @@ public class ContextParam {
         passRouteMap.put("A出", Arrays.asList("HC4", "HC5", "HD5", "HD4", "HD3", "HD2", "HD1", "AD7", "AD8", "AD9", "AD10", "AD11", "A2", "A1"));
         //B口只进不出
 //        passRouteMap.put("B出", Arrays.asList());
-        passRouteMap.put("D出", Arrays.asList("HC4", "HC5", "HD5", "HD4", "HD3", "HD2", "HC1", "HB1", "A5", "A4", "A3", "A2", "A1", "D4", "D1", "D2", "D3"));
+        passRouteMap.put("D出", Arrays.asList("HC4", "HC5", "HD5", "HD4", "HD3", "HD2", "HC1", "HB1", "AD5", "AD4", "AD3", "AD2", "AD1", "D4", "D1", "D2", "D3"));
     }
 
     /**
