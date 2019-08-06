@@ -10,6 +10,11 @@ public class Point {
     public Point() {
     }
 
+    public Point(Point point) {
+        this.X = point.getX();
+        this.Y = point.getY();
+    }
+
     public Point(int x, int y) {
         X = x;
         Y = y;

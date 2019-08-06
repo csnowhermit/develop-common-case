@@ -1,7 +1,6 @@
 package com.rxt.common.autoFlow;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * 各个Region
@@ -12,6 +11,19 @@ public class ContextParam {
      * <区域编号，区域范围>
      */
     private static Map<String, Region> regionMap = new HashMap<>();
+
+    /**
+     * <进出类型，路径Region列表>
+     */
+    private static Map<String, List<String>> passRouteMap = new HashMap<>();
+
+    public static Map<String, Region> getRegionMap() {
+        return regionMap;
+    }
+
+    public static Map<String, List<String>> getPassRouteMap() {
+        return passRouteMap;
+    }
 
     /**
      * 类启动时候执行静态块，加载预置化操作
@@ -25,6 +37,9 @@ public class ContextParam {
             loadWay_AD();
             loadWay_BC();
             loadHall();
+        }
+        if (passRouteMap.size() == 0) {
+            loadPassRoute();
         }
     }
 
@@ -473,9 +488,51 @@ public class ContextParam {
                 new Point(6849, 3241)));
     }
 
+    /**
+     * 加载预置化客流路径
+     */
+    private static void loadPassRoute() {
+        passRouteMap.put("A进", Arrays.asList("A1", "A2", "AD11", "AD10", "AD9", "AD8", "AD7", "AD6", "HC1", "HB1", "HB2", "HB3", "HB4", "HB5", "HA5", "HA6", "HB6", "HC6", "HC7", "HC8", "HC9", "HC10", "HC11"));
+        passRouteMap.put("B进", Arrays.asList("B1", "B2", "B3", "BC7", "BC6", "BC5", "BC4", "BC3", "BC2", "BC1", "HA13", "HA12", "HA11", "HA10", "HA9", "HB9", "HC9", "HC10", "HC11"));
+        passRouteMap.put("D进", Arrays.asList("D3", "D2", "D1", "D4", "AD1", "AD2", "AD3", "AD4", "HA1", "HA2", "HA3", "HA4", "HA5", "HA6", "HB6", "HC6", "HC7", "HC8", "HC9", "HC10", "HC11"));
+
+        passRouteMap.put("A出", Arrays.asList("HC4", "HC5", "HD5", "HD4", "HD3", "HD2", "HD1", "AD7", "AD8", "AD9", "AD10", "AD11", "A2", "A1"));
+        //B口只进不出
+//        passRouteMap.put("B出", Arrays.asList());
+        passRouteMap.put("D出", Arrays.asList("HC4", "HC5", "HD5", "HD4", "HD3", "HD2", "HC1", "HB1", "A5", "A4", "A3", "A2", "A1", "D4", "D1", "D2", "D3"));
+    }
+
+    /**
+     * 随机生成区域内坐标点
+     *
+     * @param regionFlag 区域标识符
+     * @return 返回该区域内随机坐标点
+     */
+    public static Point randomPoint(String regionFlag) {
+        //1.根据regionFlag找到块的区域对象
+        Region tmp = regionMap.get(regionFlag);
+
+        //2.找到该区域的左上角和右下角
+        Point leftup = tmp.getLeftup();
+        Point rightdown = tmp.getRightdown();
+
+        //3.随机点的坐标：
+        //  横坐标：左上横坐标+random（右下横-左上横）
+        //  纵坐标：左上纵坐标+random（右下纵-左上纵）
+        Point point = new Point();
+        point.setX(leftup.getX() + new Random().nextInt(rightdown.getX() - leftup.getX()));
+        point.setY(leftup.getY() + new Random().nextInt(rightdown.getY() - leftup.getY()));
+
+        return new RPoint(regionFlag, point);
+    }
+
+
     public static void print() {
         for (String key : regionMap.keySet()) {
             System.out.println(key + " --> " + regionMap.get(key));
+        }
+        for (String key : passRouteMap.keySet()) {
+            System.out.println(key + " --> " + passRouteMap.get(key));
         }
     }
 
