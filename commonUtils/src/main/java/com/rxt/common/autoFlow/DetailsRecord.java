@@ -39,6 +39,6 @@ public class DetailsRecord extends RPoint {
     }
 
     public static void main(String[] args) {
-        System.out.println(new DetailsRecord("进站", "A2", System.currentTimeMillis(), ContextParam.randomPoint("A2")));
+        System.out.println(new DetailsRecord("进站", "A2", System.currentTimeMillis(), ContextParam.randomPoint(1, "A2")));
     }
 }

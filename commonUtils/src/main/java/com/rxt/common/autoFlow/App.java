@@ -19,6 +19,7 @@ public class App {
 //        ContextParam.print();
 //        System.out.println(ContextParam.randomPoint("A2"));
         List<String> userList = PassengerDao.getAllUserID();
+        int tag = 0;    //1表示绝对坐标，其他值表示相对坐标
 
         Connection connection = OracleConn.getConn();
 
@@ -67,7 +68,7 @@ public class App {
                     for (String route : routes) {
                         for (int j = 0; j < 5 + new Random().nextInt(10); j++) {
                             mystamp += new Random().nextInt(300) + 300;
-                            detailsRecordList.add(new DetailsRecord("进站", route, mystamp, ContextParam.randomPoint(route)));
+                            detailsRecordList.add(new DetailsRecord("进站", route, mystamp, ContextParam.randomPoint(tag, route)));
                         }
                     }
 
@@ -94,7 +95,7 @@ public class App {
                     for (String route : routes) {
                         for (int j = 0; j < 5 + new Random().nextInt(10); j++) {
                             mystamp += new Random().nextInt(300) + 300;
-                            detailsRecordList.add(new DetailsRecord("出站", route, mystamp, ContextParam.randomPoint(route)));
+                            detailsRecordList.add(new DetailsRecord("出站", route, mystamp, ContextParam.randomPoint(tag, route)));
                         }
                     }
 

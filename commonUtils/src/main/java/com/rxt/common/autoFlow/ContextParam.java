@@ -505,10 +505,11 @@ public class ContextParam {
     /**
      * 随机生成区域内坐标点
      *
+     * @param tag 1，绝对坐标；其他，相对坐标
      * @param regionFlag 区域标识符
      * @return 返回该区域内随机坐标点
      */
-    public static Point randomPoint(String regionFlag) {
+    public static Point randomPoint(int tag, String regionFlag) {
         //1.根据regionFlag找到块的区域对象
         Region tmp = regionMap.get(regionFlag);
 
@@ -520,9 +521,13 @@ public class ContextParam {
         //  横坐标：左上横坐标+random（右下横-左上横）
         //  纵坐标：左上纵坐标+random（右下纵-左上纵）
         Point point = new Point();
-        point.setX(leftup.getX() + new Random().nextInt(rightdown.getX() - leftup.getX()));
-        point.setY(leftup.getY() + new Random().nextInt(rightdown.getY() - leftup.getY()));
-
+        if (tag==1) {
+            point.setX(leftup.getX() + new Random().nextInt(rightdown.getX() - leftup.getX()));
+            point.setY(leftup.getY() + new Random().nextInt(rightdown.getY() - leftup.getY()));
+        }else{
+            point.setX(new Random().nextInt(rightdown.getX() - leftup.getX()));
+            point.setY(new Random().nextInt(rightdown.getY() - leftup.getY()));
+        }
         return new RPoint(regionFlag, point);
     }
 
