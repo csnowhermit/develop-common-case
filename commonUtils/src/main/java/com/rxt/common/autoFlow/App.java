@@ -17,7 +17,7 @@ public class App {
 
     public static void main(String[] args) throws SQLException, ClassNotFoundException, ParseException, IOException {
 //        ContextParam.print();
-//        System.out.println(ContextParam.randomPoint("A2"));
+//        System.out.println(ContextParam.randomPoint(1, "A2"));
         List<String> userList = PassengerDao.getAllUserID();
         int tag = 0;    //1表示绝对坐标，其他值表示相对坐标
         int base = 500;    //每次时间至少增长
@@ -106,7 +106,7 @@ public class App {
                     fileOutputStream.write((userid + ", " + detailsRecordList + "\n").getBytes());
                 }
             }
-            fileOutputStream.flush();    //进站处理完刷新一下
+            fileOutputStream.flush();    //出站处理完刷新一下
         }
 
         fileOutputStream.close();
