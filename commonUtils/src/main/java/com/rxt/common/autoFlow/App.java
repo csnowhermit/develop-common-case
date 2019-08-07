@@ -75,6 +75,13 @@ public class App {
                         for (int j = 0; j < 100; j++) {
                             mystamp += new Random().nextInt(bound) + base;
                             detailsRecordList.add(new DetailsRecord(line_name, station_name, "进站", route, mystamp, ContextParam.randomPoint(tag, route)));
+//                            fileOutputStream.write((userid + "," +
+//                                    line_name + "," +
+//                                    station_name + "," +
+//                                    "进站" + "," +
+//                                    mystamp + "," +
+//                                    route + "," +
+//                                    ContextParam.randomPoint(tag, route) + "\n").getBytes());
                         }
                     }
 
@@ -102,6 +109,13 @@ public class App {
                         for (int j = 0; j < 100; j++) {
                             mystamp += new Random().nextInt(bound) + base;
                             detailsRecordList.add(new DetailsRecord(line_name, station_name, "出站", route, mystamp, ContextParam.randomPoint(tag, route)));
+//                            fileOutputStream.write((userid + "," +
+//                                    line_name + "," +
+//                                    station_name + "," +
+//                                    "出站" + "," +
+//                                    mystamp + "," +
+//                                    route + "," +
+//                                    ContextParam.randomPoint(tag, route) + "\n").getBytes());
                         }
                     }
 

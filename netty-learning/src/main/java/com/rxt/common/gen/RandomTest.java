@@ -18,10 +18,10 @@ public class RandomTest {
 
         Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@10.10.56.106:1521:ORCL", "gzm", "gzm");
 
-        String sql = "select to_char(OPER_DATE, 'yyyy-mm-dd'), LINE_NAME, STATION_NAME, FLOW_IN, FLOW_OUT, TIME_INTERVAL from passenger_flow where STATION_NAME=? and oper_date=to_date(?, 'yyyy-mm-dd')";
+        String sql = "select to_char(OPER_DATE, 'yyyy-mm-dd'), LINE_NAME, STATION_NAME, FLOW_IN, FLOW_OUT, TIME_INTERVAL from passenger_flow where STATION_NAME=?";
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setString(1, "大塘");
-        preparedStatement.setString(2, "2018-05-01");
+//        preparedStatement.setString(2, "2018-05-01");
 
         FileOutputStream fileOutputStream = new FileOutputStream(new File("d:/datang.csv"));
 
