@@ -15,13 +15,17 @@ public class App {
     private static List<String> pass_in = Arrays.asList("A进", "B进", "D进");
     private static List<String> pass_out = Arrays.asList("A出", "D出");
 
-    public static void main(String[] args) throws SQLException, ClassNotFoundException, ParseException, IOException {
+    public static void main(String[] args) throws SQLException, ClassNotFoundException, ParseException, IOException, InterruptedException {
 //        ContextParam.print();
 //        System.out.println(ContextParam.randomPoint(1, "A2"));
         List<String> userList = PassengerDao.getAllUserID();
+
+        Thread.sleep(10000);
+        System.out.println("系统初始化完成");
+
         int tag = 1;    //1表示绝对坐标，其他值表示相对坐标
-        int base = 500;    //每次时间至少增长
-        int bound = 300;   //每次时间随机数bound
+        int base = 50;    //每次时间至少增长
+        int bound = 30;   //每次时间随机数bound
 
         Connection connection = OracleConn.getConn();
 
@@ -66,16 +70,16 @@ public class App {
                     //2.对于每个人，选定一条路径
                     List<String> routes = passRouteMap.get(pass_in.get(new Random().nextInt(pass_in.size())));
 
-                    //3.在这条路上每个区域内随机若干个点
+                    //3.在这条路上每个区域内随机1000个点
                     for (String route : routes) {
-                        for (int j = 0; j < 10 + new Random().nextInt(10); j++) {
+                        for (int j = 0; j < 100; j++) {
                             mystamp += new Random().nextInt(bound) + base;
-                            detailsRecordList.add(new DetailsRecord("进站", route, mystamp, ContextParam.randomPoint(tag, route)));
+                            detailsRecordList.add(new DetailsRecord(line_name, station_name, "进站", route, mystamp, ContextParam.randomPoint(tag, route)));
                         }
                     }
 
                     //4.打印每个人进站的记录
-                    System.out.println(userid + ", " + detailsRecordList);
+//                    System.out.println(userid + ", " + detailsRecordList);
                     fileOutputStream.write((userid + ", " + detailsRecordList + "\n").getBytes());
                 }
             }
@@ -93,20 +97,21 @@ public class App {
                     //2.对于每个人，选定一条路径
                     List<String> routes = passRouteMap.get(pass_out.get(new Random().nextInt(pass_out.size())));
 
-                    //3.在这条路上每个区域内随机若干个点
+                    //3.在这条路上每个区域内随机1000个点
                     for (String route : routes) {
-                        for (int j = 0; j < 10 + new Random().nextInt(10); j++) {
+                        for (int j = 0; j < 100; j++) {
                             mystamp += new Random().nextInt(bound) + base;
-                            detailsRecordList.add(new DetailsRecord("出站", route, mystamp, ContextParam.randomPoint(tag, route)));
+                            detailsRecordList.add(new DetailsRecord(line_name, station_name, "出站", route, mystamp, ContextParam.randomPoint(tag, route)));
                         }
                     }
 
                     //4.打印每个人出站的记录
-                    System.out.println(userid + ", " + detailsRecordList);
+//                    System.out.println(userid + ", " + detailsRecordList);
                     fileOutputStream.write((userid + ", " + detailsRecordList + "\n").getBytes());
                 }
             }
             fileOutputStream.flush();    //出站处理完刷新一下
+            System.out.println("已处理完 " + line_name + " " + station_name + " 站 " + sb.toString() + " 时间数据");
         }
 
         fileOutputStream.close();
