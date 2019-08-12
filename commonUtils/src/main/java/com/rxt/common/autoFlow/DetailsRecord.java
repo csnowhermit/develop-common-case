@@ -27,10 +27,7 @@ public class DetailsRecord extends RPoint {
 
     @Override
     public String toString() {
-        return "DetailsRecord{" +
-                "timestamp=" + timestamp + ", " +
-                "RPoint=" + super.toString() +
-                '}';
+        return timestamp + "," + super.toString();
     }
 
     public static void main(String[] args) {

@@ -19,9 +19,6 @@ public class RPoint extends Point {
 
     @Override
     public String toString() {
-        return "RPoint{" +
-                "flag='" + flag + '\'' + ", " +
-                "point=" + super.toString() +
-                '}';
+        return flag + "," + super.toString();
     }
 }

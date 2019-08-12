@@ -37,10 +37,7 @@ public class RecordSet {
 
     @Override
     public String toString() {
-        return "RecordSet{" +
-                "header=" + header +
-                ", body=" + body +
-                '}';
+        return header + "," + body;
     }
 }
 
@@ -98,12 +95,10 @@ class Header {
 
     @Override
     public String toString() {
-        return "Header{" +
-                "userid='" + userid + '\'' +
-                ", line_name='" + line_name + '\'' +
-                ", station_name='" + station_name + '\'' +
-                ", forward='" + forward + '\'' +
-                '}';
+        return userid + "," +
+                line_name + "," +
+                station_name + "," +
+                forward;
     }
 }
 
@@ -128,8 +123,10 @@ class Body {
 
     @Override
     public String toString() {
-        return "Body{" +
-                "detailsRecordList=" + detailsRecordList +
-                '}';
+        StringBuffer sb = new StringBuffer();
+        for (DetailsRecord detailsRecord : detailsRecordList) {
+            sb.append(detailsRecord).append(",");
+        }
+        return sb.toString().substring(0, sb.toString().length() - 1);
     }
 }

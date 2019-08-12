@@ -84,7 +84,7 @@ public class App {
                     }
 
                     //4.打印每个人进站的记录
-//                    System.out.println(new Gson().toJson(recordSet));
+                    System.out.println(recordSet);
                     fileOutputStream.write((new Gson().toJson(recordSet) + "\n").getBytes());
                 }
             }
@@ -114,7 +114,7 @@ public class App {
                     }
 
                     //4.打印每个人出站的记录
-//                    System.out.println(new Gson().toJson(recordSet));
+                    System.out.println(recordSet);
                     fileOutputStream.write((new Gson().toJson(recordSet) + "\n").getBytes());
                 }
             }
