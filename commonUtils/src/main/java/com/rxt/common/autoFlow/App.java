@@ -1,5 +1,7 @@
 package com.rxt.common.autoFlow;
 
+import com.google.gson.Gson;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -20,8 +22,9 @@ public class App {
 //        System.out.println(ContextParam.randomPoint(1, "A2"));
         List<String> userList = PassengerDao.getAllUserID();
 
-        Thread.sleep(10000);
+        Thread.sleep(5000);
         System.out.println("系统初始化完成");
+        Thread.sleep(5000);
 
         int tag = 1;    //1表示绝对坐标，其他值表示相对坐标
         int base = 50;    //每次时间至少增长
@@ -62,7 +65,7 @@ public class App {
             if (flow_in > 0) {
                 for (int i = 0; i < flow_in; i++) {
                     long mystamp = timestamp;    //每个人一个时间戳
-                    List<DetailsRecord> detailsRecordList = new ArrayList<>();
+                    RecordSet recordSet = new RecordSet();
 
                     //1.对于进站，先选定一个人
                     String userid = userList.get(new Random().nextInt(userList.size()));
@@ -70,24 +73,19 @@ public class App {
                     //2.对于每个人，选定一条路径
                     List<String> routes = passRouteMap.get(pass_in.get(new Random().nextInt(pass_in.size())));
 
+                    recordSet.setHeader(new Header(userid, line_name, station_name, "进站"));
+
                     //3.在这条路上每个区域内随机1000个点
                     for (String route : routes) {
-                        for (int j = 0; j < 100; j++) {
+                        for (int j = 0; j < 30; j++) {
                             mystamp += new Random().nextInt(bound) + base;
-                            detailsRecordList.add(new DetailsRecord(line_name, station_name, "进站", route, mystamp, ContextParam.randomPoint(tag, route)));
-//                            fileOutputStream.write((userid + "," +
-//                                    line_name + "," +
-//                                    station_name + "," +
-//                                    "进站" + "," +
-//                                    mystamp + "," +
-//                                    route + "," +
-//                                    ContextParam.randomPoint(tag, route) + "\n").getBytes());
+                            recordSet.getBody().getDetailsRecordList().add(new DetailsRecord(route, mystamp, ContextParam.randomPoint(tag, route)));
                         }
                     }
 
                     //4.打印每个人进站的记录
-//                    System.out.println(userid + ", " + detailsRecordList);
-                    fileOutputStream.write((userid + ", " + detailsRecordList + "\n").getBytes());
+//                    System.out.println(new Gson().toJson(recordSet));
+                    fileOutputStream.write((new Gson().toJson(recordSet) + "\n").getBytes());
                 }
             }
             fileOutputStream.flush();    //进站处理完刷新一下
@@ -96,7 +94,7 @@ public class App {
             if (flow_out > 0) {
                 for (int i = 0; i < flow_out; i++) {
                     long mystamp = timestamp;    //每个人一个时间戳
-                    List<DetailsRecord> detailsRecordList = new ArrayList<>();
+                    RecordSet recordSet = new RecordSet();
 
                     //1.对于出站，先选定一个人
                     String userid = userList.get(new Random().nextInt(userList.size()));
@@ -104,24 +102,20 @@ public class App {
                     //2.对于每个人，选定一条路径
                     List<String> routes = passRouteMap.get(pass_out.get(new Random().nextInt(pass_out.size())));
 
+                    recordSet.setHeader(new Header(userid, line_name, station_name, "出站"));
+
+
                     //3.在这条路上每个区域内随机1000个点
                     for (String route : routes) {
-                        for (int j = 0; j < 100; j++) {
+                        for (int j = 0; j < 30; j++) {
                             mystamp += new Random().nextInt(bound) + base;
-                            detailsRecordList.add(new DetailsRecord(line_name, station_name, "出站", route, mystamp, ContextParam.randomPoint(tag, route)));
-//                            fileOutputStream.write((userid + "," +
-//                                    line_name + "," +
-//                                    station_name + "," +
-//                                    "出站" + "," +
-//                                    mystamp + "," +
-//                                    route + "," +
-//                                    ContextParam.randomPoint(tag, route) + "\n").getBytes());
+                            recordSet.getBody().getDetailsRecordList().add(new DetailsRecord(route, mystamp, ContextParam.randomPoint(tag, route)));
                         }
                     }
 
                     //4.打印每个人出站的记录
-//                    System.out.println(userid + ", " + detailsRecordList);
-                    fileOutputStream.write((userid + ", " + detailsRecordList + "\n").getBytes());
+//                    System.out.println(new Gson().toJson(recordSet));
+                    fileOutputStream.write((new Gson().toJson(recordSet) + "\n").getBytes());
                 }
             }
             fileOutputStream.flush();    //出站处理完刷新一下
