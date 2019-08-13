@@ -15,12 +15,22 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class App {
-    private static List<String> pass_in = Arrays.asList("D进电");
-    private static List<String> pass_out = Arrays.asList("A出", "D出");
+    private static Map<String, List<RPoint>> passRouteMap = null;
+    private static List<String> pass_in = new ArrayList<>();
+    private static List<String> pass_out = new ArrayList<>();
+
+    static {
+        passRouteMap = ContextParam.getPassRouteMap();
+        for (String s : passRouteMap.keySet()) {
+            if (s.contains("进")) {
+                pass_in.add(s);
+            } else {
+                pass_out.add(s);
+            }
+        }
+    }
 
     public static void main(String[] args) throws SQLException, ClassNotFoundException, ParseException, IOException, InterruptedException {
-//        ContextParam.print();
-//        System.out.println(ContextParam.randomPoint(1, "A2"));
         List<String> userList = PassengerDao.getAllUserID();
 
         Thread.sleep(5000);
@@ -39,9 +49,6 @@ public class App {
         ResultSet resultSet = preparedStatement.executeQuery();
 
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-
-        // 获取
-        Map<String, List<RPoint>> passRouteMap = ContextParam.getPassRouteMap();
 
         FileOutputStream fileOutputStream = new FileOutputStream(new File("d:/autoFlow.txt"));
 
@@ -91,33 +98,34 @@ public class App {
             }
             fileOutputStream.flush();    //进站处理完刷新一下
 
-//            // 再处理出站
-//            if (flow_out > 0) {
-//                for (int i = 0; i < flow_out; i++) {
-//                    long mystamp = timestamp;    //每个人一个时间戳
-//                    RecordSet recordSet = new RecordSet();
-//
-//                    //1.对于出站，先选定一个人
-//                    String userid = userList.get(new Random().nextInt(userList.size()));
-//
-//                    //2.对于每个人，选定一条路径
-//                    List<RPoint> rPointList = passRouteMap.get(pass_out.get(new Random().nextInt(pass_out.size())));
-//
-//                    recordSet.setHeader(new Header(userid, line_name, station_name, "出站"));
-//
-//                    //3.在这条路上每个区域内随机1000个点
-//                    for (RPoint rPoint : rPointList) {
-//                        mystamp += new Random().nextInt(bound) + base;
-//                        recordSet.getBody().getDetailsRecordList().add(new DetailsRecord(rPoint.getFlag(), mystamp, ContextParam.randomPoint(rPoint)));
-//                    }
-//
-//                    //4.打印每个人出站的记录
-////                    System.out.println(recordSet);
-//            Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();    //构建json字符串，排除掉@Expose注解修饰的字段
-//                    fileOutputStream.write((gson.toJson(recordSet) + "\n").getBytes());
-//                }
-//            }
-//            fileOutputStream.flush();    //出站处理完刷新一下
+            // 再处理出站
+            if (flow_out > 0) {
+                for (int i = 0; i < flow_out; i++) {
+                    long mystamp = timestamp;    //每个人一个时间戳
+                    RecordSet recordSet = new RecordSet();
+
+                    //1.对于出站，先选定一个人
+                    String userid = userList.get(new Random().nextInt(userList.size()));
+
+                    //2.对于每个人，选定一条路径
+                    List<RPoint> rPointList = passRouteMap.get(pass_out.get(new Random().nextInt(pass_out.size())));
+
+                    recordSet.setHeader(new Header(userid, line_name, station_name, "出站"));
+
+                    //3.对每个点进行随机
+                    for (RPoint rPoint : rPointList) {
+                        mystamp += new Random().nextInt(bound) + base;
+                        recordSet.getBody().getDetailsRecordList().add(new DetailsRecord(rPoint.getFlag(), mystamp, ContextParam.randomPoint(rPoint)));
+                    }
+
+                    //4.打印每个人出站的记录
+//                    System.out.println(recordSet);
+//                    Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();    //构建json字符串，排除掉@Expose注解修饰的字段
+                    Gson gson = new Gson();
+                    fileOutputStream.write((gson.toJson(recordSet) + "\n").getBytes());
+                }
+            }
+            fileOutputStream.flush();    //出站处理完刷新一下
             System.out.println("已处理完 " + line_name + " " + station_name + " 站 " + sb.toString() + " 时间数据");
         }
 
