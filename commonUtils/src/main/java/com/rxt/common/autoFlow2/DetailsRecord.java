@@ -1,4 +1,4 @@
-package com.rxt.common.autoFlow;
+package com.rxt.common.autoFlow2;
 
 /**
  * 每个用户的轨迹明细表
@@ -6,21 +6,21 @@ package com.rxt.common.autoFlow;
 public class DetailsRecord extends RPoint {
     private Long timestamp;    //时间戳
 
-    public DetailsRecord(String flag) {
+    public DetailsRecord(PointTag flag) {
         super(flag);
     }
 
-    public DetailsRecord(String flag, Long timestamp) {
+    public DetailsRecord(PointTag flag, Long timestamp) {
         super(flag);
         this.timestamp = timestamp;
     }
 
-    public DetailsRecord(String flag, Long timestamp, Point point) {
+    public DetailsRecord(PointTag flag, Long timestamp, Point point) {
         super(flag, point);
         this.timestamp = timestamp;
     }
 
-    public DetailsRecord(String flag, int x, int y, Long timestamp) {
+    public DetailsRecord(PointTag flag, int x, int y, Long timestamp) {
         super(flag, x, y);
         this.timestamp = timestamp;
     }
@@ -31,6 +31,7 @@ public class DetailsRecord extends RPoint {
     }
 
     public static void main(String[] args) {
-        System.out.println(new DetailsRecord("A2", System.currentTimeMillis(), ContextParam.randomPoint(1, "A2")));
+        RPoint rPoint = new RPoint(PointTag.TAG_X, new Point(5, 10));
+        System.out.println(new DetailsRecord(rPoint.getFlag(), System.currentTimeMillis(), ContextParam.randomPoint(rPoint)));
     }
 }

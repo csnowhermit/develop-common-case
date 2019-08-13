@@ -1,4 +1,4 @@
-package com.rxt.common.autoFlow;
+package com.rxt.common.autoFlow2;
 
 import java.util.ArrayList;
 import java.util.List;
