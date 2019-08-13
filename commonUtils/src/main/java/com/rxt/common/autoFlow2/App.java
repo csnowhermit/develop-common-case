@@ -31,6 +31,9 @@ public class App {
     }
 
     public static void main(String[] args) throws SQLException, ClassNotFoundException, ParseException, IOException, InterruptedException {
+        System.out.println(pass_in);
+        System.out.println(pass_out);
+
         List<String> userList = PassengerDao.getAllUserID();
 
         Thread.sleep(5000);
@@ -90,7 +93,7 @@ public class App {
                     }
 
                     //4.打印每个人进站的记录
-//                    System.out.println(recordSet);
+                    System.out.println(recordSet);
 //                    Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();    //构建json字符串，排除掉@Expose注解修饰的字段
                     Gson gson = new Gson();
                     fileOutputStream.write((gson.toJson(recordSet) + "\n").getBytes());
@@ -119,7 +122,7 @@ public class App {
                     }
 
                     //4.打印每个人出站的记录
-//                    System.out.println(recordSet);
+                    System.out.println(recordSet);
 //                    Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();    //构建json字符串，排除掉@Expose注解修饰的字段
                     Gson gson = new Gson();
                     fileOutputStream.write((gson.toJson(recordSet) + "\n").getBytes());
