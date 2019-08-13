@@ -1,4 +1,4 @@
-package com.rxt.common.autoFlow;
+package com.rxt.common.autoFlow2;
 
 /**
  * 分区域

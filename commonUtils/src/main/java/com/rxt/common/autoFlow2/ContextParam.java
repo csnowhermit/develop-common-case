@@ -1,4 +1,4 @@
-package com.rxt.common.autoFlow;
+package com.rxt.common.autoFlow2;
 
 import java.util.*;
 
@@ -30,13 +30,13 @@ public class ContextParam {
      */
     static {
         if (regionMap.size() == 0) {
-            loadExit_A();
-            loadExit_B();
-            loadExit_C();
+//            loadExit_A();
+//            loadExit_B();
+//            loadExit_C();
             loadExit_D();
-            loadWay_AD();
-            loadWay_BC();
-            loadHall();
+//            loadWay_AD();
+//            loadWay_BC();
+//            loadHall();
         }
         if (passRouteMap.size() == 0) {
             loadPassRoute();
@@ -47,6 +47,7 @@ public class ContextParam {
      * 加载A口区域
      */
     private static void loadExit_A() {
+        //1.进站通道
         regionMap.put("A1", new Region("A1",
                 new Point(801, 4013),
                 new Point(801, 4333),
@@ -57,6 +58,9 @@ public class ContextParam {
                 new Point(1125, 4333),
                 new Point(1449, 4013),
                 new Point(1449, 4333)));
+
+        //2.出站通道
+
     }
 
     /**
@@ -90,6 +94,7 @@ public class ContextParam {
      * 加载D口区域
      */
     private static void loadExit_D() {
+        //1.进站通道
         regionMap.put("D1", new Region("D1",
                 new Point(553, 825),
                 new Point(553, 1115),

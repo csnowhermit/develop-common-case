@@ -1,4 +1,4 @@
-package com.rxt.common.autoFlow;
+package com.rxt.common.autoFlow2;
 
 public class RPoint extends Point {
     private String flag;    //区域标识
