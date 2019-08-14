@@ -3,7 +3,7 @@ package com.rxt.common.autoFlow2;
 /**
  * 每个用户的轨迹明细表
  */
-public class DetailsRecord extends RPoint {
+public final class DetailsRecord extends RPoint {
     private Long timestamp;    //时间戳
 
     public DetailsRecord(PointTag flag) {

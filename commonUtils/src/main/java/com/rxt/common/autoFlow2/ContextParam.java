@@ -3,7 +3,7 @@ package com.rxt.common.autoFlow2;
 import java.util.*;
 
 /**
- * 各个重要的点
+ * 站图上所有点位
  */
 public class ContextParam {
     /**
@@ -916,9 +916,9 @@ public class ContextParam {
         list.add(new RPoint(PointTag.TAG_Y, new Point(1449, 4281)));
         list.add(new RPoint(PointTag.TAG_Y, new Point(1305, 4281)));
         list.add(new RPoint(PointTag.TAG_Y, new Point(1121, 4281)));
-        list.add(new RPoint(PointTag.TAG_Y, new Point(993,  4281)));
-        list.add(new RPoint(PointTag.TAG_Y, new Point(721,  4281)));
-        list.add(new RPoint(PointTag.TAG_Y, new Point(513,  4281)));
+        list.add(new RPoint(PointTag.TAG_Y, new Point(993, 4281)));
+        list.add(new RPoint(PointTag.TAG_Y, new Point(721, 4281)));
+        list.add(new RPoint(PointTag.TAG_Y, new Point(513, 4281)));
 
         list.add(new RPoint(PointTag.TAG_X, new Point(513, 4081)));
         list.add(new RPoint(PointTag.TAG_X, new Point(513, 3905)));
@@ -974,9 +974,9 @@ public class ContextParam {
         list.add(new RPoint(PointTag.TAG_Y, new Point(1449, 4281)));
         list.add(new RPoint(PointTag.TAG_Y, new Point(1305, 4281)));
         list.add(new RPoint(PointTag.TAG_Y, new Point(1121, 4281)));
-        list.add(new RPoint(PointTag.TAG_Y, new Point(993,  4281)));
-        list.add(new RPoint(PointTag.TAG_Y, new Point(721,  4281)));
-        list.add(new RPoint(PointTag.TAG_Y, new Point(513,  4281)));
+        list.add(new RPoint(PointTag.TAG_Y, new Point(993, 4281)));
+        list.add(new RPoint(PointTag.TAG_Y, new Point(721, 4281)));
+        list.add(new RPoint(PointTag.TAG_Y, new Point(513, 4281)));
 
         list.add(new RPoint(PointTag.TAG_X, new Point(513, 4081)));
         list.add(new RPoint(PointTag.TAG_X, new Point(513, 3905)));
@@ -1022,11 +1022,15 @@ public class ContextParam {
         Point point = new Point();
 
         if (rPoint.getFlag() == PointTag.TAG_X) {
-            point.setX(rPoint.getX() + new Random().nextInt(10));
+//            point.setX(rPoint.getX() + new Random().nextInt(10));
+            point.setX(rPoint.getX() +
+                    String.valueOf(System.nanoTime() + new Random().nextLong()).hashCode()%20);
             point.setY(rPoint.getY());
         } else {
             point.setX(rPoint.getX());
-            point.setY(rPoint.getY() + new Random().nextInt(10));
+//            point.setY(rPoint.getY() + new Random().nextInt(10));
+            point.setY(rPoint.getY() +
+                    String.valueOf(System.nanoTime() + new Random().nextLong()).hashCode()%20);
         }
 
         return point;
