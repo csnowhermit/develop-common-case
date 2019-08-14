@@ -34,6 +34,9 @@ public class App {
         System.out.println(pass_in);
         System.out.println(pass_out);
 
+//        pass_in.clear();
+//        pass_in.add("B进步电4");
+
         List<String> userList = PassengerDao.getAllUserID();
 
         Thread.sleep(5000);
@@ -93,7 +96,7 @@ public class App {
                     }
 
                     //4.打印每个人进站的记录
-//                    System.out.println(recordSet);
+                    System.out.println(new Gson().toJson(recordSet));
 //                    Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();    //构建json字符串，排除掉@Expose注解修饰的字段
                     Gson gson = new Gson();
                     fileOutputStream.write((gson.toJson(recordSet) + "\n").getBytes());
