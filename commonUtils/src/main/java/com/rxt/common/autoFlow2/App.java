@@ -34,8 +34,8 @@ public class App {
         System.out.println(pass_in);
         System.out.println(pass_out);
 
-//        pass_in.clear();
-//        pass_in.add("B进步电4");
+        pass_in.clear();
+        pass_in.add("D进电步");
 
         List<String> userList = PassengerDao.getAllUserID();
 
