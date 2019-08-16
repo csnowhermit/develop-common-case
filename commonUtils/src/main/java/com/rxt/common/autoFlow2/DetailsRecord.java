@@ -31,7 +31,7 @@ public final class DetailsRecord extends RPoint {
     }
 
     public static void main(String[] args) {
-        RPoint rPoint = new RPoint(PointTag.TAG_X, new Point(20, 30));
+        RPoint rPoint = new RPoint(PointTag.NONE, new Point(20, 30));
         System.out.println(new DetailsRecord(rPoint.getFlag(), System.currentTimeMillis(), ContextParam.randomPoint(rPoint)));
     }
 }

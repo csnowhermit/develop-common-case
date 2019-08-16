@@ -39,6 +39,7 @@ public class RPoint extends Point {
  * 枚举类型：标识点位是X方向随机还是Y方向随机
  */
 enum PointTag{
+    NONE,     //不随机
     TAG_X,    //X方向随机
     TAG_Y     //Y方向随机
 }
