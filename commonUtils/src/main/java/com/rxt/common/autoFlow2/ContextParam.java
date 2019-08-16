@@ -1027,18 +1027,18 @@ public class ContextParam {
         } else if (rPoint.getFlag() == PointTag.TAG_X) {
 //            point.setX(rPoint.getX() + new Random().nextInt(10));
             point.setX(rPoint.getX() +
-                    String.valueOf(System.nanoTime() + new Random().nextLong()).hashCode() % 25);
+                    (int) (String.valueOf(System.nanoTime() + new Random().nextLong()).hashCode() % 25 * rPoint.getRandMulti()));
             point.setY(rPoint.getY());
         } else if (rPoint.getFlag() == PointTag.TAG_Y) {
             point.setX(rPoint.getX());
 //            point.setY(rPoint.getY() + new Random().nextInt(10));
             point.setY(rPoint.getY() +
-                    String.valueOf(System.nanoTime() + new Random().nextLong()).hashCode() % 25);
+                    (int) (String.valueOf(System.nanoTime() + new Random().nextLong()).hashCode() % 25 * rPoint.getRandMulti()));
         } else {
             point.setX(rPoint.getX() +
-                    String.valueOf(System.nanoTime() + new Random().nextLong()).hashCode() % 25);
+                    (int) (String.valueOf(System.nanoTime() + new Random().nextLong()).hashCode() % 25 * rPoint.getRandMulti()));
             point.setY(rPoint.getY() +
-                    String.valueOf(System.nanoTime() + new Random().nextLong()).hashCode() % 25);
+                    (int) (String.valueOf(System.nanoTime() + new Random().nextLong()).hashCode() % 25 * rPoint.getRandMulti()));
         }
 
         //再确定位置：站台/站厅
