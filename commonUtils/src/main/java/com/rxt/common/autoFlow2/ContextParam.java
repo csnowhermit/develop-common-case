@@ -11,6 +11,8 @@ public class ContextParam {
      */
     private static Map<String, List<RPoint>> passRouteMap = new HashMap<>();
 
+//    private static Map<String, List<RPoint>>
+
     public static Map<String, List<RPoint>> getPassRouteMap() {
         return passRouteMap;
     }
@@ -50,13 +52,13 @@ public class ContextParam {
         list.add(new RPoint(PointTag.TAG_Y, new Point(2549, 2105)));
         list.add(new RPoint(PointTag.TAG_Y, new Point(2939, 2105)));
         list.add(new RPoint(PointTag.TAG_Y, new Point(3329, 2105)));
-        list.add(new RPoint(PointTag.TAG_Y, new Point(3719, 2105)));
+        list.add(new RPoint(PointTag.TAG_Y, new Point(3719, 2105)));    //进闸机前一步：到闸机口了
 
         //HB区域
-        list.add(new RPoint(PointTag.TAG_X, new Point(3857, 2533)));
+        list.add(new RPoint(PointTag.TAG_X, new Point(3857, 2533)));    //进之后
 
         //HC区域
-        list.add(new RPoint(PointTag.TAG_Y, new Point(4109, 2621)));
+        list.add(new RPoint(PointTag.TAG_Y, new Point(4109, 2621)));    //进之后走一步，到步梯口了
         list.add(new RPoint(PointTag.TAG_Y, new Point(4481, 2621)));
         list.add(new RPoint(PointTag.TAG_X, new Point(4481, 2513)));
         list.add(new RPoint(PointTag.TAG_Y, new Point(4353, 2513)));
@@ -91,13 +93,13 @@ public class ContextParam {
         list.add(new RPoint(PointTag.TAG_Y, new Point(2549, 2105)));
         list.add(new RPoint(PointTag.TAG_Y, new Point(2939, 2105)));
         list.add(new RPoint(PointTag.TAG_Y, new Point(3329, 2105)));
-        list.add(new RPoint(PointTag.TAG_Y, new Point(3719, 2105)));
+        list.add(new RPoint(PointTag.TAG_Y, new Point(3719, 2105)));    //进闸机之前的点
 
         //HB区域
-        list.add(new RPoint(PointTag.TAG_X, new Point(3857, 2533)));
+        list.add(new RPoint(PointTag.TAG_X, new Point(3857, 2533)));   //进闸机后
 
         //HC区域
-        list.add(new RPoint(PointTag.TAG_Y, new Point(3801, 2533)));
+        list.add(new RPoint(PointTag.TAG_Y, new Point(3801, 2533)));    //进闸机后向电梯走一步
 
         list.add(new RPoint(PointTag.TAG_Y, new Point(3593, 2533)));
         list.add(new RPoint(PointTag.TAG_Y, new Point(3409, 2533)));
@@ -136,15 +138,16 @@ public class ContextParam {
         list.add(new RPoint(PointTag.TAG_Y, new Point(2549, 2105)));
         list.add(new RPoint(PointTag.TAG_Y, new Point(2939, 2105)));
         list.add(new RPoint(PointTag.TAG_Y, new Point(3329, 2105)));
-        list.add(new RPoint(PointTag.TAG_Y, new Point(3719, 2105)));
+        list.add(new RPoint(PointTag.TAG_Y, new Point(3719, 2105)));    //进闸机前的点
 
         //HB区域
-        list.add(new RPoint(PointTag.TAG_X, new Point(3857, 2533)));
+        list.add(new RPoint(PointTag.TAG_X, new Point(3857, 2533)));    //进闸机后
 
         //HC区域
+        //通过闸机后走了一步：往电梯方向。随机过闸机的话该点应取消，否则会出现右走又左走的情况（不合常理）
         list.add(new RPoint(PointTag.TAG_Y, new Point(3801, 2533)));
 
-        list.add(new RPoint(PointTag.TAG_Y, new Point(3593, 2533)));
+        list.add(new RPoint(PointTag.TAG_Y, new Point(3593, 2533)));    //在最左侧闸机下方，往电梯方向第二步
         list.add(new RPoint(PointTag.TAG_Y, new Point(3409, 2533)));
         list.add(new RPoint(PointTag.TAG_Y, new Point(3249, 2533)));
         list.add(new RPoint(PointTag.TAG_Y, new Point(3145, 2533)));
@@ -289,13 +292,13 @@ public class ContextParam {
         //HA区
         list.add(new RPoint(PointTag.TAG_Y, new Point(2939, 2105)));
         list.add(new RPoint(PointTag.TAG_Y, new Point(3329, 2105)));
-        list.add(new RPoint(PointTag.TAG_Y, new Point(3719, 2105)));
+        list.add(new RPoint(PointTag.TAG_Y, new Point(3719, 2105)));    //进闸机之前
 
         //HB区域
-        list.add(new RPoint(PointTag.TAG_X, new Point(3857, 2533)));
+        list.add(new RPoint(PointTag.TAG_X, new Point(3857, 2533)));    //通过闸机之后
 
         //HC区域
-        list.add(new RPoint(PointTag.TAG_Y, new Point(4109, 2621)));
+        list.add(new RPoint(PointTag.TAG_Y, new Point(4109, 2621)));    //通过闸机之后走一步，到达步梯口
         list.add(new RPoint(PointTag.TAG_Y, new Point(4481, 2621)));
         list.add(new RPoint(PointTag.TAG_X, new Point(4481, 2513)));
         list.add(new RPoint(PointTag.TAG_Y, new Point(4353, 2513)));
@@ -344,15 +347,15 @@ public class ContextParam {
         //HA区
         list.add(new RPoint(PointTag.TAG_Y, new Point(2939, 2105)));
         list.add(new RPoint(PointTag.TAG_Y, new Point(3329, 2105)));
-        list.add(new RPoint(PointTag.TAG_Y, new Point(3719, 2105)));
+        list.add(new RPoint(PointTag.TAG_Y, new Point(3719, 2105)));    //进闸机前
 
         //HB区域
-        list.add(new RPoint(PointTag.TAG_X, new Point(3857, 2533)));
+        list.add(new RPoint(PointTag.TAG_X, new Point(3857, 2533)));    //通过闸机之后
 
         //HC区域
-        list.add(new RPoint(PointTag.TAG_Y, new Point(3801, 2533)));
+        list.add(new RPoint(PointTag.TAG_Y, new Point(3801, 2533)));    //通过后走一步，电梯方向
 
-        list.add(new RPoint(PointTag.TAG_Y, new Point(3593, 2533)));
+        list.add(new RPoint(PointTag.TAG_Y, new Point(3593, 2533)));    //再走一步，到电梯口
         list.add(new RPoint(PointTag.TAG_Y, new Point(3409, 2533)));
         list.add(new RPoint(PointTag.TAG_Y, new Point(3249, 2533)));
         list.add(new RPoint(PointTag.TAG_Y, new Point(3145, 2533)));
@@ -400,13 +403,13 @@ public class ContextParam {
         //HA区
         list.add(new RPoint(PointTag.TAG_Y, new Point(2939, 2105)));
         list.add(new RPoint(PointTag.TAG_Y, new Point(3329, 2105)));
-        list.add(new RPoint(PointTag.TAG_Y, new Point(3719, 2105)));
+        list.add(new RPoint(PointTag.TAG_Y, new Point(3719, 2105)));    //进闸机前
 
         //HB区域
-        list.add(new RPoint(PointTag.TAG_X, new Point(3857, 2533)));
+        list.add(new RPoint(PointTag.TAG_X, new Point(3857, 2533)));    //刚好通过闸机
 
         //HC区域
-        list.add(new RPoint(PointTag.TAG_Y, new Point(4109, 2621)));
+        list.add(new RPoint(PointTag.TAG_Y, new Point(4109, 2621)));    //通过后走一步，到步梯口
         list.add(new RPoint(PointTag.TAG_Y, new Point(4481, 2621)));
         list.add(new RPoint(PointTag.TAG_X, new Point(4481, 2513)));
         list.add(new RPoint(PointTag.TAG_Y, new Point(4353, 2513)));
@@ -504,14 +507,14 @@ public class ContextParam {
         list.add(new RPoint(PointTag.TAG_Y, new Point(6729, 2121)));
         list.add(new RPoint(PointTag.TAG_Y, new Point(6369, 2121)));
         list.add(new RPoint(PointTag.TAG_Y, new Point(5857, 2121)));
-        list.add(new RPoint(PointTag.TAG_Y, new Point(5473, 2121)));
+        list.add(new RPoint(PointTag.TAG_Y, new Point(5473, 2121)));    //进闸机前一步
 
         //HB区
-        list.add(new RPoint(PointTag.TAG_X, new Point(5001, 2265)));
-        list.add(new RPoint(PointTag.TAG_X, new Point(5001, 2513)));
+        list.add(new RPoint(PointTag.TAG_X, new Point(5001, 2265)));    //闸机口
+        list.add(new RPoint(PointTag.TAG_X, new Point(5001, 2513)));    //刚通过闸机口
 
         //HC区
-        list.add(new RPoint(PointTag.TAG_Y, new Point(5145, 2513)));
+        list.add(new RPoint(PointTag.TAG_Y, new Point(5145, 2513)));    //进入3号电梯
         list.add(new RPoint(PointTag.TAG_Y, new Point(5305, 2513)));
         list.add(new RPoint(PointTag.TAG_Y, new Point(5449, 2513)));
         list.add(new RPoint(PointTag.TAG_Y, new Point(5561, 2513)));
@@ -608,16 +611,16 @@ public class ContextParam {
         list.add(new RPoint(PointTag.TAG_Y, new Point(6729, 2121)));
         list.add(new RPoint(PointTag.TAG_Y, new Point(6369, 2121)));
         list.add(new RPoint(PointTag.TAG_Y, new Point(5857, 2121)));
-        list.add(new RPoint(PointTag.TAG_Y, new Point(5473, 2121)));
+        list.add(new RPoint(PointTag.TAG_Y, new Point(5473, 2121)));    //进闸机前一步
 
         //HB区
-        list.add(new RPoint(PointTag.TAG_X, new Point(5001, 2265)));
-        list.add(new RPoint(PointTag.TAG_X, new Point(5001, 2513)));
+        list.add(new RPoint(PointTag.TAG_X, new Point(5001, 2265)));    //到闸机口
+        list.add(new RPoint(PointTag.TAG_X, new Point(5001, 2513)));    //刚过闸机
 
         //HC区
-        list.add(new RPoint(PointTag.TAG_X, new Point(5001, 2689)));
+        list.add(new RPoint(PointTag.TAG_X, new Point(5001, 2689)));    //往下走一步，准备进4号电梯
 
-        list.add(new RPoint(PointTag.TAG_Y, new Point(5145, 2689)));
+        list.add(new RPoint(PointTag.TAG_Y, new Point(5145, 2689)));    //已进入4号电梯
         list.add(new RPoint(PointTag.TAG_Y, new Point(5305, 2689)));
         list.add(new RPoint(PointTag.TAG_Y, new Point(5449, 2689)));
         list.add(new RPoint(PointTag.TAG_Y, new Point(5561, 2689)));

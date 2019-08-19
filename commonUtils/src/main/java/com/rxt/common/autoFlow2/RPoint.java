@@ -1,5 +1,7 @@
 package com.rxt.common.autoFlow2;
 
+import java.rmi.server.RMIClassLoader;
+
 public class RPoint extends Point {
 
     private transient PointTag flag;    //随机点位标识：X方向随机/Y方向随机
@@ -7,36 +9,36 @@ public class RPoint extends Point {
 
     public RPoint(PointTag flag) {
         this.flag = flag;
-        this.randMulti = getMulti();
+        this.randMulti = getMulti(flag);
     }
 
     public RPoint(PointTag flag, RandMultiple multi) {
         this.flag = flag;
-        this.randMulti = getMulti(multi);
+        this.randMulti = getMulti(flag, multi);
     }
 
     public RPoint(PointTag flag, Point point) {
         super(point);
         this.flag = flag;
-        this.randMulti = getMulti();
+        this.randMulti = getMulti(flag);
     }
 
     public RPoint(PointTag flag, RandMultiple multi, Point point) {
         super(point);
         this.flag = flag;
-        this.randMulti = getMulti(multi);
+        this.randMulti = getMulti(flag, multi);
     }
 
     public RPoint(PointTag flag, int x, int y) {
         super(x, y);
         this.flag = flag;
-        this.randMulti = getMulti();
+        this.randMulti = getMulti(flag);
     }
 
     public RPoint(PointTag flag, RandMultiple multi, int x, int y) {
         super(x, y);
         this.flag = flag;
-        this.randMulti = getMulti(multi);
+        this.randMulti = getMulti(flag, multi);
     }
 
     public PointTag getFlag() {
@@ -50,8 +52,8 @@ public class RPoint extends Point {
     /**
      * 默认放大倍数为1.0倍
      */
-    private static double getMulti() {
-        return 1.0;
+    private static double getMulti(PointTag flag) {
+        return getMulti(flag, RandMultiple.ONCE);
     }
 
     /**
@@ -60,8 +62,13 @@ public class RPoint extends Point {
      * @param multiple 枚举类型
      * @return
      */
-    private static double getMulti(RandMultiple multiple) {
+    private static double getMulti(PointTag flag, RandMultiple multiple) {
         double multi = 1.0;
+
+        if (flag == PointTag.NONE){    //如果没有随机方向，则不能进行随机倍数的设定
+            return multi;
+        }
+
         switch (multiple) {
             case ONCE:
                 multi = 1.0;
@@ -93,8 +100,9 @@ public class RPoint extends Point {
         System.out.println(new RPoint(PointTag.TAG_X, new Point(5, 10)));
         System.out.println(new RPoint(PointTag.TAG_Y, new Point(5, 10)));
 
-        System.out.println(getMulti(RandMultiple.ONCE_HALF));
-        System.out.println(getMulti(RandMultiple.DOUBLE_HALF));
+        System.out.println(getMulti(PointTag.TAG_X, RandMultiple.ONCE_HALF));
+        System.out.println(getMulti(PointTag.TAG_Y, RandMultiple.DOUBLE_HALF));
+        System.out.println(getMulti(PointTag.NONE, RandMultiple.TRIPLE));
 
         System.out.println(new RPoint(PointTag.TAG_X, RandMultiple.DOUBLE_HALF, new Point(5, 10)));
         System.out.println(new RPoint(PointTag.TAG_Y, RandMultiple.ONCE_HALF, new Point(5, 10)));
