@@ -22,7 +22,7 @@ public class App {
     static {
         passRouteMap = ContextParam.getPassRouteMap();
         for (String s : passRouteMap.keySet()) {
-            if (s.contains("进")) {
+            if (s.contains("D进")) {
                 pass_in.add(s);
             } else {
                 pass_out.add(s);
@@ -34,9 +34,6 @@ public class App {
         System.out.println(pass_in);
         System.out.println(pass_out);
 
-        pass_in.clear();
-        pass_in.add("D进电步");
-
         List<String> userList = PassengerDao.getAllUserID();
 
         Thread.sleep(5000);
@@ -46,10 +43,9 @@ public class App {
         int base = 2500;    //至少增长2500ms
         int bound = 500;    //每次的随机数
 
-
         Connection connection = OracleConn.getConn();
 
-        String sql = "select OPER_DATE, LINE_NAME, STATION_NAME, HOURS, MINTUES, SECONDS, FLOW_IN, FLOW_OUT from gen_s_datang";
+        String sql = "select OPER_DATE, LINE_NAME, STATION_NAME, HOURS, MINTUES, SECONDS, FLOW_IN, FLOW_OUT from gen_s_datang where OPER_DATE='2018-05-01'";
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
         ResultSet resultSet = preparedStatement.executeQuery();
