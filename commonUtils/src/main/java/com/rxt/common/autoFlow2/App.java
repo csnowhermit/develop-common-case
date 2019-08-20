@@ -21,13 +21,13 @@ public class App {
 
     static {
         passRouteMap = ContextParam.getPassRouteMap();
-        for (String s : passRouteMap.keySet()) {
-            if (s.contains("D进")) {
-                pass_in.add(s);
-            } else {
-                pass_out.add(s);
+        passRouteMap.keySet().forEach(e -> {
+            if (e.contains("进")){
+                pass_in.add(e);
+            }else{
+                pass_out.add(e);
             }
-        }
+        });
     }
 
     public static void main(String[] args) throws SQLException, ClassNotFoundException, ParseException, IOException, InterruptedException {

@@ -417,7 +417,7 @@ public class ContextParam {
             });
 
             //HC区域
-            list.addAll(routeSectionMap.get("AD_IN_STA"));    //中部楼梯下
+            list.addAll(routeSectionMap.get(RouteSegMark.AD_IN_STA));    //中部楼梯下
 
             passRouteMap.put("A进电步" + brake_id, list);
         }
@@ -464,7 +464,7 @@ public class ContextParam {
             List<RPoint> list = new ArrayList<>();
 
             //步梯进站
-            list.addAll(routeSectionMap.get("A_IN_STA"));
+            list.addAll(routeSectionMap.get(RouteSegMark.A_IN_STA));
 
             //AD通道
             list.addAll(routeSectionMap.get(RouteSegMark.A_IN_AD));
@@ -479,7 +479,7 @@ public class ContextParam {
             });
 
             //HC区域
-            list.addAll(routeSectionMap.get("AD_IN_STA"));    //中部楼梯下
+            list.addAll(routeSectionMap.get(RouteSegMark.AD_IN_STA));    //中部楼梯下
 
             passRouteMap.put("A进步步" + brake_id, list);
         }
@@ -1085,16 +1085,16 @@ public class ContextParam {
 
         loadB_in_sta3();    //B口步梯进：电梯3
         loadB_in_sta4();    //B口步梯进：电梯4
-
-        //出口
-        loadD_out_elv2elv();   //D口电梯出：出到电梯
-        loadD_out_elv2sta();   //D口电梯出：出到步梯
-
-        loadD_out_sta2elv();   //D口步梯出：出到电梯
-        loadD_out_sta2sta();   //D口步梯出：出到步梯
-
-        loadA_out_elv2elv();   //A口电梯出：出到电梯
-        loadA_out_sta2elv();   //A口步梯出：出到电梯
+//
+//        //出口
+//        loadD_out_elv2elv();   //D口电梯出：出到电梯
+//        loadD_out_elv2sta();   //D口电梯出：出到步梯
+//
+//        loadD_out_sta2elv();   //D口步梯出：出到电梯
+//        loadD_out_sta2sta();   //D口步梯出：出到步梯
+//
+//        loadA_out_elv2elv();   //A口电梯出：出到电梯
+//        loadA_out_sta2elv();   //A口步梯出：出到电梯
     }
 
     public static Point randomPoint(RPoint rPoint) {
