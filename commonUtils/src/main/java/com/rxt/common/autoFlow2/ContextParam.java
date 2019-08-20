@@ -24,6 +24,12 @@ public class ContextParam {
     private static Map<String, List<RPoint>> gateBrakeMap_BC_in = new HashMap<>();
 
     /**
+     * AD口出闸机列表
+     * <闸机编号，闸机进出位置像素点List>
+     */
+    private static Map<String, List<RPoint>> gateBrakeMap_AD_out = new HashMap<>();
+
+    /**
      * <线段编号，点位序列>
      */
     private static Map<RouteSegMark, List<RPoint>> routeSectionMap = new HashMap<>();
@@ -40,6 +46,10 @@ public class ContextParam {
         return gateBrakeMap_BC_in;
     }
 
+    public static Map<String, List<RPoint>> getGateBrakeMap_AD_out() {
+        return gateBrakeMap_AD_out;
+    }
+
     public static Map<String, List<RPoint>> getPassRouteMap() {
         return passRouteMap;
     }
@@ -54,6 +64,9 @@ public class ContextParam {
         }
         if (gateBrakeMap_BC_in.size() == 0) {
             loadGateBrakeMap_BC_in();
+        }
+        if (gateBrakeMap_AD_out.size() == 0) {
+            loadGateBrakeMap_AD_out();
         }
 
         // 2.加载线段路径
@@ -240,6 +253,36 @@ public class ContextParam {
         bc3List.add(new RPoint(PointTag.NONE, new Point(5082, 2290)));    //进闸机处
         bc3List.add(new RPoint(PointTag.NONE, new Point(5082, 2496)));    //处闸机处
         gateBrakeMap_BC_in.put("bc3_in", bc3List);
+    }
+
+    /**
+     * 加载预置化AD出口闸机列表
+     */
+    private static void loadGateBrakeMap_AD_out() {
+        List<RPoint> ad1List = new ArrayList<>();
+        ad1List.add(new RPoint(PointTag.NONE, new Point(2499, 2929)));    //进闸机处
+        ad1List.add(new RPoint(PointTag.NONE, new Point(2229, 2929)));    //处闸机处
+        gateBrakeMap_AD_out.put("ad1_out", ad1List);
+
+        List<RPoint> ad2List = new ArrayList<>();
+        ad2List.add(new RPoint(PointTag.NONE, new Point(2499, 2989)));    //进闸机处
+        ad2List.add(new RPoint(PointTag.NONE, new Point(2229, 2989)));    //处闸机处
+        gateBrakeMap_AD_out.put("ad2_out", ad2List);
+
+        List<RPoint> ad3List = new ArrayList<>();
+        ad3List.add(new RPoint(PointTag.NONE, new Point(2499, 3050)));    //进闸机处
+        ad3List.add(new RPoint(PointTag.NONE, new Point(2229, 3050)));    //处闸机处
+        gateBrakeMap_AD_out.put("ad3_out", ad3List);
+
+        List<RPoint> ad4List = new ArrayList<>();
+        ad4List.add(new RPoint(PointTag.NONE, new Point(2499, 3113)));    //进闸机处
+        ad4List.add(new RPoint(PointTag.NONE, new Point(2229, 3113)));    //处闸机处
+        gateBrakeMap_AD_out.put("ad4_out", ad4List);
+
+        List<RPoint> ad5List = new ArrayList<>();
+        ad5List.add(new RPoint(PointTag.NONE, new Point(2499, 3179)));    //进闸机处
+        ad5List.add(new RPoint(PointTag.NONE, new Point(2229, 3179)));    //处闸机处
+        gateBrakeMap_AD_out.put("ad5_out", ad5List);
     }
 
     /**
@@ -1085,7 +1128,7 @@ public class ContextParam {
 
         loadB_in_sta3();    //B口步梯进：电梯3
         loadB_in_sta4();    //B口步梯进：电梯4
-//
+
 //        //出口
 //        loadD_out_elv2elv();   //D口电梯出：出到电梯
 //        loadD_out_elv2sta();   //D口电梯出：出到步梯
@@ -1128,21 +1171,25 @@ public class ContextParam {
 
 
     public static void print() {
-        for (String key : passRouteMap.keySet()) {
-            System.out.println(key + " --> " + passRouteMap.get(key));
-        }
+//        for (String key : passRouteMap.keySet()) {
+//            System.out.println(key + " --> " + passRouteMap.get(key));
+//        }
+//
+//        for (String key : gateBrakeMap_AD_in.keySet()) {
+//            System.out.println(key + " --> " + gateBrakeMap_AD_in.get(key));
+//        }
+//
+//        for (String key : gateBrakeMap_BC_in.keySet()) {
+//            System.out.println(key + " --> " + gateBrakeMap_BC_in.get(key));
+//        }
 
-        for (String key : gateBrakeMap_AD_in.keySet()) {
-            System.out.println(key + " --> " + gateBrakeMap_AD_in.get(key));
-        }
-
-        for (String key : gateBrakeMap_BC_in.keySet()) {
-            System.out.println(key + " --> " + gateBrakeMap_BC_in.get(key));
+        for (String key : gateBrakeMap_AD_out.keySet()) {
+            System.out.println(key + " --> " + gateBrakeMap_AD_out.get(key));
         }
     }
 
     public static void main(String[] args) {
-//        print();
+        print();
 
 //        List<RPoint> rPointList = passRouteMap.get("D进步");
 //        for (RPoint rPoint : rPointList) {
@@ -1152,7 +1199,7 @@ public class ContextParam {
 //        for (String key : gateBrakeMap_AD_in.keySet()) {
 //            System.out.println(key + " --> " + gateBrakeMap_AD_in.get(key));
 //        }
-        System.out.println(routeSectionMap.keySet());
+//        System.out.println(routeSectionMap.keySet());
 
     }
 
