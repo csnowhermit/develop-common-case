@@ -195,6 +195,131 @@ public class ContextParam {
         list10.add(new RPoint(PointTag.TAG_Y, new Point(3329, 2105)));
         list10.add(new RPoint(PointTag.TAG_Y, new Point(3719, 2105)));
         routeSectionMap.put(RouteSegMark.A_IN_HA, list10);
+
+        // 11.电梯出，到出口闸机口
+        List<RPoint> list11 = new ArrayList<>();
+        //HC区
+        list11.add(new RPoint(PointTag.TAG_Y, new Point(3000, 2673)));
+        list11.add(new RPoint(PointTag.TAG_Y, new Point(3329, 2673)));
+        list11.add(new RPoint(PointTag.TAG_Y, new Point(3577, 2673)));
+
+        //HD区
+        list11.add(new RPoint(PointTag.TAG_X, new Point(3577, 2887)));
+        list11.add(new RPoint(PointTag.TAG_X, new Point(3577, 3057)));
+
+        list11.add(new RPoint(PointTag.TAG_Y, new Point(3577, 3057)));
+        list11.add(new RPoint(PointTag.TAG_Y, new Point(3134, 3057)));
+        list11.add(new RPoint(PointTag.TAG_Y, new Point(2744, 3057)));
+        routeSectionMap.put(RouteSegMark.ELV_OUT_GATE, list11);
+
+        // 12.步梯出，到出口闸机口
+        List<RPoint> list12 = new ArrayList<>();
+        //HC区
+        list12.add(new RPoint(PointTag.TAG_Y, new Point(4177, 2481)));
+        list12.add(new RPoint(PointTag.TAG_Y, new Point(4353, 2481)));
+        list12.add(new RPoint(PointTag.TAG_X, new Point(4481, 2481)));
+        list12.add(new RPoint(PointTag.TAG_Y, new Point(4481, 2641)));
+        list12.add(new RPoint(PointTag.TAG_Y, new Point(4109, 2641)));
+        list12.add(new RPoint(PointTag.TAG_Y, new Point(3929, 2641)));
+        list12.add(new RPoint(PointTag.TAG_Y, new Point(3777, 2641)));
+        list12.add(new RPoint(PointTag.TAG_Y, new Point(3617, 2641)));
+
+        //HD区
+        list12.add(new RPoint(PointTag.TAG_X, new Point(3577, 2887)));
+        list12.add(new RPoint(PointTag.TAG_X, new Point(3577, 3057)));
+
+        list12.add(new RPoint(PointTag.TAG_Y, new Point(3577, 3057)));
+        list12.add(new RPoint(PointTag.TAG_Y, new Point(3134, 3057)));
+        list12.add(new RPoint(PointTag.TAG_Y, new Point(2744, 3057)));
+        routeSectionMap.put(RouteSegMark.STA_OUT_GATE, list12);
+
+        // 13.出口：出口闸机到A口电梯
+        List<RPoint> list13 = new ArrayList<>();
+        //HD区：HD1
+        list13.add(new RPoint(PointTag.TAG_Y, new Point(1961, 3057)));
+        list13.add(new RPoint(PointTag.TAG_Y, new Point(1737, 3057)));
+
+        //AD区：AD7-AD11
+        list13.add(new RPoint(PointTag.TAG_X, new Point(1737, 3225)));
+        list13.add(new RPoint(PointTag.TAG_X, new Point(1737, 3353)));
+        list13.add(new RPoint(PointTag.TAG_X, new Point(1737, 3585)));
+        list13.add(new RPoint(PointTag.TAG_X, new Point(1737, 3833)));
+        list13.add(new RPoint(PointTag.TAG_X, new Point(1737, 4001)));
+        list13.add(new RPoint(PointTag.TAG_X, new Point(1737, 4129)));
+        list13.add(new RPoint(PointTag.TAG_X, new Point(1737, 4281)));
+
+        //A口区域
+        list13.add(new RPoint(PointTag.TAG_Y, new Point(1609, 4281)));
+        list13.add(new RPoint(PointTag.TAG_Y, new Point(1449, 4281)));
+        list13.add(new RPoint(PointTag.TAG_Y, new Point(1305, 4281)));
+        list13.add(new RPoint(PointTag.TAG_Y, new Point(1121, 4281)));
+        list13.add(new RPoint(PointTag.TAG_Y, new Point(993, 4281)));
+        list13.add(new RPoint(PointTag.TAG_Y, new Point(721, 4281)));
+        list13.add(new RPoint(PointTag.TAG_Y, new Point(513, 4281)));
+
+        list13.add(new RPoint(PointTag.TAG_X, new Point(513, 4081)));
+        list13.add(new RPoint(PointTag.TAG_X, new Point(513, 3905)));
+        list13.add(new RPoint(PointTag.TAG_X, new Point(513, 3753)));
+        list13.add(new RPoint(PointTag.TAG_X, new Point(513, 3577)));
+        list13.add(new RPoint(PointTag.TAG_X, new Point(513, 3393)));
+        routeSectionMap.put(RouteSegMark.GATE_OUT_A_ELV, list13);
+
+        // 14.出口闸机到AD1区域
+        List<RPoint> list14 = new ArrayList<>();
+        //HC区:HC1
+        list14.add(new RPoint(PointTag.TAG_X, new Point(1993, 2585)));
+
+        //HB区：HB1
+        list14.add(new RPoint(PointTag.TAG_X, new Point(1993, 2337)));
+        list14.add(new RPoint(PointTag.TAG_Y, new Point(1817, 2337)));
+        list14.add(new RPoint(PointTag.TAG_Y, new Point(1633, 2337)));
+        list14.add(new RPoint(PointTag.TAG_Y, new Point(1537, 2337)));
+
+        //AD区：AD5-AD1
+        list14.add(new RPoint(PointTag.TAG_X, new Point(1537, 2337)));
+        list14.add(new RPoint(PointTag.TAG_X, new Point(1537, 2089)));
+        list14.add(new RPoint(PointTag.TAG_X, new Point(1537, 1833)));
+        list14.add(new RPoint(PointTag.TAG_X, new Point(1537, 1657)));
+        list14.add(new RPoint(PointTag.TAG_X, new Point(1537, 1573)));
+        list14.add(new RPoint(PointTag.TAG_X, new Point(1537, 1393)));
+        list14.add(new RPoint(PointTag.TAG_X, new Point(1537, 1225)));
+        list14.add(new RPoint(PointTag.TAG_X, new Point(1537, 1073)));
+        list14.add(new RPoint(PointTag.TAG_X, new Point(1537, 913)));
+        routeSectionMap.put(RouteSegMark.GATE_OUT_AD, list14);
+
+        // 15.AD顶部到D口电梯
+        List<RPoint> list15 = new ArrayList<>();
+        //D口区域
+        list15.add(new RPoint(PointTag.TAG_Y, new Point(1537, 913)));
+        list15.add(new RPoint(PointTag.TAG_Y, new Point(1409, 913)));
+        list15.add(new RPoint(PointTag.TAG_Y, new Point(1217, 913)));
+        list15.add(new RPoint(PointTag.TAG_Y, new Point(1025, 913)));
+        list15.add(new RPoint(PointTag.TAG_Y, new Point(801, 913)));
+
+        list15.add(new RPoint(PointTag.TAG_X, new Point(801, 1065)));
+        list15.add(new RPoint(PointTag.TAG_X, new Point(801, 1201)));
+        list15.add(new RPoint(PointTag.TAG_X, new Point(801, 1329)));
+        list15.add(new RPoint(PointTag.TAG_X, new Point(801, 1433)));
+        list15.add(new RPoint(PointTag.TAG_X, new Point(801, 1593)));
+        list15.add(new RPoint(PointTag.TAG_X, new Point(801, 1705)));
+        routeSectionMap.put(RouteSegMark.AD_OUT_D_ELV, list15);
+
+        // 16.AD顶部到D口步梯
+        List<RPoint> list16 = new ArrayList<>();
+        //D口区域
+        list16.add(new RPoint(PointTag.TAG_Y, new Point(1537, 913)));
+        list16.add(new RPoint(PointTag.TAG_Y, new Point(1409, 913)));
+        list16.add(new RPoint(PointTag.TAG_Y, new Point(1217, 913)));
+        list16.add(new RPoint(PointTag.TAG_Y, new Point(1025, 913)));
+        list16.add(new RPoint(PointTag.TAG_Y, new Point(929, 913)));
+
+        list16.add(new RPoint(PointTag.TAG_X, new Point(929, 1065)));
+        list16.add(new RPoint(PointTag.TAG_X, new Point(929, 1201)));
+        list16.add(new RPoint(PointTag.TAG_X, new Point(929, 1329)));
+        list16.add(new RPoint(PointTag.TAG_X, new Point(929, 1433)));
+        list16.add(new RPoint(PointTag.TAG_X, new Point(929, 1593)));
+        list16.add(new RPoint(PointTag.TAG_X, new Point(929, 1705)));
+        routeSectionMap.put(RouteSegMark.AD_OUT_D_STA, list16);
     }
 
     /**
@@ -291,14 +416,10 @@ public class ContextParam {
     private static void loadD_in_elv2sta() {
         for (String brake_id : gateBrakeMap_AD_in.keySet()) {
             List<RPoint> list = new ArrayList<>();
-            //D口区域
-            list.addAll(routeSectionMap.get(RouteSegMark.D_IN_ELV));
 
-            //AD通道区域
-            list.addAll(routeSectionMap.get(RouteSegMark.D_IN_AD));
-
-            //HA区域
-            list.addAll(routeSectionMap.get(RouteSegMark.D_IN_HA));    //进闸机前一步：到闸机口了
+            list.addAll(routeSectionMap.get(RouteSegMark.D_IN_ELV));   //D口区域
+            list.addAll(routeSectionMap.get(RouteSegMark.D_IN_AD));   //AD通道区域
+            list.addAll(routeSectionMap.get(RouteSegMark.D_IN_HA));    //HA区域、进闸机前一步：到闸机口了
 
             //HB区域：闸机处
 //        list.add(new RPoint(PointTag.TAG_X, new Point(3857, 2533)));    //进之后
@@ -306,8 +427,7 @@ public class ContextParam {
                 list.add(item);
             });
 
-            //HC区域
-            list.addAll(routeSectionMap.get(RouteSegMark.AD_IN_STA));  //中部楼梯下
+            list.addAll(routeSectionMap.get(RouteSegMark.AD_IN_STA));  //HC区域，中部楼梯下
 
             passRouteMap.put("D进电步" + brake_id, list);
         }
@@ -319,19 +439,13 @@ public class ContextParam {
     private static void loadD_in_elv2elv() {
         for (String brake_id : gateBrakeMap_AD_in.keySet()) {
             List<RPoint> list = new ArrayList<>();
-            //D口区域
-            list.addAll(routeSectionMap.get(RouteSegMark.D_IN_ELV));
 
-            //AD通道区域
-            list.addAll(routeSectionMap.get(RouteSegMark.D_IN_AD));
-
-            //HA区域
-            list.addAll(routeSectionMap.get(RouteSegMark.D_IN_HA));    //进闸机之前的点
+            list.addAll(routeSectionMap.get(RouteSegMark.D_IN_ELV));    //D口区域
+            list.addAll(routeSectionMap.get(RouteSegMark.D_IN_AD));    //AD通道区域
+            list.addAll(routeSectionMap.get(RouteSegMark.D_IN_HA));    //HA区域、进闸机之前的点
 
             //HB区域
 //            list.add(new RPoint(PointTag.TAG_X, new Point(3857, 2533)));   //进闸机后
-
-            // 遍历，从第i个闸机进
             gateBrakeMap_AD_in.get(brake_id).forEach(item -> {
                 list.add(item);
             });
@@ -351,14 +465,10 @@ public class ContextParam {
     private static void loadD_in_sta2elv() {
         for (String brake_id : gateBrakeMap_AD_in.keySet()) {
             List<RPoint> list = new ArrayList<>();
-            //D口区域
-            list.addAll(routeSectionMap.get(RouteSegMark.D_IN_STA));
 
-            //AD通道区域
-            list.addAll(routeSectionMap.get(RouteSegMark.D_IN_AD));
-
-            //HA区域
-            list.addAll(routeSectionMap.get(RouteSegMark.D_IN_HA));    //进闸机前的点
+            list.addAll(routeSectionMap.get(RouteSegMark.D_IN_STA));   //D口区域
+            list.addAll(routeSectionMap.get(RouteSegMark.D_IN_AD));    //AD通道区域
+            list.addAll(routeSectionMap.get(RouteSegMark.D_IN_HA));    //HA区域、进闸机前的点
 
             //HB区域
 //        list.add(new RPoint(PointTag.TAG_X, new Point(3857, 2533)));    //进闸机后
@@ -382,14 +492,10 @@ public class ContextParam {
     private static void loadD_in_sta2sta() {
         for (String brake_id : gateBrakeMap_AD_in.keySet()) {
             List<RPoint> list = new ArrayList<>();
-            //D口区域
-            list.addAll(routeSectionMap.get(RouteSegMark.D_IN_STA));
 
-            //AD通道区域
-            list.addAll(routeSectionMap.get(RouteSegMark.D_IN_AD));
-
-            //HA区域
-            list.addAll(routeSectionMap.get(RouteSegMark.D_IN_HA));
+            list.addAll(routeSectionMap.get(RouteSegMark.D_IN_STA));    //D口区域
+            list.addAll(routeSectionMap.get(RouteSegMark.D_IN_AD));    //AD通道区域
+            list.addAll(routeSectionMap.get(RouteSegMark.D_IN_HA));    //HA区域
 
             //HB区域
 //        list.add(new RPoint(PointTag.TAG_X, new Point(3857, 2533)));
@@ -397,9 +503,7 @@ public class ContextParam {
                 list.add(item);
             });
 
-
-            //HC区域
-            list.addAll(routeSectionMap.get(RouteSegMark.AD_IN_STA));    //中部楼梯下
+            list.addAll(routeSectionMap.get(RouteSegMark.AD_IN_STA));    //HC区域、中部楼梯下
 
             passRouteMap.put("D进步步" + brake_id, list);
         }
@@ -412,14 +516,9 @@ public class ContextParam {
         for (String brake_id : gateBrakeMap_AD_in.keySet()) {
             List<RPoint> list = new ArrayList<>();
 
-            //电梯进站
-            list.addAll(routeSectionMap.get(RouteSegMark.A_IN_ELV));
-
-            //AD通道
-            list.addAll(routeSectionMap.get(RouteSegMark.A_IN_AD));
-
-            //站厅
-            list.addAll(routeSectionMap.get(RouteSegMark.A_IN_HA));
+            list.addAll(routeSectionMap.get(RouteSegMark.A_IN_ELV));   //电梯进站
+            list.addAll(routeSectionMap.get(RouteSegMark.A_IN_AD));   //AD通道
+            list.addAll(routeSectionMap.get(RouteSegMark.A_IN_HA));    //站厅
 
             //HB区域
 //        list.add(new RPoint(PointTag.TAG_X, new Point(3857, 2533)));
@@ -444,14 +543,9 @@ public class ContextParam {
         for (String brake_id : gateBrakeMap_AD_in.keySet()) {
             List<RPoint> list = new ArrayList<>();
 
-            // 步梯进站
-            list.addAll(routeSectionMap.get(RouteSegMark.A_IN_ELV));
-
-            //AD通道
-            list.addAll(routeSectionMap.get(RouteSegMark.A_IN_AD));
-
-            //站厅
-            list.addAll(routeSectionMap.get(RouteSegMark.A_IN_HA));
+            list.addAll(routeSectionMap.get(RouteSegMark.A_IN_ELV));    // 步梯进站
+            list.addAll(routeSectionMap.get(RouteSegMark.A_IN_AD));    //AD通道
+            list.addAll(routeSectionMap.get(RouteSegMark.A_IN_HA));    //站厅
 
             //HB区域
 //        list.add(new RPoint(PointTag.TAG_X, new Point(3857, 2533)));    //通过闸机之后
@@ -459,13 +553,11 @@ public class ContextParam {
                 list.add(item);
             });
 
-            //HC区域
-            list.addAll(routeSectionMap.get(RouteSegMark.AD_IN_STA));    //中部楼梯下
+            list.addAll(routeSectionMap.get(RouteSegMark.AD_IN_STA));    //HC区域、中部楼梯下
 
             passRouteMap.put("A进电步" + brake_id, list);
         }
     }
-
 
     /**
      * A口步梯进：进电梯
@@ -474,21 +566,15 @@ public class ContextParam {
         for (String brake_id : gateBrakeMap_AD_in.keySet()) {
             List<RPoint> list = new ArrayList<>();
 
-            //步梯进站
-            list.addAll(routeSectionMap.get(RouteSegMark.A_IN_STA));
-
-            //AD通道
-            list.addAll(routeSectionMap.get(RouteSegMark.A_IN_AD));
-
-            //站厅
-            list.addAll(routeSectionMap.get(RouteSegMark.A_IN_HA));
+            list.addAll(routeSectionMap.get(RouteSegMark.A_IN_STA));    //步梯进站
+            list.addAll(routeSectionMap.get(RouteSegMark.A_IN_AD));    //AD通道
+            list.addAll(routeSectionMap.get(RouteSegMark.A_IN_HA));    //站厅
 
             //HB区域
 //        list.add(new RPoint(PointTag.TAG_X, new Point(3857, 2533)));    //通过闸机之后
             gateBrakeMap_AD_in.get(brake_id).forEach(item -> {
                 list.add(item);
             });
-
 
             //HC区域
 //        list.add(new RPoint(PointTag.TAG_Y, new Point(3801, 2533)));    //通过后走一步，电梯方向
@@ -506,14 +592,9 @@ public class ContextParam {
         for (String brake_id : gateBrakeMap_AD_in.keySet()) {
             List<RPoint> list = new ArrayList<>();
 
-            //步梯进站
-            list.addAll(routeSectionMap.get(RouteSegMark.A_IN_STA));
-
-            //AD通道
-            list.addAll(routeSectionMap.get(RouteSegMark.A_IN_AD));
-
-            //站厅
-            list.addAll(routeSectionMap.get(RouteSegMark.A_IN_HA));
+            list.addAll(routeSectionMap.get(RouteSegMark.A_IN_STA));    //步梯进站
+            list.addAll(routeSectionMap.get(RouteSegMark.A_IN_AD));    //AD通道
+            list.addAll(routeSectionMap.get(RouteSegMark.A_IN_HA));    //站厅
 
             //HB区域
 //        list.add(new RPoint(PointTag.TAG_X, new Point(3857, 2533)));    //刚好通过闸机
@@ -521,8 +602,7 @@ public class ContextParam {
                 list.add(item);
             });
 
-            //HC区域
-            list.addAll(routeSectionMap.get(RouteSegMark.AD_IN_STA));    //中部楼梯下
+            list.addAll(routeSectionMap.get(RouteSegMark.AD_IN_STA));    //HC区域、中部楼梯下
 
             passRouteMap.put("A进步步" + brake_id, list);
         }
@@ -752,361 +832,140 @@ public class ContextParam {
      * D口电梯出：出到电梯
      */
     private static void loadD_out_elv2elv() {
-        List<RPoint> list = new ArrayList<>();
+        for (String brake_id : gateBrakeMap_AD_out.keySet()) {
+            List<RPoint> list = new ArrayList<>();
 
-        //HC区
-        list.add(new RPoint(PointTag.TAG_Y, new Point(3000, 2673)));
-        list.add(new RPoint(PointTag.TAG_Y, new Point(3329, 2673)));
-        list.add(new RPoint(PointTag.TAG_Y, new Point(3577, 2673)));
+            list.addAll(routeSectionMap.get(RouteSegMark.ELV_OUT_GATE));
 
-        //HD区
-        list.add(new RPoint(PointTag.TAG_X, new Point(3577, 2887)));
-        list.add(new RPoint(PointTag.TAG_X, new Point(3577, 3057)));
+            // 准备随机过闸机
+//        list.add(new RPoint(PointTag.TAG_Y, new Point(2354, 3057)));
+//        list.add(new RPoint(PointTag.TAG_Y, new Point(2113, 3057)));    //出闸机了、这一步之后可往A口出
+//        list.add(new RPoint(PointTag.TAG_X, new Point(2113, 2716)));    // 该点去掉
+            gateBrakeMap_AD_out.get(brake_id).forEach(item -> {
+                list.add(item);
+            });
 
-        list.add(new RPoint(PointTag.TAG_Y, new Point(3577, 3057)));
-        list.add(new RPoint(PointTag.TAG_Y, new Point(3134, 3057)));
-        list.add(new RPoint(PointTag.TAG_Y, new Point(2744, 3057)));
-        list.add(new RPoint(PointTag.TAG_Y, new Point(2354, 3057)));
-        list.add(new RPoint(PointTag.TAG_Y, new Point(2113, 3057)));    //这一步之后可往A口出
+            list.addAll(routeSectionMap.get(RouteSegMark.GATE_OUT_AD));    //出口闸机到AD顶部
+            list.addAll(routeSectionMap.get(RouteSegMark.AD_OUT_D_ELV));    //D口电梯
 
-        list.add(new RPoint(PointTag.TAG_X, new Point(2113, 2716)));
-
-        //HC区:HC1
-        list.add(new RPoint(PointTag.TAG_X, new Point(1993, 2585)));
-
-        //HB区：HB1
-        list.add(new RPoint(PointTag.TAG_X, new Point(1993, 2337)));
-        list.add(new RPoint(PointTag.TAG_Y, new Point(1817, 2337)));
-        list.add(new RPoint(PointTag.TAG_Y, new Point(1633, 2337)));
-        list.add(new RPoint(PointTag.TAG_Y, new Point(1537, 2337)));
-
-        //AD区：AD5-AD1
-        list.add(new RPoint(PointTag.TAG_X, new Point(1537, 2337)));
-        list.add(new RPoint(PointTag.TAG_X, new Point(1537, 2089)));
-        list.add(new RPoint(PointTag.TAG_X, new Point(1537, 1833)));
-        list.add(new RPoint(PointTag.TAG_X, new Point(1537, 1657)));
-        list.add(new RPoint(PointTag.TAG_X, new Point(1537, 1573)));
-        list.add(new RPoint(PointTag.TAG_X, new Point(1537, 1393)));
-        list.add(new RPoint(PointTag.TAG_X, new Point(1537, 1225)));
-        list.add(new RPoint(PointTag.TAG_X, new Point(1537, 1073)));
-        list.add(new RPoint(PointTag.TAG_X, new Point(1537, 913)));
-
-        //D口区域
-        list.add(new RPoint(PointTag.TAG_Y, new Point(1537, 913)));
-        list.add(new RPoint(PointTag.TAG_Y, new Point(1409, 913)));
-        list.add(new RPoint(PointTag.TAG_Y, new Point(1217, 913)));
-        list.add(new RPoint(PointTag.TAG_Y, new Point(1025, 913)));
-        list.add(new RPoint(PointTag.TAG_Y, new Point(801, 913)));
-
-        list.add(new RPoint(PointTag.TAG_X, new Point(801, 1065)));
-        list.add(new RPoint(PointTag.TAG_X, new Point(801, 1201)));
-        list.add(new RPoint(PointTag.TAG_X, new Point(801, 1329)));
-        list.add(new RPoint(PointTag.TAG_X, new Point(801, 1433)));
-        list.add(new RPoint(PointTag.TAG_X, new Point(801, 1593)));
-        list.add(new RPoint(PointTag.TAG_X, new Point(801, 1705)));
-
-        passRouteMap.put("D出电电", list);
+            passRouteMap.put("D出电电" + brake_id, list);
+        }
     }
 
     /**
      * D口电梯出：出到步梯
      */
     private static void loadD_out_elv2sta() {
-        List<RPoint> list = new ArrayList<>();
+        for (String brake_id : gateBrakeMap_AD_out.keySet()) {
+            List<RPoint> list = new ArrayList<>();
 
-        //HC区
-        list.add(new RPoint(PointTag.TAG_Y, new Point(3000, 2673)));
-        list.add(new RPoint(PointTag.TAG_Y, new Point(3329, 2673)));
-        list.add(new RPoint(PointTag.TAG_Y, new Point(3577, 2673)));
+            list.addAll(routeSectionMap.get(RouteSegMark.ELV_OUT_GATE));
 
-        //HD区
-        list.add(new RPoint(PointTag.TAG_X, new Point(3577, 2887)));
-        list.add(new RPoint(PointTag.TAG_X, new Point(3577, 3057)));
+            //准备随机过闸机
+//            list.add(new RPoint(PointTag.TAG_Y, new Point(2354, 3057)));
+//            list.add(new RPoint(PointTag.TAG_Y, new Point(2113, 3057)));    //这一步之后可往A口出
+//            list.add(new RPoint(PointTag.TAG_X, new Point(2113, 2716)));
+            gateBrakeMap_AD_out.get(brake_id).forEach(item -> {
+                list.add(item);
+            });
 
-        list.add(new RPoint(PointTag.TAG_Y, new Point(3577, 3057)));
-        list.add(new RPoint(PointTag.TAG_Y, new Point(3134, 3057)));
-        list.add(new RPoint(PointTag.TAG_Y, new Point(2744, 3057)));
-        list.add(new RPoint(PointTag.TAG_Y, new Point(2354, 3057)));
-        list.add(new RPoint(PointTag.TAG_Y, new Point(2113, 3057)));    //这一步之后可往A口出
+            list.addAll(routeSectionMap.get(RouteSegMark.GATE_OUT_AD));    //出口处闸机到AD顶部
+            list.addAll(routeSectionMap.get(RouteSegMark.AD_OUT_D_STA));   //AD顶部到D口步梯
 
-        list.add(new RPoint(PointTag.TAG_X, new Point(2113, 2716)));
-
-        //HC区:HC1
-        list.add(new RPoint(PointTag.TAG_X, new Point(1993, 2585)));
-
-        //HB区：HB1
-        list.add(new RPoint(PointTag.TAG_X, new Point(1993, 2337)));
-        list.add(new RPoint(PointTag.TAG_Y, new Point(1817, 2337)));
-        list.add(new RPoint(PointTag.TAG_Y, new Point(1633, 2337)));
-        list.add(new RPoint(PointTag.TAG_Y, new Point(1537, 2337)));
-
-        //AD区：AD5-AD1
-        list.add(new RPoint(PointTag.TAG_X, new Point(1537, 2337)));
-        list.add(new RPoint(PointTag.TAG_X, new Point(1537, 2089)));
-        list.add(new RPoint(PointTag.TAG_X, new Point(1537, 1833)));
-        list.add(new RPoint(PointTag.TAG_X, new Point(1537, 1657)));
-        list.add(new RPoint(PointTag.TAG_X, new Point(1537, 1573)));
-        list.add(new RPoint(PointTag.TAG_X, new Point(1537, 1393)));
-        list.add(new RPoint(PointTag.TAG_X, new Point(1537, 1225)));
-        list.add(new RPoint(PointTag.TAG_X, new Point(1537, 1073)));
-        list.add(new RPoint(PointTag.TAG_X, new Point(1537, 913)));
-
-        //D口区域
-        list.add(new RPoint(PointTag.TAG_Y, new Point(1537, 913)));
-        list.add(new RPoint(PointTag.TAG_Y, new Point(1409, 913)));
-        list.add(new RPoint(PointTag.TAG_Y, new Point(1217, 913)));
-        list.add(new RPoint(PointTag.TAG_Y, new Point(1025, 913)));
-        list.add(new RPoint(PointTag.TAG_Y, new Point(929, 913)));
-
-        list.add(new RPoint(PointTag.TAG_X, new Point(929, 1065)));
-        list.add(new RPoint(PointTag.TAG_X, new Point(929, 1201)));
-        list.add(new RPoint(PointTag.TAG_X, new Point(929, 1329)));
-        list.add(new RPoint(PointTag.TAG_X, new Point(929, 1433)));
-        list.add(new RPoint(PointTag.TAG_X, new Point(929, 1593)));
-        list.add(new RPoint(PointTag.TAG_X, new Point(929, 1705)));
-
-        passRouteMap.put("D出电步", list);
+            passRouteMap.put("D出电步" + brake_id, list);
+        }
     }
 
     /**
      * D口步梯出：出到电梯
      */
     private static void loadD_out_sta2elv() {
-        List<RPoint> list = new ArrayList<>();
+        for (String brake_id : gateBrakeMap_AD_out.keySet()) {
+            List<RPoint> list = new ArrayList<>();
 
-        //HC区
-        list.add(new RPoint(PointTag.TAG_Y, new Point(4177, 2481)));
-        list.add(new RPoint(PointTag.TAG_Y, new Point(4353, 2481)));
-        list.add(new RPoint(PointTag.TAG_X, new Point(4481, 2481)));
-        list.add(new RPoint(PointTag.TAG_Y, new Point(4481, 2641)));
-        list.add(new RPoint(PointTag.TAG_Y, new Point(4109, 2641)));
-        list.add(new RPoint(PointTag.TAG_Y, new Point(3929, 2641)));
-        list.add(new RPoint(PointTag.TAG_Y, new Point(3777, 2641)));
-        list.add(new RPoint(PointTag.TAG_Y, new Point(3617, 2641)));
+            list.addAll(routeSectionMap.get(RouteSegMark.STA_OUT_GATE));
 
-        //HD区
-        list.add(new RPoint(PointTag.TAG_X, new Point(3577, 2887)));
-        list.add(new RPoint(PointTag.TAG_X, new Point(3577, 3057)));
+            // 准备随机过闸机
+//        list.add(new RPoint(PointTag.TAG_Y, new Point(2354, 3057)));
+//        list.add(new RPoint(PointTag.TAG_Y, new Point(2113, 3057)));    //这一步之后可往A口出
+//        list.add(new RPoint(PointTag.TAG_X, new Point(2113, 2716)));
+            gateBrakeMap_AD_out.get(brake_id).forEach(item -> {
+                list.add(item);
+            });
 
-        list.add(new RPoint(PointTag.TAG_Y, new Point(3577, 3057)));
-        list.add(new RPoint(PointTag.TAG_Y, new Point(3134, 3057)));
-        list.add(new RPoint(PointTag.TAG_Y, new Point(2744, 3057)));
-        list.add(new RPoint(PointTag.TAG_Y, new Point(2354, 3057)));
-        list.add(new RPoint(PointTag.TAG_Y, new Point(2113, 3057)));    //这一步之后可往A口出
+            list.addAll(routeSectionMap.get(RouteSegMark.GATE_OUT_AD));    //出口闸机到AD顶部
+            list.addAll(routeSectionMap.get(RouteSegMark.AD_OUT_D_ELV));    //AD顶部到D口电梯
 
-        list.add(new RPoint(PointTag.TAG_X, new Point(2113, 2716)));
-
-        //HC区:HC1
-        list.add(new RPoint(PointTag.TAG_X, new Point(1993, 2585)));
-
-        //HB区：HB1
-        list.add(new RPoint(PointTag.TAG_X, new Point(1993, 2337)));
-        list.add(new RPoint(PointTag.TAG_Y, new Point(1817, 2337)));
-        list.add(new RPoint(PointTag.TAG_Y, new Point(1633, 2337)));
-        list.add(new RPoint(PointTag.TAG_Y, new Point(1537, 2337)));
-
-        //AD区：AD5-AD1
-        list.add(new RPoint(PointTag.TAG_X, new Point(1537, 2337)));
-        list.add(new RPoint(PointTag.TAG_X, new Point(1537, 2089)));
-        list.add(new RPoint(PointTag.TAG_X, new Point(1537, 1833)));
-        list.add(new RPoint(PointTag.TAG_X, new Point(1537, 1657)));
-        list.add(new RPoint(PointTag.TAG_X, new Point(1537, 1573)));
-        list.add(new RPoint(PointTag.TAG_X, new Point(1537, 1393)));
-        list.add(new RPoint(PointTag.TAG_X, new Point(1537, 1225)));
-        list.add(new RPoint(PointTag.TAG_X, new Point(1537, 1073)));
-        list.add(new RPoint(PointTag.TAG_X, new Point(1537, 913)));
-
-        //D口区域
-        list.add(new RPoint(PointTag.TAG_Y, new Point(1537, 913)));
-        list.add(new RPoint(PointTag.TAG_Y, new Point(1409, 913)));
-        list.add(new RPoint(PointTag.TAG_Y, new Point(1217, 913)));
-        list.add(new RPoint(PointTag.TAG_Y, new Point(1025, 913)));
-        list.add(new RPoint(PointTag.TAG_Y, new Point(801, 913)));
-
-        list.add(new RPoint(PointTag.TAG_X, new Point(801, 1065)));
-        list.add(new RPoint(PointTag.TAG_X, new Point(801, 1201)));
-        list.add(new RPoint(PointTag.TAG_X, new Point(801, 1329)));
-        list.add(new RPoint(PointTag.TAG_X, new Point(801, 1433)));
-        list.add(new RPoint(PointTag.TAG_X, new Point(801, 1593)));
-        list.add(new RPoint(PointTag.TAG_X, new Point(801, 1705)));
-
-        passRouteMap.put("D出步电", list);
+            passRouteMap.put("D出步电" + brake_id, list);
+        }
     }
 
     /**
      * D口步梯出：出到步梯
      */
     private static void loadD_out_sta2sta() {
-        List<RPoint> list = new ArrayList<>();
+        for (String brake_id : gateBrakeMap_AD_out.keySet()) {
+            List<RPoint> list = new ArrayList<>();
 
-        //HC区
-        list.add(new RPoint(PointTag.TAG_Y, new Point(4177, 2481)));
-        list.add(new RPoint(PointTag.TAG_Y, new Point(4353, 2481)));
-        list.add(new RPoint(PointTag.TAG_X, new Point(4481, 2481)));
-        list.add(new RPoint(PointTag.TAG_Y, new Point(4481, 2641)));
-        list.add(new RPoint(PointTag.TAG_Y, new Point(4109, 2641)));
-        list.add(new RPoint(PointTag.TAG_Y, new Point(3929, 2641)));
-        list.add(new RPoint(PointTag.TAG_Y, new Point(3777, 2641)));
-        list.add(new RPoint(PointTag.TAG_Y, new Point(3617, 2641)));
+            list.addAll(routeSectionMap.get(RouteSegMark.STA_OUT_GATE));
 
-        //HD区
-        list.add(new RPoint(PointTag.TAG_X, new Point(3577, 2887)));
-        list.add(new RPoint(PointTag.TAG_X, new Point(3577, 3057)));
+            //准备随机过闸机
+//            list.add(new RPoint(PointTag.TAG_Y, new Point(2354, 3057)));
+//            list.add(new RPoint(PointTag.TAG_Y, new Point(2113, 3057)));    //这一步之后可往A口出
+//            list.add(new RPoint(PointTag.TAG_X, new Point(2113, 2716)));
+            gateBrakeMap_AD_out.get(brake_id).forEach(item -> {
+                list.add(item);
+            });
 
-        list.add(new RPoint(PointTag.TAG_Y, new Point(3577, 3057)));
-        list.add(new RPoint(PointTag.TAG_Y, new Point(3134, 3057)));
-        list.add(new RPoint(PointTag.TAG_Y, new Point(2744, 3057)));
-        list.add(new RPoint(PointTag.TAG_Y, new Point(2354, 3057)));
-        list.add(new RPoint(PointTag.TAG_Y, new Point(2113, 3057)));    //这一步之后可往A口出
+            list.addAll(routeSectionMap.get(RouteSegMark.GATE_OUT_AD));
+            list.addAll(routeSectionMap.get(RouteSegMark.AD_OUT_D_STA));
 
-        list.add(new RPoint(PointTag.TAG_X, new Point(2113, 2716)));
-
-        //HC区:HC1
-        list.add(new RPoint(PointTag.TAG_X, new Point(1993, 2585)));
-
-        //HB区：HB1
-        list.add(new RPoint(PointTag.TAG_X, new Point(1993, 2337)));
-        list.add(new RPoint(PointTag.TAG_Y, new Point(1817, 2337)));
-        list.add(new RPoint(PointTag.TAG_Y, new Point(1633, 2337)));
-        list.add(new RPoint(PointTag.TAG_Y, new Point(1537, 2337)));
-
-        //AD区：AD5-AD1
-        list.add(new RPoint(PointTag.TAG_X, new Point(1537, 2337)));
-        list.add(new RPoint(PointTag.TAG_X, new Point(1537, 2089)));
-        list.add(new RPoint(PointTag.TAG_X, new Point(1537, 1833)));
-        list.add(new RPoint(PointTag.TAG_X, new Point(1537, 1657)));
-        list.add(new RPoint(PointTag.TAG_X, new Point(1537, 1573)));
-        list.add(new RPoint(PointTag.TAG_X, new Point(1537, 1393)));
-        list.add(new RPoint(PointTag.TAG_X, new Point(1537, 1225)));
-        list.add(new RPoint(PointTag.TAG_X, new Point(1537, 1073)));
-        list.add(new RPoint(PointTag.TAG_X, new Point(1537, 913)));
-
-        //D口区域
-        list.add(new RPoint(PointTag.TAG_Y, new Point(1537, 913)));
-        list.add(new RPoint(PointTag.TAG_Y, new Point(1409, 913)));
-        list.add(new RPoint(PointTag.TAG_Y, new Point(1217, 913)));
-        list.add(new RPoint(PointTag.TAG_Y, new Point(1025, 913)));
-        list.add(new RPoint(PointTag.TAG_Y, new Point(929, 913)));
-
-        list.add(new RPoint(PointTag.TAG_X, new Point(929, 1065)));
-        list.add(new RPoint(PointTag.TAG_X, new Point(929, 1201)));
-        list.add(new RPoint(PointTag.TAG_X, new Point(929, 1329)));
-        list.add(new RPoint(PointTag.TAG_X, new Point(929, 1433)));
-        list.add(new RPoint(PointTag.TAG_X, new Point(929, 1593)));
-        list.add(new RPoint(PointTag.TAG_X, new Point(929, 1705)));
-
-        passRouteMap.put("D出步步", list);
+            passRouteMap.put("D出步步" + brake_id, list);
+        }
     }
 
     /**
      * A口电梯出：出到电梯
      */
     private static void loadA_out_elv2elv() {
-        List<RPoint> list = new ArrayList<>();
+        for (String brake_id : gateBrakeMap_AD_out.keySet()) {
+            List<RPoint> list = new ArrayList<>();
 
-        //HC区
-        list.add(new RPoint(PointTag.TAG_Y, new Point(3000, 2673)));
-        list.add(new RPoint(PointTag.TAG_Y, new Point(3329, 2673)));
-        list.add(new RPoint(PointTag.TAG_Y, new Point(3577, 2673)));
+            list.addAll(routeSectionMap.get(RouteSegMark.ELV_OUT_GATE));
 
-        //HD区
-        list.add(new RPoint(PointTag.TAG_X, new Point(3577, 2887)));
-        list.add(new RPoint(PointTag.TAG_X, new Point(3577, 3057)));
+            //准备随机过闸机
+//            list.add(new RPoint(PointTag.TAG_Y, new Point(2354, 3057)));
+//            list.add(new RPoint(PointTag.TAG_Y, new Point(2113, 3057)));    //这一步之后可往A口出
+            gateBrakeMap_AD_out.get(brake_id).forEach(item -> {
+                list.add(item);
+            });
 
-        list.add(new RPoint(PointTag.TAG_Y, new Point(3577, 3057)));
-        list.add(new RPoint(PointTag.TAG_Y, new Point(3134, 3057)));
-        list.add(new RPoint(PointTag.TAG_Y, new Point(2744, 3057)));
-        list.add(new RPoint(PointTag.TAG_Y, new Point(2354, 3057)));
-        list.add(new RPoint(PointTag.TAG_Y, new Point(2113, 3057)));    //这一步之后可往A口出
+            list.addAll(routeSectionMap.get(RouteSegMark.GATE_OUT_A_ELV));
 
-
-        //HD区：HD1
-        list.add(new RPoint(PointTag.TAG_Y, new Point(1961, 3057)));
-        list.add(new RPoint(PointTag.TAG_Y, new Point(1737, 3057)));
-
-        //AD区：AD7-AD11
-        list.add(new RPoint(PointTag.TAG_X, new Point(1737, 3225)));
-        list.add(new RPoint(PointTag.TAG_X, new Point(1737, 3353)));
-        list.add(new RPoint(PointTag.TAG_X, new Point(1737, 3585)));
-        list.add(new RPoint(PointTag.TAG_X, new Point(1737, 3833)));
-        list.add(new RPoint(PointTag.TAG_X, new Point(1737, 4001)));
-        list.add(new RPoint(PointTag.TAG_X, new Point(1737, 4129)));
-        list.add(new RPoint(PointTag.TAG_X, new Point(1737, 4281)));
-
-        //A口区域
-        list.add(new RPoint(PointTag.TAG_Y, new Point(1609, 4281)));
-        list.add(new RPoint(PointTag.TAG_Y, new Point(1449, 4281)));
-        list.add(new RPoint(PointTag.TAG_Y, new Point(1305, 4281)));
-        list.add(new RPoint(PointTag.TAG_Y, new Point(1121, 4281)));
-        list.add(new RPoint(PointTag.TAG_Y, new Point(993, 4281)));
-        list.add(new RPoint(PointTag.TAG_Y, new Point(721, 4281)));
-        list.add(new RPoint(PointTag.TAG_Y, new Point(513, 4281)));
-
-        list.add(new RPoint(PointTag.TAG_X, new Point(513, 4081)));
-        list.add(new RPoint(PointTag.TAG_X, new Point(513, 3905)));
-        list.add(new RPoint(PointTag.TAG_X, new Point(513, 3753)));
-        list.add(new RPoint(PointTag.TAG_X, new Point(513, 3577)));
-        list.add(new RPoint(PointTag.TAG_X, new Point(513, 3393)));
-
-        passRouteMap.put("A出电电", list);
+            passRouteMap.put("A出电电" + brake_id, list);
+        }
     }
 
     /**
      * A口步梯出：出到电梯
      */
     private static void loadA_out_sta2elv() {
-        List<RPoint> list = new ArrayList<>();
+        for (String brake_id : gateBrakeMap_AD_out.keySet()) {
+            List<RPoint> list = new ArrayList<>();
 
-        //HC区
-        list.add(new RPoint(PointTag.TAG_Y, new Point(4177, 2481)));
-        list.add(new RPoint(PointTag.TAG_Y, new Point(4353, 2481)));
-        list.add(new RPoint(PointTag.TAG_X, new Point(4481, 2481)));
-        list.add(new RPoint(PointTag.TAG_Y, new Point(4481, 2641)));
-        list.add(new RPoint(PointTag.TAG_Y, new Point(4109, 2641)));
-        list.add(new RPoint(PointTag.TAG_Y, new Point(3929, 2641)));
-        list.add(new RPoint(PointTag.TAG_Y, new Point(3777, 2641)));
-        list.add(new RPoint(PointTag.TAG_Y, new Point(3617, 2641)));
+            list.addAll(routeSectionMap.get(RouteSegMark.STA_OUT_GATE));
 
-        //HD区
-        list.add(new RPoint(PointTag.TAG_X, new Point(3577, 2887)));
-        list.add(new RPoint(PointTag.TAG_X, new Point(3577, 3057)));
+            //准备随机过闸机
+//            list.add(new RPoint(PointTag.TAG_Y, new Point(2354, 3057)));
+//            list.add(new RPoint(PointTag.TAG_Y, new Point(2113, 3057)));    //这一步之后可往A口出
+            gateBrakeMap_AD_out.get(brake_id).forEach(item -> {
+                list.add(item);
+            });
 
-        list.add(new RPoint(PointTag.TAG_Y, new Point(3577, 3057)));
-        list.add(new RPoint(PointTag.TAG_Y, new Point(3134, 3057)));
-        list.add(new RPoint(PointTag.TAG_Y, new Point(2744, 3057)));
-        list.add(new RPoint(PointTag.TAG_Y, new Point(2354, 3057)));
-        list.add(new RPoint(PointTag.TAG_Y, new Point(2113, 3057)));    //这一步之后可往A口出
+            list.addAll(routeSectionMap.get(RouteSegMark.GATE_OUT_A_ELV));
 
-
-        //HD区：HD1
-        list.add(new RPoint(PointTag.TAG_Y, new Point(1961, 3057)));
-        list.add(new RPoint(PointTag.TAG_Y, new Point(1737, 3057)));
-
-        //AD区：AD7-AD11
-        list.add(new RPoint(PointTag.TAG_X, new Point(1737, 3225)));
-        list.add(new RPoint(PointTag.TAG_X, new Point(1737, 3353)));
-        list.add(new RPoint(PointTag.TAG_X, new Point(1737, 3585)));
-        list.add(new RPoint(PointTag.TAG_X, new Point(1737, 3833)));
-        list.add(new RPoint(PointTag.TAG_X, new Point(1737, 4001)));
-        list.add(new RPoint(PointTag.TAG_X, new Point(1737, 4129)));
-        list.add(new RPoint(PointTag.TAG_X, new Point(1737, 4281)));
-
-        //A口区域
-        list.add(new RPoint(PointTag.TAG_Y, new Point(1609, 4281)));
-        list.add(new RPoint(PointTag.TAG_Y, new Point(1449, 4281)));
-        list.add(new RPoint(PointTag.TAG_Y, new Point(1305, 4281)));
-        list.add(new RPoint(PointTag.TAG_Y, new Point(1121, 4281)));
-        list.add(new RPoint(PointTag.TAG_Y, new Point(993, 4281)));
-        list.add(new RPoint(PointTag.TAG_Y, new Point(721, 4281)));
-        list.add(new RPoint(PointTag.TAG_Y, new Point(513, 4281)));
-
-        list.add(new RPoint(PointTag.TAG_X, new Point(513, 4081)));
-        list.add(new RPoint(PointTag.TAG_X, new Point(513, 3905)));
-        list.add(new RPoint(PointTag.TAG_X, new Point(513, 3753)));
-        list.add(new RPoint(PointTag.TAG_X, new Point(513, 3577)));
-        list.add(new RPoint(PointTag.TAG_X, new Point(513, 3393)));
-
-        passRouteMap.put("A出步电", list);
+            passRouteMap.put("A出步电" + brake_id, list);
+        }
     }
 
     /**
@@ -1129,15 +988,15 @@ public class ContextParam {
         loadB_in_sta3();    //B口步梯进：电梯3
         loadB_in_sta4();    //B口步梯进：电梯4
 
-//        //出口
-//        loadD_out_elv2elv();   //D口电梯出：出到电梯
-//        loadD_out_elv2sta();   //D口电梯出：出到步梯
-//
-//        loadD_out_sta2elv();   //D口步梯出：出到电梯
-//        loadD_out_sta2sta();   //D口步梯出：出到步梯
-//
-//        loadA_out_elv2elv();   //A口电梯出：出到电梯
-//        loadA_out_sta2elv();   //A口步梯出：出到电梯
+        //出口
+        loadD_out_elv2elv();   //D口电梯出：出到电梯
+        loadD_out_elv2sta();   //D口电梯出：出到步梯
+
+        loadD_out_sta2elv();   //D口步梯出：出到电梯
+        loadD_out_sta2sta();   //D口步梯出：出到步梯
+
+        loadA_out_elv2elv();   //A口电梯出：出到电梯
+        loadA_out_sta2elv();   //A口步梯出：出到电梯
     }
 
     public static Point randomPoint(RPoint rPoint) {
@@ -1171,36 +1030,23 @@ public class ContextParam {
 
 
     public static void print() {
-//        for (String key : passRouteMap.keySet()) {
-//            System.out.println(key + " --> " + passRouteMap.get(key));
-//        }
-//
-//        for (String key : gateBrakeMap_AD_in.keySet()) {
-//            System.out.println(key + " --> " + gateBrakeMap_AD_in.get(key));
-//        }
-//
-//        for (String key : gateBrakeMap_BC_in.keySet()) {
-//            System.out.println(key + " --> " + gateBrakeMap_BC_in.get(key));
-//        }
-
-        for (String key : gateBrakeMap_AD_out.keySet()) {
-            System.out.println(key + " --> " + gateBrakeMap_AD_out.get(key));
+        for (String key : passRouteMap.keySet()) {
+            System.out.println(key + " --> " + passRouteMap.get(key));
         }
+
+        gateBrakeMap_AD_in.forEach((k, v) -> {
+            System.out.println(k + " --> " + v);
+        });
+        gateBrakeMap_BC_in.forEach((k, v) -> {
+            System.out.println(k + " --> " + v);
+        });
+        gateBrakeMap_AD_out.forEach((k, v) -> {
+            System.out.println(k + " --> " + v);
+        });
     }
 
     public static void main(String[] args) {
         print();
-
-//        List<RPoint> rPointList = passRouteMap.get("D进步");
-//        for (RPoint rPoint : rPointList) {
-//            System.out.println(ContextParam.randomPoint(rPoint));
-//        }
-
-//        for (String key : gateBrakeMap_AD_in.keySet()) {
-//            System.out.println(key + " --> " + gateBrakeMap_AD_in.get(key));
-//        }
-//        System.out.println(routeSectionMap.keySet());
-
     }
 
 }
@@ -1209,6 +1055,7 @@ public class ContextParam {
  * 线路段标识
  */
 enum RouteSegMark {
+    // 进站路段
     A_IN_STA,    //A口步梯进
     D_IN_HA,     //D口进，进AD闸机（HA区域）
     A_IN_HA,     //A口进，到站厅（AD闸机之前）
@@ -1218,5 +1065,13 @@ enum RouteSegMark {
     D_IN_ELV,    //D口电梯进
     AD_IN_STA,   //AD口进，过闸机后进步梯
     D_IN_AD,     //D口进，到AD通道
-    A_IN_AD      //A口进，到AD通道
+    A_IN_AD,     //A口进，到AD通道
+
+    // 出站路段
+    ELV_OUT_GATE,     //电梯出，到出口闸机口
+    STA_OUT_GATE,     //步梯出，到出口闸机口
+    GATE_OUT_A_ELV,   //出口闸机到A口电梯
+    GATE_OUT_AD,      //出口闸机到AD顶部
+    AD_OUT_D_ELV,     //AD顶部到D口电梯
+    AD_OUT_D_STA      //AD顶部到D口步梯
 }
