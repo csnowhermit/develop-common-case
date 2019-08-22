@@ -6,10 +6,7 @@ import com.google.gson.GsonBuilder;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -19,15 +16,40 @@ public class App {
     private static List<String> pass_in = new ArrayList<>();
     private static List<String> pass_out = new ArrayList<>();
 
+    private static Connection connection = null;
+    private static PreparedStatement preparedStatement1 = null;
+    //    private static PreparedStatement preparedStatement2 = null;
+    private static Statement statement = null;
+    private static ResultSet resultSet;
+
     static {
-        passRouteMap = ContextParam.getPassRouteMap();
-        passRouteMap.keySet().forEach(e -> {
-            if (e.contains("进")) {
-                pass_in.add(e);
-            } else {
-                pass_out.add(e);
-            }
-        });
+        try {
+            connection = OracleConn.getConn();
+
+            String sql = "select OPER_DATE, LINE_NAME, STATION_NAME, HOURS, MINTUES, SECONDS, FLOW_IN, FLOW_OUT from gen_s_datang where OPER_DATE='2018-05-01'";
+//            String saveSQL = "insert into gen_s_details(user_id, line_name, station_name, forward, mystamp, X, Y, area) " +
+//                    "values('?', '?', '?', '?', '?', ?, ?, '?')";
+
+            preparedStatement1 = connection.prepareStatement(sql);
+//            preparedStatement2 = connection.prepareStatement(saveSQL);
+            statement = connection.createStatement();
+
+            resultSet = preparedStatement1.executeQuery();
+
+            passRouteMap = ContextParam.getPassRouteMap();
+            passRouteMap.keySet().forEach(e -> {
+                if (e.contains("进")) {
+                    pass_in.add(e);
+                } else {
+                    pass_out.add(e);
+                }
+            });
+
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public static void main(String[] args) throws SQLException, ClassNotFoundException, ParseException, IOException, InterruptedException {
@@ -42,13 +64,6 @@ public class App {
 
         int base = 2500;    //至少增长2500ms
         int bound = 500;    //每次的随机数
-
-        Connection connection = OracleConn.getConn();
-
-        String sql = "select OPER_DATE, LINE_NAME, STATION_NAME, HOURS, MINTUES, SECONDS, FLOW_IN, FLOW_OUT from gen_s_datang where OPER_DATE='2018-05-01'";
-        PreparedStatement preparedStatement = connection.prepareStatement(sql);
-
-        ResultSet resultSet = preparedStatement.executeQuery();
 
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 
@@ -74,6 +89,7 @@ public class App {
             // 先处理进站
             if (flow_in > 0) {
                 for (int i = 0; i < flow_in; i++) {
+                    String forward = "进站";
                     long mystamp = timestamp;    //每个人一个时间戳
                     RecordSet recordSet = new RecordSet();
 
@@ -83,12 +99,17 @@ public class App {
                     //2.对于每个人，选定一条路径
                     List<RPoint> rPointList = passRouteMap.get(pass_in.get(new Random().nextInt(pass_in.size())));
 
-                    recordSet.setHeader(new Header(userid, line_name, station_name, "进站"));
+                    recordSet.setHeader(new Header(userid, line_name, station_name, forward));
 
                     //3.对每一个点进行随机
                     for (RPoint rPoint : rPointList) {
                         mystamp += new Random().nextInt(bound) + base;    //当前一步的时间戳
-                        recordSet.getBody().getDetailsRecordList().add(new DetailsRecord(rPoint.getFlag(), mystamp, ContextParam.randomPoint(rPoint)));
+
+                        DetailsRecord detailsRecord = new DetailsRecord(rPoint.getFlag(), mystamp, ContextParam.randomPoint(rPoint));
+                        save2DB(userid, line_name, station_name, forward, detailsRecord);
+//                        System.out.println(detailsRecord);
+
+                        recordSet.getBody().getDetailsRecordList().add(detailsRecord);
                     }
 
                     //4.打印每个人进站的记录
@@ -98,11 +119,14 @@ public class App {
                     fileOutputStream.write((gson.toJson(recordSet) + "\n").getBytes());
                 }
             }
+//            preparedStatement2.execute("commit");
+            statement.execute("commit");
             fileOutputStream.flush();    //进站处理完刷新一下
 
             // 再处理出站
             if (flow_out > 0) {
                 for (int i = 0; i < flow_out; i++) {
+                    String forward = "出站";
                     long mystamp = timestamp;    //每个人一个时间戳
                     RecordSet recordSet = new RecordSet();
 
@@ -112,11 +136,16 @@ public class App {
                     //2.对于每个人，选定一条路径
                     List<RPoint> rPointList = passRouteMap.get(pass_out.get(new Random().nextInt(pass_out.size())));
 
-                    recordSet.setHeader(new Header(userid, line_name, station_name, "出站"));
+                    recordSet.setHeader(new Header(userid, line_name, station_name, forward));
 
                     //3.对每个点进行随机
                     for (RPoint rPoint : rPointList) {
                         mystamp += new Random().nextInt(bound) + base;
+
+                        DetailsRecord detailsRecord = new DetailsRecord(rPoint.getFlag(), mystamp, ContextParam.randomPoint(rPoint));
+                        save2DB(userid, line_name, station_name, forward, detailsRecord);
+//                        System.out.println(detailsRecord);
+
                         recordSet.getBody().getDetailsRecordList().add(new DetailsRecord(rPoint.getFlag(), mystamp, ContextParam.randomPoint(rPoint)));
                     }
 
@@ -127,11 +156,58 @@ public class App {
                     fileOutputStream.write((gson.toJson(recordSet) + "\n").getBytes());
                 }
             }
+//            preparedStatement2.execute("commit");
+            statement.execute("commit");
             fileOutputStream.flush();    //出站处理完刷新一下
             System.out.println("已处理完 " + line_name + " " + station_name + " 站 " + sb.toString() + " 时间数据");
         }
 
         fileOutputStream.close();
-        OracleConn.closeAll(connection, preparedStatement, resultSet);
+        OracleConn.closeAll(connection, preparedStatement1, resultSet);
+        OracleConn.closeAll(connection, statement, resultSet);
+    }
+
+    /**
+     * 明细表存库
+     *
+     * @param userid
+     * @param line_name
+     * @param station_name
+     * @param forward
+     * @param detailsRecord
+     */
+    private static void save2DB(String userid, String line_name, String station_name, String forward, DetailsRecord detailsRecord) {
+//        try {
+//            preparedStatement2.setString(1, userid);
+//            preparedStatement2.setString(2, line_name);
+//            preparedStatement2.setString(3, station_name);
+//            preparedStatement2.setString(4, forward);
+//            preparedStatement2.setString(5, detailsRecord.getTimestamp().toString());
+//            preparedStatement2.setInt(6, detailsRecord.getX());
+//            preparedStatement2.setInt(7, detailsRecord.getY());
+//            preparedStatement2.setString(8, detailsRecord.getArea().getFlags());
+//
+//            preparedStatement2.execute();
+//
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+        String saveSQL = "insert into gen_s_details(user_id, line_name, station_name, forward, mystamp, X, Y, area) " +
+                "values('" + userid + "', " +
+                "'" + line_name + "', " +
+                "'" + station_name + "', " +
+                "'" + forward + "', " +
+                "'" + detailsRecord.getTimestamp() + "', " +
+                detailsRecord.getX() + ", " +
+                detailsRecord.getY() + ", " +
+                "'" + detailsRecord.getArea().getFlags() + "')";
+
+        try {
+            statement.execute(saveSQL);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+//        System.out.println(saveSQL);
+
     }
 }

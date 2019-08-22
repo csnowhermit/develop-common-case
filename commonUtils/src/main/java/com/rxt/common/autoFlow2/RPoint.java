@@ -1,7 +1,5 @@
 package com.rxt.common.autoFlow2;
 
-import java.rmi.server.RMIClassLoader;
-
 public class RPoint extends Point {
 
     private transient PointTag flag;    //随机点位标识：X方向随机/Y方向随机
@@ -97,16 +95,18 @@ public class RPoint extends Point {
     }
 
     public static void main(String[] args) {
-        System.out.println(new RPoint(PointTag.TAG_X, new Point(5, 10)));
-        System.out.println(new RPoint(PointTag.TAG_Y, new Point(5, 10)));
+//        System.out.println(new RPoint(PointTag.TAG_X, new Point(5, 10)));
+//        System.out.println(new RPoint(PointTag.TAG_Y, new Point(5, 10)));
+//
+//        System.out.println(getMulti(PointTag.TAG_X, RandMultiple.ONCE_HALF));
+//        System.out.println(getMulti(PointTag.TAG_Y, RandMultiple.DOUBLE_HALF));
+//        System.out.println(getMulti(PointTag.NONE, RandMultiple.TRIPLE));
+//
+//        System.out.println(new RPoint(PointTag.TAG_X, RandMultiple.DOUBLE_HALF, new Point(5, 10)));
+//        System.out.println(new RPoint(PointTag.TAG_Y, RandMultiple.ONCE_HALF, new Point(5, 10)));
+//        System.out.println(new RPoint(PointTag.TAG_Y, new Point(5, 10)));
+        System.out.println(ContextParam.randomPoint(new RPoint(PointTag.NONE, new Point(1045, 881))));
 
-        System.out.println(getMulti(PointTag.TAG_X, RandMultiple.ONCE_HALF));
-        System.out.println(getMulti(PointTag.TAG_Y, RandMultiple.DOUBLE_HALF));
-        System.out.println(getMulti(PointTag.NONE, RandMultiple.TRIPLE));
-
-        System.out.println(new RPoint(PointTag.TAG_X, RandMultiple.DOUBLE_HALF, new Point(5, 10)));
-        System.out.println(new RPoint(PointTag.TAG_Y, RandMultiple.ONCE_HALF, new Point(5, 10)));
-        System.out.println(new RPoint(PointTag.TAG_Y, new Point(5, 10)));
     }
 }
 

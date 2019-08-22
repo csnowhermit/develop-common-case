@@ -1,11 +1,19 @@
 package com.rxt.common.autoFlow2;
 
+import com.rxt.common.autoFlow.Region;
+
 import java.util.*;
 
 /**
  * 站图上所有点位
  */
 public class ContextParam {
+
+    /**
+     * <区域编号，区域范围>
+     */
+    private static Map<String, com.rxt.common.autoFlow.Region> regionMap = new HashMap<>();
+
     /**
      * <进出类型，路径Region列表>
      */
@@ -34,22 +42,6 @@ public class ContextParam {
      */
     private static Map<RouteSegMark, List<RPoint>> routeSectionMap = new HashMap<>();
 
-    public static Map<RouteSegMark, List<RPoint>> getRouteSectionMap() {
-        return routeSectionMap;
-    }
-
-    public static Map<String, List<RPoint>> getGateBrakeMap_AD_in() {
-        return gateBrakeMap_AD_in;
-    }
-
-    public static Map<String, List<RPoint>> getGateBrakeMap_BC_in() {
-        return gateBrakeMap_BC_in;
-    }
-
-    public static Map<String, List<RPoint>> getGateBrakeMap_AD_out() {
-        return gateBrakeMap_AD_out;
-    }
-
     public static Map<String, List<RPoint>> getPassRouteMap() {
         return passRouteMap;
     }
@@ -58,7 +50,12 @@ public class ContextParam {
      * 类启动时候执行静态块，加载预置化操作
      */
     static {
-        // 1.加载闸机列表
+        // 1.加载区域列表
+        if (regionMap.size() == 0) {
+            regionMap = com.rxt.common.autoFlow.ContextParam.getRegionMap();
+        }
+
+        // 2.加载闸机列表
         if (gateBrakeMap_AD_in.size() == 0) {
             loadGateBrakeMap_AD_in();
         }
@@ -69,12 +66,12 @@ public class ContextParam {
             loadGateBrakeMap_AD_out();
         }
 
-        // 2.加载线段路径
+        // 3.加载线段路径
         if (routeSectionMap.size() == 0) {
             loadRouteSection();
         }
 
-        // 3.加载预置化路线
+        // 4.加载预置化路线
         if (passRouteMap.size() == 0) {
             loadPassRoute();
         }
@@ -91,7 +88,7 @@ public class ContextParam {
         list1.add(new RPoint(PointTag.TAG_Y, new Point(2549, 2105)));
         list1.add(new RPoint(PointTag.TAG_Y, new Point(2939, 2105)));
         list1.add(new RPoint(PointTag.TAG_Y, new Point(3329, 2105)));
-        list1.add(new RPoint(PointTag.TAG_Y, new Point(3719, 2105)));
+        list1.add(new RPoint(PointTag.TAG_Y, new Point(3650, 2105)));
         routeSectionMap.put(RouteSegMark.D_IN_HA, list1);
 
         // 2.AD口进，过闸机后进步梯
@@ -193,7 +190,7 @@ public class ContextParam {
         //HA区
         list10.add(new RPoint(PointTag.TAG_Y, new Point(2939, 2105)));
         list10.add(new RPoint(PointTag.TAG_Y, new Point(3329, 2105)));
-        list10.add(new RPoint(PointTag.TAG_Y, new Point(3719, 2105)));
+        list10.add(new RPoint(PointTag.TAG_Y, new Point(3650, 2105)));
         routeSectionMap.put(RouteSegMark.A_IN_HA, list10);
 
         // 11.电梯出，到出口闸机口
@@ -328,32 +325,32 @@ public class ContextParam {
     private static void loadGateBrakeMap_AD_in() {
 
         List<RPoint> ad1List = new ArrayList<>();
-        ad1List.add(new RPoint(PointTag.NONE, new Point(3659, 2290)));    //进闸机处
-        ad1List.add(new RPoint(PointTag.NONE, new Point(3659, 2496)));    //处闸机处
+        ad1List.add(new RPoint(PointTag.NONE, new Point(3659, 2250)));    //进闸机处
+        ad1List.add(new RPoint(PointTag.NONE, new Point(3659, 2550)));    //处闸机处
         gateBrakeMap_AD_in.put("ad1_in", ad1List);
 
         //第一个和第二个之间像素宽度为90，可能是宽闸机
         List<RPoint> ad2List = new ArrayList<>();
-        ad2List.add(new RPoint(PointTag.NONE, new Point(3749, 2290)));    //进闸机处
-        ad2List.add(new RPoint(PointTag.NONE, new Point(3749, 2496)));    //处闸机处
+        ad2List.add(new RPoint(PointTag.NONE, new Point(3749, 2250)));    //进闸机处
+        ad2List.add(new RPoint(PointTag.NONE, new Point(3749, 2550)));    //处闸机处
         gateBrakeMap_AD_in.put("ad2_in", ad2List);
 
         //第三个闸机：之后为窄闸机
         List<RPoint> ad3List = new ArrayList<>();
-        ad3List.add(new RPoint(PointTag.NONE, new Point(3829, 2290)));    //进闸机处
-        ad3List.add(new RPoint(PointTag.NONE, new Point(3829, 2496)));    //处闸机处
+        ad3List.add(new RPoint(PointTag.NONE, new Point(3829, 2250)));    //进闸机处
+        ad3List.add(new RPoint(PointTag.NONE, new Point(3829, 2550)));    //处闸机处
         gateBrakeMap_AD_in.put("ad3_in", ad3List);
 
         //第四个闸机
         List<RPoint> ad4List = new ArrayList<>();
-        ad4List.add(new RPoint(PointTag.NONE, new Point(3909, 2290)));    //进闸机处
-        ad4List.add(new RPoint(PointTag.NONE, new Point(3909, 2496)));    //处闸机处
+        ad4List.add(new RPoint(PointTag.NONE, new Point(3909, 2250)));    //进闸机处
+        ad4List.add(new RPoint(PointTag.NONE, new Point(3909, 2550)));    //处闸机处
         gateBrakeMap_AD_in.put("ad4_in", ad4List);
 
         //第五个闸机
         List<RPoint> ad5List = new ArrayList<>();
-        ad5List.add(new RPoint(PointTag.NONE, new Point(3989, 2290)));    //进闸机处
-        ad5List.add(new RPoint(PointTag.NONE, new Point(3989, 2496)));    //处闸机处
+        ad5List.add(new RPoint(PointTag.NONE, new Point(3989, 2250)));    //进闸机处
+        ad5List.add(new RPoint(PointTag.NONE, new Point(3989, 2550)));    //处闸机处
         gateBrakeMap_AD_in.put("ad5_in", ad5List);
     }
 
@@ -363,20 +360,20 @@ public class ContextParam {
     private static void loadGateBrakeMap_BC_in() {
 
         List<RPoint> bc1List = new ArrayList<>();
-        bc1List.add(new RPoint(PointTag.NONE, new Point(4912, 2290)));    //进闸机处
-        bc1List.add(new RPoint(PointTag.NONE, new Point(4912, 2496)));    //处闸机处
+        bc1List.add(new RPoint(PointTag.NONE, new Point(4912, 2250)));    //进闸机处
+        bc1List.add(new RPoint(PointTag.NONE, new Point(4912, 2550)));    //处闸机处
         gateBrakeMap_BC_in.put("bc1_in", bc1List);
 
         //第一个和第二个之间像素宽度为90，可能是宽闸机
         List<RPoint> bc2List = new ArrayList<>();
-        bc2List.add(new RPoint(PointTag.NONE, new Point(5002, 2290)));    //进闸机处
-        bc2List.add(new RPoint(PointTag.NONE, new Point(5002, 2496)));    //处闸机处
+        bc2List.add(new RPoint(PointTag.NONE, new Point(5002, 2250)));    //进闸机处
+        bc2List.add(new RPoint(PointTag.NONE, new Point(5002, 2550)));    //处闸机处
         gateBrakeMap_BC_in.put("bc2_in", bc2List);
 
         //第三个闸机
         List<RPoint> bc3List = new ArrayList<>();
-        bc3List.add(new RPoint(PointTag.NONE, new Point(5082, 2290)));    //进闸机处
-        bc3List.add(new RPoint(PointTag.NONE, new Point(5082, 2496)));    //处闸机处
+        bc3List.add(new RPoint(PointTag.NONE, new Point(5082, 2250)));    //进闸机处
+        bc3List.add(new RPoint(PointTag.NONE, new Point(5082, 2550)));    //处闸机处
         gateBrakeMap_BC_in.put("bc3_in", bc3List);
     }
 
@@ -385,28 +382,28 @@ public class ContextParam {
      */
     private static void loadGateBrakeMap_AD_out() {
         List<RPoint> ad1List = new ArrayList<>();
-        ad1List.add(new RPoint(PointTag.NONE, new Point(2499, 2929)));    //进闸机处
-        ad1List.add(new RPoint(PointTag.NONE, new Point(2229, 2929)));    //处闸机处
+        ad1List.add(new RPoint(PointTag.NONE, new Point(2530, 2929)));    //进闸机处
+        ad1List.add(new RPoint(PointTag.NONE, new Point(2185, 2929)));    //处闸机处
         gateBrakeMap_AD_out.put("ad1_out", ad1List);
 
         List<RPoint> ad2List = new ArrayList<>();
-        ad2List.add(new RPoint(PointTag.NONE, new Point(2499, 2989)));    //进闸机处
-        ad2List.add(new RPoint(PointTag.NONE, new Point(2229, 2989)));    //处闸机处
+        ad2List.add(new RPoint(PointTag.NONE, new Point(2530, 2989)));    //进闸机处
+        ad2List.add(new RPoint(PointTag.NONE, new Point(2185, 2989)));    //处闸机处
         gateBrakeMap_AD_out.put("ad2_out", ad2List);
 
         List<RPoint> ad3List = new ArrayList<>();
-        ad3List.add(new RPoint(PointTag.NONE, new Point(2499, 3050)));    //进闸机处
-        ad3List.add(new RPoint(PointTag.NONE, new Point(2229, 3050)));    //处闸机处
+        ad3List.add(new RPoint(PointTag.NONE, new Point(2530, 3050)));    //进闸机处
+        ad3List.add(new RPoint(PointTag.NONE, new Point(2185, 3050)));    //处闸机处
         gateBrakeMap_AD_out.put("ad3_out", ad3List);
 
         List<RPoint> ad4List = new ArrayList<>();
-        ad4List.add(new RPoint(PointTag.NONE, new Point(2499, 3113)));    //进闸机处
-        ad4List.add(new RPoint(PointTag.NONE, new Point(2229, 3113)));    //处闸机处
+        ad4List.add(new RPoint(PointTag.NONE, new Point(2530, 3113)));    //进闸机处
+        ad4List.add(new RPoint(PointTag.NONE, new Point(2185, 3113)));    //处闸机处
         gateBrakeMap_AD_out.put("ad4_out", ad4List);
 
         List<RPoint> ad5List = new ArrayList<>();
-        ad5List.add(new RPoint(PointTag.NONE, new Point(2499, 3179)));    //进闸机处
-        ad5List.add(new RPoint(PointTag.NONE, new Point(2229, 3179)));    //处闸机处
+        ad5List.add(new RPoint(PointTag.NONE, new Point(2530, 3179)));    //进闸机处
+        ad5List.add(new RPoint(PointTag.NONE, new Point(2185, 3179)));    //处闸机处
         gateBrakeMap_AD_out.put("ad5_out", ad5List);
     }
 
@@ -697,7 +694,8 @@ public class ContextParam {
             list.add(new RPoint(PointTag.TAG_Y, new Point(6729, 2121)));
             list.add(new RPoint(PointTag.TAG_Y, new Point(6369, 2121)));
             list.add(new RPoint(PointTag.TAG_Y, new Point(5857, 2121)));
-            list.add(new RPoint(PointTag.TAG_Y, new Point(5473, 2121)));    //进闸机前一步
+            list.add(new RPoint(PointTag.TAG_Y, new Point(5473, 2121)));
+            list.add(new RPoint(PointTag.TAG_Y, new Point(5181, 2121)));   //进闸机前一步
 
             //HB区
 //        list.add(new RPoint(PointTag.TAG_X, new Point(5001, 2265)));    //闸机口
@@ -806,7 +804,8 @@ public class ContextParam {
             list.add(new RPoint(PointTag.TAG_Y, new Point(6729, 2121)));
             list.add(new RPoint(PointTag.TAG_Y, new Point(6369, 2121)));
             list.add(new RPoint(PointTag.TAG_Y, new Point(5857, 2121)));
-            list.add(new RPoint(PointTag.TAG_Y, new Point(5473, 2121)));    //进闸机前一步
+            list.add(new RPoint(PointTag.TAG_Y, new Point(5473, 2121)));
+            list.add(new RPoint(PointTag.TAG_Y, new Point(5181, 2121)));   //进闸机前一步
 
             //HB区
 //        list.add(new RPoint(PointTag.TAG_X, new Point(5001, 2265)));    //到闸机口
@@ -1005,16 +1004,16 @@ public class ContextParam {
         if (rPoint.getFlag() == PointTag.NONE) {
             point.setX(rPoint.getX());
             point.setY(rPoint.getY());
-        } else if (rPoint.getFlag() == PointTag.TAG_X) {
-//            point.setX(rPoint.getX() + new Random().nextInt(10));
-            point.setX(rPoint.getX() +
-                    (int) (String.valueOf(System.nanoTime() + new Random().nextLong()).hashCode() % 30 * rPoint.getRandMulti()));
-            point.setY(rPoint.getY());
-        } else if (rPoint.getFlag() == PointTag.TAG_Y) {
-            point.setX(rPoint.getX());
-//            point.setY(rPoint.getY() + new Random().nextInt(10));
-            point.setY(rPoint.getY() +
-                    (int) (String.valueOf(System.nanoTime() + new Random().nextLong()).hashCode() % 30 * rPoint.getRandMulti()));
+//        } else if (rPoint.getFlag() == PointTag.TAG_X) {
+////            point.setX(rPoint.getX() + new Random().nextInt(10));
+//            point.setX(rPoint.getX() +
+//                    (int) (String.valueOf(System.nanoTime() + new Random().nextLong()).hashCode() % 30 * rPoint.getRandMulti()));
+//            point.setY(rPoint.getY());
+//        } else if (rPoint.getFlag() == PointTag.TAG_Y) {
+//            point.setX(rPoint.getX());
+////            point.setY(rPoint.getY() + new Random().nextInt(10));
+//            point.setY(rPoint.getY() +
+//                    (int) (String.valueOf(System.nanoTime() + new Random().nextLong()).hashCode() % 30 * rPoint.getRandMulti()));
         } else {
             point.setX(rPoint.getX() +
                     (int) (String.valueOf(System.nanoTime() + new Random().nextLong()).hashCode() % 30 * rPoint.getRandMulti()));
@@ -1025,9 +1024,45 @@ public class ContextParam {
         //再确定位置：站台/站厅
         point.setZ(rPoint.getZ());
 
+        //确定所属区域
+        point.setArea(fixArea(point.getX(), point.getY(), point.getZ()));
+
         return point;
     }
 
+    /**
+     * 根据点位信息判断所属区域，缺省 站台/站厅 字段
+     *
+     * @param X
+     * @param Y
+     * @return 返回区域
+     */
+    public static com.rxt.common.autoFlow.Region fixArea(int X, int Y) {
+        return fixArea(X, Y, null);
+    }
+
+    /**
+     * 根据点位信息判断所属区域
+     *
+     * @param X
+     * @param Y
+     * @param Z
+     * @return 返回区域
+     */
+    public static com.rxt.common.autoFlow.Region fixArea(int X, int Y, Location Z) {
+//        System.out.println(X + " -----------> " + Y + " -----------> " + Z);
+        for (String k : regionMap.keySet()) {
+            com.rxt.common.autoFlow.Region v = regionMap.get(k);
+            if ((X >= v.getLeftup().getX()) && (X <= v.getRightdown().getX()) &&
+                    (Y >= v.getLeftup().getY()) && (Y <= v.getRightdown().getY())) {
+//                System.out.println(X + " ----> " + Y + " ----> " + " ----> " +
+//                        v.getLeftup().getX() + " ----> " + v.getRightdown().getX() + " ----> " +
+//                        v.getLeftup().getY() + " ----> " + v.getRightdown().getY());
+                return v;
+            }
+        }
+        return new com.rxt.common.autoFlow.Region();
+    }
 
     public static void print() {
         for (String key : passRouteMap.keySet()) {
@@ -1041,6 +1076,10 @@ public class ContextParam {
             System.out.println(k + " --> " + v);
         });
         gateBrakeMap_AD_out.forEach((k, v) -> {
+            System.out.println(k + " --> " + v);
+        });
+
+        regionMap.forEach((k, v) -> {
             System.out.println(k + " --> " + v);
         });
     }

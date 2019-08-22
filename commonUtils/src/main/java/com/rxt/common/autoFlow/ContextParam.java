@@ -541,5 +541,9 @@ public class ContextParam {
         }
     }
 
+    public static void main(String[] args) {
+        print();
+    }
+
 
 }

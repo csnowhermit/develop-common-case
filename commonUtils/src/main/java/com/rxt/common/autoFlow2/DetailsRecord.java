@@ -25,6 +25,10 @@ public final class DetailsRecord extends RPoint {
         this.timestamp = timestamp;
     }
 
+    public Long getTimestamp() {
+        return timestamp;
+    }
+
     @Override
     public String toString() {
         return timestamp + "," + super.toString();
