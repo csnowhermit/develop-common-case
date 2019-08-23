@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.sql.*;
@@ -22,9 +23,12 @@ public class App {
     private static Statement statement = null;
     private static ResultSet resultSet;
 
+    private static FileOutputStream fos_text = null;
+
     static {
         try {
             connection = OracleConn.getConn();
+            fos_text = new FileOutputStream(new File("d:/data/fos_text.csv"));
 
             String sql = "select OPER_DATE, LINE_NAME, STATION_NAME, HOURS, MINTUES, SECONDS, FLOW_IN, FLOW_OUT from gen_s_datang where OPER_DATE='2018-05-01'";
 //            String saveSQL = "insert into gen_s_details(user_id, line_name, station_name, forward, mystamp, X, Y, area) " +
@@ -49,6 +53,8 @@ public class App {
             e.printStackTrace();
         } catch (SQLException e) {
             e.printStackTrace();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
         }
     }
 
@@ -67,7 +73,7 @@ public class App {
 
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 
-        FileOutputStream fileOutputStream = new FileOutputStream(new File("d:/autoFlow.txt"));
+        FileOutputStream fileOutputStream = new FileOutputStream(new File("d:/data/autoFlow.txt"));
 
         while (resultSet.next()) {
             String oper_date = resultSet.getString(1);
@@ -163,6 +169,7 @@ public class App {
         }
 
         fileOutputStream.close();
+        fos_text.close();
         OracleConn.closeAll(connection, preparedStatement1, resultSet);
         OracleConn.closeAll(connection, statement, resultSet);
     }
@@ -192,22 +199,44 @@ public class App {
 //        } catch (SQLException e) {
 //            e.printStackTrace();
 //        }
-        String saveSQL = "insert into gen_s_details(user_id, line_name, station_name, forward, mystamp, X, Y, area) " +
-                "values('" + userid + "', " +
-                "'" + line_name + "', " +
-                "'" + station_name + "', " +
-                "'" + forward + "', " +
-                "'" + detailsRecord.getTimestamp() + "', " +
-                detailsRecord.getX() + ", " +
-                detailsRecord.getY() + ", " +
-                "'" + detailsRecord.getArea().getFlags() + "')";
+//        String saveSQL = "insert into gen_s_details(user_id, line_name, station_name, forward, mystamp, X, Y, area) " +
+//                "values('" + userid + "', " +
+//                "'" + line_name + "', " +
+//                "'" + station_name + "', " +
+//                "'" + forward + "', " +
+//                "'" + detailsRecord.getTimestamp() + "', " +
+//                detailsRecord.getX() + ", " +
+//                detailsRecord.getY() + ", " +
+//                "'" + detailsRecord.getArea().getFlags() + "')";
+//
+//        try {
+//            statement.execute(saveSQL);
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//        USER_ID
+//                LINE_NAME
+//        STATION_NAME
+//                FORWARD
+//        MYSTAMP
+//                X
+//        Y
+//                AREA
+        StringBuffer sb = new StringBuffer();
+        sb.append(userid).append(",");
+//        sb.append(line_name).append(",");
+//        sb.append(station_name).append(",");
+//        sb.append(forward).append(",");
+        sb.append(detailsRecord.getTimestamp()).append(",");
+        sb.append(detailsRecord.getX()).append(",");
+        sb.append(detailsRecord.getY()).append(",");
+        sb.append(detailsRecord.getArea().getFlags()).append("\n");
 
         try {
-            statement.execute(saveSQL);
-        } catch (SQLException e) {
+            fos_text.write(sb.toString().getBytes());
+        } catch (IOException e) {
             e.printStackTrace();
         }
-//        System.out.println(saveSQL);
 
     }
 }

@@ -612,50 +612,50 @@ public class ContextParam {
         for (String brake_id : gateBrakeMap_BC_in.keySet()) {
             List<RPoint> list = new ArrayList<>();
 
-            //站外铁马阵
-            list.add(new RPoint(PointTag.TAG_X, new Point(4313, 4081)));
-            list.add(new RPoint(PointTag.TAG_Y, new Point(4417, 4081)));
-            list.add(new RPoint(PointTag.TAG_Y, new Point(4513, 4081)));
-
-            list.add(new RPoint(PointTag.TAG_X, new Point(4513, 4265)));
-            list.add(new RPoint(PointTag.TAG_X, new Point(4513, 4433)));
-            list.add(new RPoint(PointTag.TAG_X, new Point(4513, 4521)));
-            list.add(new RPoint(PointTag.TAG_X, new Point(4513, 4617)));
-
-            list.add(new RPoint(PointTag.TAG_Y, new Point(4625, 4617)));
-            list.add(new RPoint(PointTag.TAG_Y, new Point(4729, 4617)));
-
-            list.add(new RPoint(PointTag.TAG_X, new Point(4729, 4521)));
-            list.add(new RPoint(PointTag.TAG_X, new Point(4729, 4433)));
-            list.add(new RPoint(PointTag.TAG_X, new Point(4729, 4265)));
-            list.add(new RPoint(PointTag.TAG_X, new Point(4729, 4081)));
-
-            list.add(new RPoint(PointTag.TAG_Y, new Point(4849, 4081)));
-            list.add(new RPoint(PointTag.TAG_Y, new Point(4961, 4081)));
-
-            list.add(new RPoint(PointTag.TAG_X, new Point(4961, 4265)));
-            list.add(new RPoint(PointTag.TAG_X, new Point(4961, 4433)));
-            list.add(new RPoint(PointTag.TAG_X, new Point(4961, 4521)));
-            list.add(new RPoint(PointTag.TAG_X, new Point(4961, 4617)));
-
-            list.add(new RPoint(PointTag.TAG_Y, new Point(5057, 4617)));
-            list.add(new RPoint(PointTag.TAG_Y, new Point(5145, 4617)));
-
-            list.add(new RPoint(PointTag.TAG_X, new Point(5145, 4521)));
-            list.add(new RPoint(PointTag.TAG_X, new Point(5145, 4433)));
-            list.add(new RPoint(PointTag.TAG_X, new Point(5145, 4265)));
-            list.add(new RPoint(PointTag.TAG_X, new Point(5145, 4081)));
-
-            list.add(new RPoint(PointTag.TAG_Y, new Point(5257, 4081)));
-            list.add(new RPoint(PointTag.TAG_Y, new Point(5369, 4081)));
-
-            list.add(new RPoint(PointTag.TAG_X, new Point(5369, 4265)));
-            list.add(new RPoint(PointTag.TAG_X, new Point(5369, 4433)));
-
-            list.add(new RPoint(PointTag.TAG_X, new Point(5489, 4305)));
-            list.add(new RPoint(PointTag.TAG_X, new Point(5689, 4521)));
-            list.add(new RPoint(PointTag.TAG_X, new Point(5761, 4665)));
-            list.add(new RPoint(PointTag.TAG_X, new Point(5881, 4777)));   //到步梯口了
+//            //站外铁马阵
+//            list.add(new RPoint(PointTag.TAG_X, new Point(4313, 4081)));
+//            list.add(new RPoint(PointTag.TAG_Y, new Point(4417, 4081)));
+//            list.add(new RPoint(PointTag.TAG_Y, new Point(4513, 4081)));
+//
+//            list.add(new RPoint(PointTag.TAG_X, new Point(4513, 4265)));
+//            list.add(new RPoint(PointTag.TAG_X, new Point(4513, 4433)));
+//            list.add(new RPoint(PointTag.TAG_X, new Point(4513, 4521)));
+//            list.add(new RPoint(PointTag.TAG_X, new Point(4513, 4617)));
+//
+//            list.add(new RPoint(PointTag.TAG_Y, new Point(4625, 4617)));
+//            list.add(new RPoint(PointTag.TAG_Y, new Point(4729, 4617)));
+//
+//            list.add(new RPoint(PointTag.TAG_X, new Point(4729, 4521)));
+//            list.add(new RPoint(PointTag.TAG_X, new Point(4729, 4433)));
+//            list.add(new RPoint(PointTag.TAG_X, new Point(4729, 4265)));
+//            list.add(new RPoint(PointTag.TAG_X, new Point(4729, 4081)));
+//
+//            list.add(new RPoint(PointTag.TAG_Y, new Point(4849, 4081)));
+//            list.add(new RPoint(PointTag.TAG_Y, new Point(4961, 4081)));
+//
+//            list.add(new RPoint(PointTag.TAG_X, new Point(4961, 4265)));
+//            list.add(new RPoint(PointTag.TAG_X, new Point(4961, 4433)));
+//            list.add(new RPoint(PointTag.TAG_X, new Point(4961, 4521)));
+//            list.add(new RPoint(PointTag.TAG_X, new Point(4961, 4617)));
+//
+//            list.add(new RPoint(PointTag.TAG_Y, new Point(5057, 4617)));
+//            list.add(new RPoint(PointTag.TAG_Y, new Point(5145, 4617)));
+//
+//            list.add(new RPoint(PointTag.TAG_X, new Point(5145, 4521)));
+//            list.add(new RPoint(PointTag.TAG_X, new Point(5145, 4433)));
+//            list.add(new RPoint(PointTag.TAG_X, new Point(5145, 4265)));
+//            list.add(new RPoint(PointTag.TAG_X, new Point(5145, 4081)));
+//
+//            list.add(new RPoint(PointTag.TAG_Y, new Point(5257, 4081)));
+//            list.add(new RPoint(PointTag.TAG_Y, new Point(5369, 4081)));
+//
+//            list.add(new RPoint(PointTag.TAG_X, new Point(5369, 4265)));
+//            list.add(new RPoint(PointTag.TAG_X, new Point(5369, 4433)));
+//
+//            list.add(new RPoint(PointTag.TAG_X, new Point(5489, 4305)));
+//            list.add(new RPoint(PointTag.TAG_X, new Point(5689, 4521)));
+//            list.add(new RPoint(PointTag.TAG_X, new Point(5761, 4665)));
+//            list.add(new RPoint(PointTag.TAG_X, new Point(5881, 4777)));   //到步梯口了
 
             //B口楼梯
             list.add(new RPoint(PointTag.TAG_Y, new Point(5985, 4777)));
@@ -722,50 +722,50 @@ public class ContextParam {
         for (String brake_id : gateBrakeMap_BC_in.keySet()) {
             List<RPoint> list = new ArrayList<>();
 
-            //站外铁马阵
-            list.add(new RPoint(PointTag.TAG_X, new Point(4313, 4081)));
-            list.add(new RPoint(PointTag.TAG_Y, new Point(4417, 4081)));
-            list.add(new RPoint(PointTag.TAG_Y, new Point(4513, 4081)));
-
-            list.add(new RPoint(PointTag.TAG_X, new Point(4513, 4265)));
-            list.add(new RPoint(PointTag.TAG_X, new Point(4513, 4433)));
-            list.add(new RPoint(PointTag.TAG_X, new Point(4513, 4521)));
-            list.add(new RPoint(PointTag.TAG_X, new Point(4513, 4617)));
-
-            list.add(new RPoint(PointTag.TAG_Y, new Point(4625, 4617)));
-            list.add(new RPoint(PointTag.TAG_Y, new Point(4729, 4617)));
-
-            list.add(new RPoint(PointTag.TAG_X, new Point(4729, 4521)));
-            list.add(new RPoint(PointTag.TAG_X, new Point(4729, 4433)));
-            list.add(new RPoint(PointTag.TAG_X, new Point(4729, 4265)));
-            list.add(new RPoint(PointTag.TAG_X, new Point(4729, 4081)));
-
-            list.add(new RPoint(PointTag.TAG_Y, new Point(4849, 4081)));
-            list.add(new RPoint(PointTag.TAG_Y, new Point(4961, 4081)));
-
-            list.add(new RPoint(PointTag.TAG_X, new Point(4961, 4265)));
-            list.add(new RPoint(PointTag.TAG_X, new Point(4961, 4433)));
-            list.add(new RPoint(PointTag.TAG_X, new Point(4961, 4521)));
-            list.add(new RPoint(PointTag.TAG_X, new Point(4961, 4617)));
-
-            list.add(new RPoint(PointTag.TAG_Y, new Point(5057, 4617)));
-            list.add(new RPoint(PointTag.TAG_Y, new Point(5145, 4617)));
-
-            list.add(new RPoint(PointTag.TAG_X, new Point(5145, 4521)));
-            list.add(new RPoint(PointTag.TAG_X, new Point(5145, 4433)));
-            list.add(new RPoint(PointTag.TAG_X, new Point(5145, 4265)));
-            list.add(new RPoint(PointTag.TAG_X, new Point(5145, 4081)));
-
-            list.add(new RPoint(PointTag.TAG_Y, new Point(5257, 4081)));
-            list.add(new RPoint(PointTag.TAG_Y, new Point(5369, 4081)));
-
-            list.add(new RPoint(PointTag.TAG_X, new Point(5369, 4265)));
-            list.add(new RPoint(PointTag.TAG_X, new Point(5369, 4433)));
-
-            list.add(new RPoint(PointTag.TAG_X, new Point(5489, 4305)));
-            list.add(new RPoint(PointTag.TAG_X, new Point(5689, 4521)));
-            list.add(new RPoint(PointTag.TAG_X, new Point(5761, 4665)));
-            list.add(new RPoint(PointTag.TAG_X, new Point(5881, 4777)));   //到步梯口了
+//            //站外铁马阵
+//            list.add(new RPoint(PointTag.TAG_X, new Point(4313, 4081)));
+//            list.add(new RPoint(PointTag.TAG_Y, new Point(4417, 4081)));
+//            list.add(new RPoint(PointTag.TAG_Y, new Point(4513, 4081)));
+//
+//            list.add(new RPoint(PointTag.TAG_X, new Point(4513, 4265)));
+//            list.add(new RPoint(PointTag.TAG_X, new Point(4513, 4433)));
+//            list.add(new RPoint(PointTag.TAG_X, new Point(4513, 4521)));
+//            list.add(new RPoint(PointTag.TAG_X, new Point(4513, 4617)));
+//
+//            list.add(new RPoint(PointTag.TAG_Y, new Point(4625, 4617)));
+//            list.add(new RPoint(PointTag.TAG_Y, new Point(4729, 4617)));
+//
+//            list.add(new RPoint(PointTag.TAG_X, new Point(4729, 4521)));
+//            list.add(new RPoint(PointTag.TAG_X, new Point(4729, 4433)));
+//            list.add(new RPoint(PointTag.TAG_X, new Point(4729, 4265)));
+//            list.add(new RPoint(PointTag.TAG_X, new Point(4729, 4081)));
+//
+//            list.add(new RPoint(PointTag.TAG_Y, new Point(4849, 4081)));
+//            list.add(new RPoint(PointTag.TAG_Y, new Point(4961, 4081)));
+//
+//            list.add(new RPoint(PointTag.TAG_X, new Point(4961, 4265)));
+//            list.add(new RPoint(PointTag.TAG_X, new Point(4961, 4433)));
+//            list.add(new RPoint(PointTag.TAG_X, new Point(4961, 4521)));
+//            list.add(new RPoint(PointTag.TAG_X, new Point(4961, 4617)));
+//
+//            list.add(new RPoint(PointTag.TAG_Y, new Point(5057, 4617)));
+//            list.add(new RPoint(PointTag.TAG_Y, new Point(5145, 4617)));
+//
+//            list.add(new RPoint(PointTag.TAG_X, new Point(5145, 4521)));
+//            list.add(new RPoint(PointTag.TAG_X, new Point(5145, 4433)));
+//            list.add(new RPoint(PointTag.TAG_X, new Point(5145, 4265)));
+//            list.add(new RPoint(PointTag.TAG_X, new Point(5145, 4081)));
+//
+//            list.add(new RPoint(PointTag.TAG_Y, new Point(5257, 4081)));
+//            list.add(new RPoint(PointTag.TAG_Y, new Point(5369, 4081)));
+//
+//            list.add(new RPoint(PointTag.TAG_X, new Point(5369, 4265)));
+//            list.add(new RPoint(PointTag.TAG_X, new Point(5369, 4433)));
+//
+//            list.add(new RPoint(PointTag.TAG_X, new Point(5489, 4305)));
+//            list.add(new RPoint(PointTag.TAG_X, new Point(5689, 4521)));
+//            list.add(new RPoint(PointTag.TAG_X, new Point(5761, 4665)));
+//            list.add(new RPoint(PointTag.TAG_X, new Point(5881, 4777)));   //到步梯口了
 
             //B口楼梯
             list.add(new RPoint(PointTag.TAG_Y, new Point(5985, 4777)));

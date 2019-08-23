@@ -18,17 +18,8 @@ import java.sql.Statement;
  * stamp, count(distinct user_id) nums,
  * listagg(rpoint, ',') within group (order by rpoint) newline
  * from
- * (select user_id, line_name, station_name, forward, floor(mystamp/1000) stamp, X||'-'||Y rpoint, area from gen_s_details) tmp
+ * (select user_id, forward, floor(mystamp/1000) stamp, X||'-'||Y rpoint, area from gen_s_details) tmp
  * group by  area, stamp;
- * <p>
- * create table sta_datang_midutongji as
- * select line_name, station_name,
- * case area when 'null' then 'B口外铁马阵'
- * else area end region,
- * stamp, count(distinct user_id) nums
- * from
- * (select user_id, line_name, station_name, forward, floor(mystamp/1000) stamp, '['||X, Y, area from gen_s_details) tmp
- * group by line_name, station_name, area, stamp;
  */
 public class AggData_heatMap {
     public static void main(String[] args) throws SQLException, ClassNotFoundException, IOException {
@@ -38,7 +29,7 @@ public class AggData_heatMap {
 
         ResultSet rs = statement.executeQuery(sql);
 
-        FileOutputStream fileOutputStream = new FileOutputStream(new File("d:/heart_map.txt"));
+        FileOutputStream fileOutputStream = new FileOutputStream(new File("d:/data/heart_map.txt"));
 
         int count = 0;
         while (rs.next()) {
@@ -49,12 +40,12 @@ public class AggData_heatMap {
 
             String[] arrs = newLine.split(",");
             for (String s : arrs) {
-                StringBuffer sb = new StringBuffer();
+                StringBuffer sb = new StringBuffer("[");
                 sb.append(s.split("-")[0]).append(",");
                 sb.append(s.split("-")[1]).append(",");
-                sb.append(region).append(",");
+                sb.append("'").append(region).append("',");
                 sb.append(stamp).append(",");
-                sb.append(nums).append("\n");
+                sb.append(nums).append("],").append("\n");
 
 //                System.out.println(sb.toString());
                 fileOutputStream.write(sb.toString().getBytes());
@@ -65,7 +56,7 @@ public class AggData_heatMap {
                 System.out.println("已处理 " + count + " 条记录");
             }
         }
-
+        System.out.println("已处理完成 " + count + " 条记录");
 
         OracleConn.closeAll(connection, statement, rs);
         fileOutputStream.close();
