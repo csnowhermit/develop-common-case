@@ -14,7 +14,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <scala.version>2.11.1</scala.version>
+        <scala.version>2.11.12</scala.version>
         <flink.version>1.7.1</flink.version>
         <kafka.version>1.1.0</kafka.version>
         <scala.maven.version>2.11.1</scala.maven.version>
